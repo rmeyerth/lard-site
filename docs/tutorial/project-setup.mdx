@@ -1,0 +1,100 @@
+---
+sidebar_position: 1
+---
+# Project setup
+Start a new project in your favourite IDE and name it (I've called mine Aardvark). Add the following dependency
+to gradle:
+```gradle
+dependencies {
+    implementation 'dev.lard:lard-core:1.0'
+}
+```
+or Maven:
+```xml
+<dependencies>
+    <dependency>
+        <groupId>dev.lard</groupId>
+        <artifactId>lard-core</artifactId>
+        <version>1.0</version>
+    </dependency>
+</dependencies>
+```
+A projects structure can differ depending on your chosen build tool / IDE, but it should have a structure similar
+to the following:
+```
+[gradle]
+[src]
+   [main]
+       [java]
+           [com.aardvark]
+               Application.java
+   [test]
+        ... 
+build.gradle
+gradlew
+gradlew.bat
+settings.gradle
+```
+The first thing to do will be to create a configuration file. This is where all your tokens, operators and properties
+are defined which determine how your language will look and operate. We'll first add a config folder to the structure
+and put our new class in that:
+```
+...
+[src]
+   [main]
+       [java]
+           [com.aardvark]
+               [config]
+                   AardvarkConfig.java
+               Application.java
+...
+```
+Extending our class from LARDConfig will require us to implement several methods:
+```java
+public class AardvarkConfig extends LARDConfig {
+
+  @Override
+  protected void initTokenHandlers() { }
+
+  @Override
+  protected void initFunctions() { }
+
+  @Override
+  protected TypeOperation initTypeOperations() { retuurn null; }
+
+  @Override
+  protected void initOperators() { }
+
+  @Override
+  protected void initParserFormatters() { }
+}
+```
+Don't worry about the content of these methods as we'll get to these in due time. Next we'll modify the existing
+Application.java file in the root of the project directory. We'll change it to extend another class called LARDRunner*
+and define the following in the main method:
+
+```java
+public class Application extends LARDRunner {
+
+  public static void main(String[] args) {
+    AardvarkConfig config = new AardvarkConfig();
+    LARDProcessor processor = new LARDProcessor(config);
+    run("Aardvark Language", processor);
+  }
+}
+```
+
+:::tip Runner class
+
+The LARDRunner utility class is runnable allowing you to write, evaluate and test code in your language.
+
+:::
+
+Run the application and you'll be presented with the following:
+```
+Aardvark Language Test Utility
+==============================
+
+```
+From here you'll be able to evaluate expressions and debug your code. Now that we have the basics sorted, let's get
+started writing our language.
