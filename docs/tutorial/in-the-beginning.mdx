@@ -1,0 +1,151 @@
+---
+sidebar_position: 2
+---
+# In the beginning...
+:::tip Starter projects
+
+Sometimes you don't want to have to go through the process of defining all the base tokens. There are a number
+of starter projects offering various configurations for typed / typeless sets of literals and operators to you
+get started [here](blah).
+
+:::
+In the beginning there was null... well actually, not even that as we haven't defined it yet! You can test this by
+typing null in our runner app:
+```
+Aardvark Language Test Utility
+===============================
+null
+dev.lard.exception.ParserException: Unexpected token 'null' found in expression. Strict syntax checking is enabled
+	at dev.lard.lexer.LARDLexer.analysePatterns(LARDLexer.java:98)
+	at dev.lard.lexer.LARDLexer.tokenize(LARDLexer.java:57)
+	at dev.lard.lexer.Lexer.tokenize(Lexer.java:49)
+	at dev.lard.processor.LARDProcessor.process(LARDProcessor.java:82)
+	at dev.lard.runner.LARDRunner.run(LARDRunner.java:39)
+	at dev.lard.runner.LARDRunner.run(LARDRunner.java:10)
+	at dev.lard.runner.Application.main(Application.java:10)
+```
+As such, this will be our first task. Create a new package called tokens. Within that add another package called
+literals and add a new file called NullToken.java:
+```
+...
+[src]
+   [main]
+       [java]
+           [com.aardvark]
+               [config]
+                   AardvarkConfig.java
+               [tokens]
+                   [literals]
+                       NullToken.java
+               Application.java
+...
+```
+Open up the new token class and add ``extends Token<Void>`` after the class name. As with the configuration file,
+this will inherit a number of methods to implement from the parent class. These can be seen here:
+```java
+public class NullToken extends Token<Void> {
+
+  @Override
+  public Token<Void> createToken(String value) {
+    return null;
+  }
+
+  @Override
+  public PatternType getPatternType() {
+    return null;
+  }
+
+  @Override
+  public String getPattern() {
+    return null;
+  }
+
+  @Override
+  public Optional<String> getGuidance(String token, List<Integer> groupsCount) {
+    return Optional.empty();
+  }
+
+  @Override
+  protected List<Token<?>> process(LARDParser parser, LARDContext context, LARDConfig config) {
+    return null;
+  }
+}
+```
+I'll briefly run through the features of this class before diving in. Firstly, you'll notice that the Token class
+we are extending always requires a generic type. This determines the type each token will represent / store as a value.
+In our case, since there is no Null type in Java, we can use Void. Here is a description of the other functions in
+the class:
+- **createToken**: Gets called when the lexer matches this tokens pattern against the beginning of the expression. It
+  returns a new instance with the function parameter being the matched value. In this case it's null so we can just invoke
+  the blank constructor as we won't store it.
+- **getPatternType**: This is an enum representing the pattern type for the current token. This has two possible values
+  being either REGEX or GRAMMAR. For simple literals (Integer, Float, Double, String etc) these can be matched using
+  regular expressions. For more complex structures like statements or collections, those use grammar.
+- **getPattern**: Dependent on the pattern type, this will either contain a regular expression or a grammar definition.
+  For example, to define our null keyword we'll be using "^null" or "^nil" (whatever you prefer). As the expression is
+  processed, its matched against what's left of the unprocessed expression String. The '^' before the keyword simply
+  means that this is matched against the beginning of the String.
+- **getGuidance**: This is used when we start defining statements. If the expression is not valid and the current active
+  statement is still waiting for a given token, we can provide them a message here to show them where they made the mistake
+  and how to fix it.
+- **process**: During expression resolution, this gets called by the parser and this is where the bulk of our language
+  code will go. For literals though like null, you will simply return the current token as-is.
+
+Given the above, we can now populate our token with the following:
+```java
+public class NullToken extends Token<Void> {
+
+  public NullToken() {
+    super("null", null);
+  }
+
+  @Override
+  public PatternType getPatternType() {
+    return PatternType.REGEX;
+  }
+
+  @Override
+  public String getPattern() {
+    return "^null";
+  }
+
+  @Override
+  public Optional<String> getGuidance(String token, List<Integer> groupsCount) {
+    return Optional.empty();
+  }
+
+  @Override
+  public List<Token<?>> process(LARDParser parser, LARDContext context, LARDConfig config) {
+    return Collections.singletonList(this);
+  }
+
+  @Override
+  public Token<Void> createToken(String value) {
+    return new NullToken();
+  }
+}
+```
+We have also defined a constructor which calls the parent. This call sets a unique name for the token and specifies a
+value for the token, in this case it is just null. Congratulations, we have our first token! Now all we need to do is
+add it to our configuration:
+```java
+public class AardvarkConfig extends LARDConfig {
+  //...
+  @Override
+  protected void initTokenHandlers() {
+    addTokenHandler(new NullToken());
+  }
+  //...
+}
+```
+Go back to our runner, and...
+```
+Aardvark Language Test Utility
+===============================
+null
+Result: null (Type: Null, Time taken: 19ms)
+```
+we get null being returned when it is typed in. Nothing too exciting, but something that is necessary to have in most
+languages. If you were wondering, don't worry too much about the performance for this first call. You'll notice
+repeated or different expressions revert to 1 millisecond or less. This is caused by the overhead of Java loading
+the classes and resources for the first time.

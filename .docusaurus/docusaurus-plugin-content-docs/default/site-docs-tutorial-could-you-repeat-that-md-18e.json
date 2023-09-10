@@ -1,0 +1,27 @@
+{
+  "unversionedId": "tutorial/could-you-repeat-that",
+  "id": "tutorial/could-you-repeat-that",
+  "title": "Could you repeat that?",
+  "description": "",
+  "source": "@site/docs/tutorial/could-you-repeat-that.md",
+  "sourceDirName": "tutorial",
+  "slug": "/tutorial/could-you-repeat-that",
+  "permalink": "/docs/tutorial/could-you-repeat-that",
+  "draft": false,
+  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/tutorial/could-you-repeat-that.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 8,
+  "frontMatter": {
+    "sidebar_position": 8
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "A character study",
+    "permalink": "/docs/tutorial/a-character-study"
+  },
+  "next": {
+    "title": "Tutorial - Basics",
+    "permalink": "/docs/category/tutorial---basics"
+  }
+}

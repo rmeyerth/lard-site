@@ -1,0 +1,27 @@
+{
+  "unversionedId": "tutorial/speaking-literally",
+  "id": "tutorial/speaking-literally",
+  "title": "Speaking literally",
+  "description": "",
+  "source": "@site/docs/tutorial/speaking-literally.md",
+  "sourceDirName": "tutorial",
+  "slug": "/tutorial/speaking-literally",
+  "permalink": "/docs/tutorial/speaking-literally",
+  "draft": false,
+  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/tutorial/speaking-literally.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 2,
+  "frontMatter": {
+    "sidebar_position": 2
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "In the beginning...",
+    "permalink": "/docs/tutorial/in-the-beginning"
+  },
+  "next": {
+    "title": "Modus operandi",
+    "permalink": "/docs/tutorial/modus-operandi"
+  }
+}

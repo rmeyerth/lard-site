@@ -1,0 +1,27 @@
+{
+  "unversionedId": "tutorial/point-of-decimals",
+  "id": "tutorial/point-of-decimals",
+  "title": "Point of decimals",
+  "description": "",
+  "source": "@site/docs/tutorial/point-of-decimals.md",
+  "sourceDirName": "tutorial",
+  "slug": "/tutorial/point-of-decimals",
+  "permalink": "/docs/tutorial/point-of-decimals",
+  "draft": false,
+  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/tutorial/point-of-decimals.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 5,
+  "frontMatter": {
+    "sidebar_position": 5
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Modus operandi",
+    "permalink": "/docs/tutorial/modus-operandi"
+  },
+  "next": {
+    "title": "Making a statement",
+    "permalink": "/docs/tutorial/make-a-statement"
+  }
+}

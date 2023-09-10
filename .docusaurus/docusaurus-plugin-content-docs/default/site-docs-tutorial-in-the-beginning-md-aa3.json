@@ -1,0 +1,27 @@
+{
+  "unversionedId": "tutorial/in-the-beginning",
+  "id": "tutorial/in-the-beginning",
+  "title": "In the beginning",
+  "description": "In the beginning there was null... well actually, not even that as we haven't defined it yet! You can test this by",
+  "source": "@site/docs/tutorial/in-the-beginning.md",
+  "sourceDirName": "tutorial",
+  "slug": "/tutorial/in-the-beginning",
+  "permalink": "/docs/tutorial/in-the-beginning",
+  "draft": false,
+  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/tutorial/in-the-beginning.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 2,
+  "frontMatter": {
+    "sidebar_position": 2
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Project setup",
+    "permalink": "/docs/tutorial/project-setup"
+  },
+  "next": {
+    "title": "Speaking literally",
+    "permalink": "/docs/tutorial/speaking-literally"
+  }
+}

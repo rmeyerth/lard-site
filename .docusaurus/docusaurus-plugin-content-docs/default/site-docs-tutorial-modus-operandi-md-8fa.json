@@ -1,0 +1,27 @@
+{
+  "unversionedId": "tutorial/modus-operandi",
+  "id": "tutorial/modus-operandi",
+  "title": "Modus operandi",
+  "description": "",
+  "source": "@site/docs/tutorial/modus-operandi.md",
+  "sourceDirName": "tutorial",
+  "slug": "/tutorial/modus-operandi",
+  "permalink": "/docs/tutorial/modus-operandi",
+  "draft": false,
+  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/tutorial/modus-operandi.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 4,
+  "frontMatter": {
+    "sidebar_position": 4
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Speaking literally",
+    "permalink": "/docs/tutorial/speaking-literally"
+  },
+  "next": {
+    "title": "Point of decimals",
+    "permalink": "/docs/tutorial/point-of-decimals"
+  }
+}
