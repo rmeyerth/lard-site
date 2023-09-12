@@ -1,0 +1,107 @@
+---
+sidebar_position: 5
+---
+# Type Operations
+### TypeOperation Class
+Let's create a new package called operations and create a new token called IntegerOperation.java:
+```
+[src]
+   [main]
+       [java]
+           [com.aardvark]
+               [config]
+                   AardvarkConfig.java
+               [operations]
+                   IntegerOperation.java
+               [tokens]
+                   [operators]
+                       AardvarkArithmeticOperator.java
+                   [literals]
+                       IntegerToken.java
+                       NullToken.java
+               Application.java
+```
+Our class will extend TypeOperation where we're required to implement 3 methods. These are ``canHandle``,
+``handleCustomOperator`` and ``process``. The canHandle determines whether the current operation class can handle
+whatever is being executed by the parser. We will return true if both the first and second tokens represent Integers
+by using ``aToken.is(Integer.class)``. The second method (handleCustomOperator) acts as a fallback and only gets called
+if no match was found. This is triggered if you don't define an action for all the operators within our ArithmeticOperator
+class.
+
+The process method is where we write the code to handle each operator for the supported types. We first extract each
+Token value using the ``getValue(Class<?> aClass)`` method. We then map the operator to a specific operator set
+(ArithmeticOperator in our case) and return the result of each operation. The ``wrap`` method simply wraps the result
+in our Token class we defined earlier.
+### Integer Operation
+```java
+public class IntegerOperation implements TypeOperation {
+
+    @Override
+    public boolean canHandle(Token<?> first, OperatorHandler<?> operator, Token<?> second) {
+        return first.is(Integer.class) && second.is(Integer.class);
+    }
+
+    @Override
+    public <T> T handleCustomOperator(Token<?> first, OperatorHandler<?> operator, Token<?> second) {
+        throw new ParserException(String.format("Unable to handle integer operation with operator '%s'",
+                operator.getValue()));
+    }
+
+    @Override
+    public Token<?> process(LARDConfig config, LARDContext context, Token<?> firstToken, OperatorHandler<?> operator,
+                            Token<?> secondToken, Token<?> leftSide) {
+        //Extract token values
+        Integer first = firstToken.getValue(Integer.class);
+        Integer second = secondToken.getValue(Integer.class);
+        //Check that operator is Arithmetic and handle each case using switch
+        if (operator instanceof ArithmeticOperator) {
+            switch (((ArithmeticOperator)operator).getOpType()) {
+                case ADD: return wrap(first + second);
+                case SUBTRACT: return wrap(first - second);
+                case DIVIDE: return wrap(first / second);
+                case MULTIPLY: return wrap(first * second);
+                case MODULO: return wrap(first % second);
+            }
+        }
+        //Fallback
+        return handleCustomOperator(firstToken, operator, secondToken);
+    }
+
+    private Token<?> wrap(Integer result) {
+        return new IntegerToken(result);
+    }
+}
+```
+### Configure and... not quite
+Next we add this to our config class:
+```java
+@Override
+public class AardvarkConfig extends LARDConfig {
+    //...
+    @Override
+    protected TypeOperation initTypeOperations() {
+        addTypeOperation(new IntegerOperation());
+        return null;
+    }
+    //...
+}
+```
+We'll return null from the initTypeOperations method for now. This simply states which type operation will be used as a
+fallback should no other match be found. Now we have this, let's test out some basic calculations in our runner:
+```
+10 + 10
+Result: 20 (Type: Integer, Time taken: 11ms)
+10 / 2
+Result: 5 (Type: Integer, Time taken: 1ms)
+10 % 3
+Result: 1 (Type: Integer, Time taken: 1ms)
+1 + 6 / 3 + 1
+Result: 4 (Type: Integer, Time taken: 2ms)
+```
+It's working! However not everything's perfect with our language. Take the following example:
+```
+3 / 2
+Result: 1 (Type: Integer, Time taken: 0ms)
+```
+That's not quite right. Shouldn't a decimal value of 1.5 be returned? Well, since we haven't defined what a decimal is,
+how can one be returned? As such, let's get this fixed in the next section.

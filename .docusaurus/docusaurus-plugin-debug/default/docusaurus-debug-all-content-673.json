@@ -15,9 +15,9 @@
           "editUrlLocalized": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/i18n/en/docusaurus-plugin-content-docs/current",
           "isLast": true,
           "routePriority": -1,
-          "sidebarFilePath": "/Users/tronied/gitlab/lard-site/sidebars.js",
-          "contentPath": "/Users/tronied/gitlab/lard-site/docs",
-          "contentPathLocalized": "/Users/tronied/gitlab/lard-site/i18n/en/docusaurus-plugin-content-docs/current",
+          "sidebarFilePath": "C:\\github\\lard-site\\sidebars.js",
+          "contentPath": "C:\\github\\lard-site\\docs",
+          "contentPathLocalized": "C:\\github\\lard-site\\i18n\\en\\docusaurus-plugin-content-docs\\current",
           "docs": [
             {
               "unversionedId": "intro",
@@ -267,9 +267,9 @@
               "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/tutorial/a-character-study.md",
               "tags": [],
               "version": "current",
-              "sidebarPosition": 7,
+              "sidebarPosition": 8,
               "frontMatter": {
-                "sidebar_position": 7
+                "sidebar_position": 8
               },
               "sidebar": "tutorialSidebar",
               "previous": {
@@ -294,9 +294,9 @@
               "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/tutorial/could-you-repeat-that.md",
               "tags": [],
               "version": "current",
-              "sidebarPosition": 8,
+              "sidebarPosition": 9,
               "frontMatter": {
-                "sidebar_position": 8
+                "sidebar_position": 9
               },
               "sidebar": "tutorialSidebar",
               "previous": {
@@ -312,7 +312,7 @@
               "unversionedId": "tutorial/in-the-beginning",
               "id": "tutorial/in-the-beginning",
               "title": "In the beginning...",
-              "description": "Sometimes you don't want to have to go through the process of defining all the base tokens. There are a number",
+              "description": "The Void",
               "source": "@site/docs/tutorial/in-the-beginning.mdx",
               "sourceDirName": "tutorial",
               "slug": "/tutorial/in-the-beginning",
@@ -348,9 +348,9 @@
               "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/tutorial/make-a-statement.md",
               "tags": [],
               "version": "current",
-              "sidebarPosition": 6,
+              "sidebarPosition": 7,
               "frontMatter": {
-                "sidebar_position": 6
+                "sidebar_position": 7
               },
               "sidebar": "tutorialSidebar",
               "previous": {
@@ -366,13 +366,13 @@
               "unversionedId": "tutorial/modus-operandi",
               "id": "tutorial/modus-operandi",
               "title": "Modus operandi",
-              "description": "",
-              "source": "@site/docs/tutorial/modus-operandi.md",
+              "description": "As with everything we need to tell LARD how to handle operators. This would be the same if we're teaching a",
+              "source": "@site/docs/tutorial/modus-operandi.mdx",
               "sourceDirName": "tutorial",
               "slug": "/tutorial/modus-operandi",
               "permalink": "/docs/tutorial/modus-operandi",
               "draft": false,
-              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/tutorial/modus-operandi.md",
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/tutorial/modus-operandi.mdx",
               "tags": [],
               "version": "current",
               "sidebarPosition": 4,
@@ -385,8 +385,8 @@
                 "permalink": "/docs/tutorial/speaking-literally"
               },
               "next": {
-                "title": "Point of decimals",
-                "permalink": "/docs/tutorial/point-of-decimals"
+                "title": "Type Operations",
+                "permalink": "/docs/tutorial/type-operations"
               }
             },
             {
@@ -402,14 +402,14 @@
               "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/tutorial/point-of-decimals.md",
               "tags": [],
               "version": "current",
-              "sidebarPosition": 5,
+              "sidebarPosition": 6,
               "frontMatter": {
-                "sidebar_position": 5
+                "sidebar_position": 6
               },
               "sidebar": "tutorialSidebar",
               "previous": {
-                "title": "Modus operandi",
-                "permalink": "/docs/tutorial/modus-operandi"
+                "title": "Type Operations",
+                "permalink": "/docs/tutorial/type-operations"
               },
               "next": {
                 "title": "Making a statement",
@@ -420,7 +420,7 @@
               "unversionedId": "tutorial/project-setup",
               "id": "tutorial/project-setup",
               "title": "Project setup",
-              "description": "Start a new project in your favourite IDE and name it (I've called mine Aardvark). Add the following dependency",
+              "description": "Dependency",
               "source": "@site/docs/tutorial/project-setup.mdx",
               "sourceDirName": "tutorial",
               "slug": "/tutorial/project-setup",
@@ -447,7 +447,7 @@
               "unversionedId": "tutorial/speaking-literally",
               "id": "tutorial/speaking-literally",
               "title": "Speaking literally",
-              "description": "",
+              "description": "Integer Token",
               "source": "@site/docs/tutorial/speaking-literally.md",
               "sourceDirName": "tutorial",
               "slug": "/tutorial/speaking-literally",
@@ -468,6 +468,33 @@
               "next": {
                 "title": "Modus operandi",
                 "permalink": "/docs/tutorial/modus-operandi"
+              }
+            },
+            {
+              "unversionedId": "tutorial/type-operations",
+              "id": "tutorial/type-operations",
+              "title": "Type Operations",
+              "description": "TypeOperation Class",
+              "source": "@site/docs/tutorial/type-operations.mdx",
+              "sourceDirName": "tutorial",
+              "slug": "/tutorial/type-operations",
+              "permalink": "/docs/tutorial/type-operations",
+              "draft": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/tutorial/type-operations.mdx",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 5,
+              "frontMatter": {
+                "sidebar_position": 5
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Modus operandi",
+                "permalink": "/docs/tutorial/modus-operandi"
+              },
+              "next": {
+                "title": "Point of decimals",
+                "permalink": "/docs/tutorial/point-of-decimals"
               }
             }
           ],
@@ -499,6 +526,10 @@
                   {
                     "type": "doc",
                     "id": "tutorial/modus-operandi"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "tutorial/type-operations"
                   },
                   {
                     "type": "doc",

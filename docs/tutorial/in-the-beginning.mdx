@@ -2,15 +2,16 @@
 sidebar_position: 2
 ---
 # In the beginning...
+### The Void
 :::tip Starter projects
 
-Sometimes you don't want to have to go through the process of defining all the base tokens. There are a number
-of starter projects offering various configurations for typed / typeless sets of literals and operators to you
-get started [here](blah).
+This tutorial will take you through step-by-step on how to create literals and operators. If you'd prefer to skip ahead
+(though if this is your first project I'd recommend continuing), then you can download one of the starter projects
+which contain a set of default literals and operators to get you started [here](blah).
 
 :::
-In the beginning there was null... well actually, not even that as we haven't defined it yet! You can test this by
-typing null in our runner app:
+In the beginning there was nothing... or in our case **null**. Unfortunately, since we haven't defined what null is we
+don't even have that yet! We can test this by typing null in our runner app:
 ```
 Aardvark Language Test Utility
 ===============================
@@ -24,10 +25,10 @@ dev.lard.exception.ParserException: Unexpected token 'null' found in expression.
 	at dev.lard.runner.LARDRunner.run(LARDRunner.java:10)
 	at dev.lard.runner.Application.main(Application.java:10)
 ```
+### Token Class
 As such, this will be our first task. Create a new package called tokens. Within that add another package called
 literals and add a new file called NullToken.java:
 ```
-...
 [src]
    [main]
        [java]
@@ -38,7 +39,6 @@ literals and add a new file called NullToken.java:
                    [literals]
                        NullToken.java
                Application.java
-...
 ```
 Open up the new token class and add ``extends Token<Void>`` after the class name. As with the configuration file,
 this will inherit a number of methods to implement from the parent class. These can be seen here:
@@ -125,6 +125,7 @@ public class NullToken extends Token<Void> {
   }
 }
 ```
+### Configure and Run
 We have also defined a constructor which calls the parent. This call sets a unique name for the token and specifies a
 value for the token, in this case it is just null. Congratulations, we have our first token! Now all we need to do is
 add it to our configuration:

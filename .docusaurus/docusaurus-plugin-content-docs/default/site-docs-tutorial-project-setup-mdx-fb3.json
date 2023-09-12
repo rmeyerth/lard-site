@@ -2,7 +2,7 @@
   "unversionedId": "tutorial/project-setup",
   "id": "tutorial/project-setup",
   "title": "Project setup",
-  "description": "Start a new project in your favourite IDE and name it (I've called mine Aardvark). Add the following dependency",
+  "description": "Dependency",
   "source": "@site/docs/tutorial/project-setup.mdx",
   "sourceDirName": "tutorial",
   "slug": "/tutorial/project-setup",

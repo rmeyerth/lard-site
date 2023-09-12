@@ -1,0 +1,134 @@
+---
+sidebar_position: 4
+---
+# Modus operandi
+As with everything we need to tell LARD how to handle operators. This would be the same if we're teaching a
+child how to count. First you start with basic numbers and increments. Once they've grasped that they can then move
+onto addition, subtraction, multiplication and division etc. In our case and for this to work, we first need to define
+a set of arithmetic operators.
+
+### Operator Types
+In programming there are multiple sets of operators, each with a different purpose. Within LARD there are several
+pre-defined template classes you can use for most cases. These are:
+
+- ArithmeticOperator
+- AssignmentOperator
+- BitwiseOperator
+- ComparisonOperator
+- LogicOperator
+
+:::tip Custom Operator Types
+You are not limited to just these should you want to define your own sets of operators. You can create a new class
+extending OperatorHandler and pass it the operator types defined in an enum which you pass as a generic e.g.
+``class MyCustomOperators extends OperatorHandler<MyCustomOperatorsType> { .. }``. This can either be an abstract
+template or concrete implementation. You can also override the order in which sets of operators are called. You can do
+this by overriding the ``OperatorHandler.getHandlerOrder`` method. The lower a value the higher priority those are given
+during execution. In any case, the default sets should cover the requirements of the majority of languages.
+:::
+
+### Arithmetic Operator Handler
+Let's start out with defining an arithmetic operator set so we can do some basic calculations. To do this, let's create
+a new package within the tokens package called operators:
+
+```
+...
+[src]
+   [main]
+       [java]
+           [com.aardvark]
+               [config]
+                   AardvarkConfig.java
+               [tokens]
+                   [operators]
+                       AardvarkArithmeticOperator.java
+                   [literals]                       
+                       IntegerToken.java
+                       NullToken.java
+               Application.java
+...
+```
+Next we'll extend from the ArithmeticOperator class and inherit the methods:
+```java
+public class AardvarkArithmeticOperator extends ArithmeticOperator {
+
+    public AardvarkArithmeticOperator(String value) {
+        super(value);
+    }
+
+    @Override
+    protected void initOperators() {
+        addOperator("+", ArithmeticOperatorType.ADD);
+        addOperator("-", ArithmeticOperatorType.SUBTRACT);
+        addOperator("/", ArithmeticOperatorType.DIVIDE);
+        addOperator("*", ArithmeticOperatorType.MULTIPLY);
+        addOperator("%", ArithmeticOperatorType.MODULO);
+    }
+
+    @Override
+    public String getPattern() {
+        return "^(\\+|-|\\/|\\*|%)";
+    }
+
+    @Override
+    public Token<String> createToken(String value) {
+        return new AardvarkArithmeticOperator(value);
+    }
+
+    @Override
+    public String[][] getOperatorOrder() {
+        return new String[][] {
+                {"/", "*", "%"},
+                {"+", "-"}
+        };
+    }
+}
+```
+There are three key methods in this class. The first is a new one called initOperators. This allows us to associate a
+String value to one of the Arithmetic operator types. To keep things familiar, I'm using the standard C / Java notation,
+but feel free to define your own preferred operator values.
+
+Following on from this we have the typical Token.getPattern method. This contains the pattern of the operators defined
+in the initOperators method*. The final method determines the order in which operators are executed for a given operator
+type. In our case we will follow BODMAS which determines that multiplication / division come before addition /
+subtraction. A 2-dimensional array is defined with the operators of higher priority placed higher up.
+
+### Configure and... seriously?
+As with all other tokens, we need to add it into our config class:
+```java
+@Override
+public class AardvarkConfig extends LARDConfig {
+    //...
+    @Override
+    protected void initOperators() {
+        addOperatorHandler(new AardvarkArithmeticOperator(null));
+    }
+    //...
+}
+```
+:::danger Declaration Order
+
+Please ensure the order of your operators does not conflict. For example, if you define ADD and INCREMENT operators,
+but the ADD precedes the latter, the increment will never be matched. This is because it will always go with the first
+match found and set that as the operator value. As such, to prevent this we put the '++' in front of the '+' to ensure
+we match the correct type e.g. ``^(...|\\+\\+|\\+|...)`` rather than ``^(...|\\+|\\+\\+|...)``.
+
+:::
+
+Let's load up our runner and now see what happens:
+```
+10 + 10
+dev.lard.exception.ParserException: No handler for type operation with arguments of type IntegerToken and IntegerToken found.
+	at dev.lard.parser.LARDParser.processOp(LARDParser.java:317)
+	at dev.lard.parser.LARDParser.processExpression(LARDParser.java:113)
+	at dev.lard.parser.LARDParser.process(LARDParser.java:44)
+	at dev.lard.processor.LARDProcessor.process(LARDProcessor.java:83)
+	at dev.lard.runner.LARDRunner.run(LARDRunner.java:39)
+	at dev.lard.runner.LARDRunner.run(LARDRunner.java:10)
+	at dev.lard.languages.aardvark.AardvarkRunner.main(AardvarkRunner.java:11)
+```
+Although we've defined our operators, LARD still doesn't know what it is supposed to do with it during parsing. This
+is where we define type operations. These not only tell it what to do in the situation of an operator occurring,
+but is also specific to given types. For example, you can add two Integers together using ``1 + 1`` in Java, but you
+can't do ``[1,2] + [3,4]``. By defining a type operation for an array type and configuring it to handle
+``ArithmeticOperatorType.ADD``, we can provide this easily. More on that later, but for now join us in the next section
+where we define a new type operation.

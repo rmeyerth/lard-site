@@ -11,14 +11,14 @@
   "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/tutorial/point-of-decimals.md",
   "tags": [],
   "version": "current",
-  "sidebarPosition": 5,
+  "sidebarPosition": 6,
   "frontMatter": {
-    "sidebar_position": 5
+    "sidebar_position": 6
   },
   "sidebar": "tutorialSidebar",
   "previous": {
-    "title": "Modus operandi",
-    "permalink": "/docs/tutorial/modus-operandi"
+    "title": "Type Operations",
+    "permalink": "/docs/tutorial/type-operations"
   },
   "next": {
     "title": "Making a statement",

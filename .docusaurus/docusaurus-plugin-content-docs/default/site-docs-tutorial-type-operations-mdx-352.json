@@ -1,0 +1,27 @@
+{
+  "unversionedId": "tutorial/type-operations",
+  "id": "tutorial/type-operations",
+  "title": "Type Operations",
+  "description": "TypeOperation Class",
+  "source": "@site/docs/tutorial/type-operations.mdx",
+  "sourceDirName": "tutorial",
+  "slug": "/tutorial/type-operations",
+  "permalink": "/docs/tutorial/type-operations",
+  "draft": false,
+  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/tutorial/type-operations.mdx",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 5,
+  "frontMatter": {
+    "sidebar_position": 5
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Modus operandi",
+    "permalink": "/docs/tutorial/modus-operandi"
+  },
+  "next": {
+    "title": "Point of decimals",
+    "permalink": "/docs/tutorial/point-of-decimals"
+  }
+}

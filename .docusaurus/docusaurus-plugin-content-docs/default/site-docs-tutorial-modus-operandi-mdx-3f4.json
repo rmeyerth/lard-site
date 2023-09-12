@@ -3,12 +3,12 @@
   "id": "tutorial/modus-operandi",
   "title": "Modus operandi",
   "description": "As with everything we need to tell LARD how to handle operators. This would be the same if we're teaching a",
-  "source": "@site/docs/tutorial/modus-operandi.md",
+  "source": "@site/docs/tutorial/modus-operandi.mdx",
   "sourceDirName": "tutorial",
   "slug": "/tutorial/modus-operandi",
   "permalink": "/docs/tutorial/modus-operandi",
   "draft": false,
-  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/tutorial/modus-operandi.md",
+  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/tutorial/modus-operandi.mdx",
   "tags": [],
   "version": "current",
   "sidebarPosition": 4,
@@ -21,7 +21,7 @@
     "permalink": "/docs/tutorial/speaking-literally"
   },
   "next": {
-    "title": "Point of decimals",
-    "permalink": "/docs/tutorial/point-of-decimals"
+    "title": "Type Operations",
+    "permalink": "/docs/tutorial/type-operations"
   }
 }
