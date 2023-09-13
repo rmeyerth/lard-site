@@ -4,102 +4,102 @@ import ComponentCreator from '@docusaurus/ComponentCreator';
 export default [
   {
     path: '/__docusaurus/debug',
-    component: ComponentCreator('/__docusaurus/debug', '940'),
+    component: ComponentCreator('/__docusaurus/debug', 'e0a'),
     exact: true
   },
   {
     path: '/__docusaurus/debug/config',
-    component: ComponentCreator('/__docusaurus/debug/config', 'c6a'),
+    component: ComponentCreator('/__docusaurus/debug/config', 'f1a'),
     exact: true
   },
   {
     path: '/__docusaurus/debug/content',
-    component: ComponentCreator('/__docusaurus/debug/content', '665'),
+    component: ComponentCreator('/__docusaurus/debug/content', 'b77'),
     exact: true
   },
   {
     path: '/__docusaurus/debug/globalData',
-    component: ComponentCreator('/__docusaurus/debug/globalData', 'f35'),
+    component: ComponentCreator('/__docusaurus/debug/globalData', '5b2'),
     exact: true
   },
   {
     path: '/__docusaurus/debug/metadata',
-    component: ComponentCreator('/__docusaurus/debug/metadata', 'd76'),
+    component: ComponentCreator('/__docusaurus/debug/metadata', '6ff'),
     exact: true
   },
   {
     path: '/__docusaurus/debug/registry',
-    component: ComponentCreator('/__docusaurus/debug/registry', '0a7'),
+    component: ComponentCreator('/__docusaurus/debug/registry', 'c80'),
     exact: true
   },
   {
     path: '/__docusaurus/debug/routes',
-    component: ComponentCreator('/__docusaurus/debug/routes', '275'),
+    component: ComponentCreator('/__docusaurus/debug/routes', 'b43'),
     exact: true
   },
   {
     path: '/blog',
-    component: ComponentCreator('/blog', '97c'),
+    component: ComponentCreator('/blog', '9e2'),
     exact: true
   },
   {
     path: '/blog/archive',
-    component: ComponentCreator('/blog/archive', '88c'),
+    component: ComponentCreator('/blog/archive', '480'),
     exact: true
   },
   {
     path: '/blog/first-blog-post',
-    component: ComponentCreator('/blog/first-blog-post', '3b1'),
+    component: ComponentCreator('/blog/first-blog-post', 'd4c'),
     exact: true
   },
   {
     path: '/blog/long-blog-post',
-    component: ComponentCreator('/blog/long-blog-post', 'c06'),
+    component: ComponentCreator('/blog/long-blog-post', '7db'),
     exact: true
   },
   {
     path: '/blog/mdx-blog-post',
-    component: ComponentCreator('/blog/mdx-blog-post', '68e'),
+    component: ComponentCreator('/blog/mdx-blog-post', 'ec2'),
     exact: true
   },
   {
     path: '/blog/tags',
-    component: ComponentCreator('/blog/tags', 'dbc'),
+    component: ComponentCreator('/blog/tags', '43a'),
     exact: true
   },
   {
     path: '/blog/tags/docusaurus',
-    component: ComponentCreator('/blog/tags/docusaurus', '54d'),
+    component: ComponentCreator('/blog/tags/docusaurus', 'e1a'),
     exact: true
   },
   {
     path: '/blog/tags/facebook',
-    component: ComponentCreator('/blog/tags/facebook', '199'),
+    component: ComponentCreator('/blog/tags/facebook', '26b'),
     exact: true
   },
   {
     path: '/blog/tags/hello',
-    component: ComponentCreator('/blog/tags/hello', 'e74'),
+    component: ComponentCreator('/blog/tags/hello', 'de1'),
     exact: true
   },
   {
     path: '/blog/tags/hola',
-    component: ComponentCreator('/blog/tags/hola', 'bc2'),
+    component: ComponentCreator('/blog/tags/hola', 'ca0'),
     exact: true
   },
   {
     path: '/blog/welcome',
-    component: ComponentCreator('/blog/welcome', '8a5'),
+    component: ComponentCreator('/blog/welcome', 'bac'),
     exact: true
   },
   {
     path: '/markdown-page',
-    component: ComponentCreator('/markdown-page', '3c9'),
+    component: ComponentCreator('/markdown-page', '041'),
     exact: true
   },
   {
     path: '/docs',
-    component: ComponentCreator('/docs', '298'),
+    component: ComponentCreator('/docs', '049'),
     routes: [
       {
         path: '/docs/category/tutorial',
@@ -231,7 +231,7 @@ export default [
   },
   {
     path: '/',
-    component: ComponentCreator('/', 'ec7'),
+    component: ComponentCreator('/', '134'),
     exact: true
   },
   {

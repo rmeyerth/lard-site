@@ -2,7 +2,7 @@
   "unversionedId": "tutorial/make-a-statement",
   "id": "tutorial/make-a-statement",
   "title": "Making a statement",
-  "description": "",
+  "description": "Let's start by creating a new package within tokens called statements. We'll call it ExpressionToken.java as what",
   "source": "@site/docs/tutorial/make-a-statement.md",
   "sourceDirName": "tutorial",
   "slug": "/tutorial/make-a-statement",
