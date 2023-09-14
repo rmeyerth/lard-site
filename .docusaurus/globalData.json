@@ -96,6 +96,11 @@
               "sidebar": "tutorialSidebar"
             },
             {
+              "id": "tutorial/to-be-or-not-to-be",
+              "path": "/docs/tutorial/to-be-or-not-to-be",
+              "sidebar": "tutorialSidebar"
+            },
+            {
               "id": "tutorial/type-operations",
               "path": "/docs/tutorial/type-operations",
               "sidebar": "tutorialSidebar"

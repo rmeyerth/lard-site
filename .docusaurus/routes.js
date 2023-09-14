@@ -99,7 +99,7 @@ export default [
   },
   {
     path: '/docs',
-    component: ComponentCreator('/docs', '049'),
+    component: ComponentCreator('/docs', '6ea'),
     routes: [
       {
         path: '/docs/category/tutorial',
@@ -175,7 +175,7 @@ export default [
       },
       {
         path: '/docs/tutorial/a-character-study',
-        component: ComponentCreator('/docs/tutorial/a-character-study', '750'),
+        component: ComponentCreator('/docs/tutorial/a-character-study', '0cc'),
         exact: true,
         sidebar: "tutorialSidebar"
       },
@@ -218,6 +218,12 @@ export default [
       {
         path: '/docs/tutorial/speaking-literally',
         component: ComponentCreator('/docs/tutorial/speaking-literally', '288'),
+        exact: true,
+        sidebar: "tutorialSidebar"
+      },
+      {
+        path: '/docs/tutorial/to-be-or-not-to-be',
+        component: ComponentCreator('/docs/tutorial/to-be-or-not-to-be', 'c50'),
         exact: true,
         sidebar: "tutorialSidebar"
       },

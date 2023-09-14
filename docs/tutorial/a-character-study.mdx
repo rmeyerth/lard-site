@@ -1,0 +1,253 @@
+---
+sidebar_position: 9
+---
+# A character study
+### String Token
+Up until now we've been dealing solely with numbers and indirectly booleans, but let's see how easy it is to add
+String support to use with our statements. **NOTE**: The following implementation goes over and above what a String
+needs to achieve, however I feel it's important to bring up these features should you use them elsewhere in your tokens.
+With that being said, let's get started.
+
+In our case we'll add String support for both single and double-quote characters. This will require a slightly different
+approach in our token which I'll explain below. Firstly, let's add a new StringToken.java class to our ``tokens.literals``
+package. We'll then define the following:
+```java
+public class StringToken extends Token<String> {
+
+    public StringToken() { super("String", null); }
+
+    public StringToken(String value) {
+        super("String", value);
+    }
+
+    @Override
+    public PatternType getPatternType() {
+        return PatternType.REGEX;
+    }
+
+    @Override
+    public String getPattern() {
+        return "^(\"(.*?[^\\\\])\"|'(.*?[^\\\\])')";
+    }
+
+    @Override
+    public Optional<String> getGuidance(String token, List<Integer> groupsCount) {
+        return Optional.empty();
+    }
+
+    @Override
+    public Optional<Token<String>> match(Expression expression, boolean dryRun) {
+        Matcher m = getMatcher(expression.getValue());
+        if (m.find()) {
+            if (!dryRun) expression.cutTo(m.end(0));
+            String value = Objects.isNull(m.group(2)) ? m.group(3) : m.group(2);
+            value = value.replace("\\\"", "\"");
+            value = value.replace("\\'", "'");
+            return Optional.of(createToken(value));
+        }
+        return Optional.empty();
+    }
+
+    @Override
+    public List<Token<?>> process(LARDParser parser, LARDContext context, LARDConfig config) {
+        return Collections.singletonList(this);
+    }
+
+    @Override
+    public Token<String> createToken(String value) {
+        return new StringToken(value);
+    }
+
+    @Override
+    public String toString() {
+        return String.format("'%s'", getValue());
+    }
+}
+```
+There are a couple of differences here which I'll explain:
+
+### Regular Expression
+
+Considering a String is just some text surrounding with a character (``'`` or ``"``), why is the definition so
+complicated? Ignoring the Java escape backslashes, the actual expression is ``^(\"(.*?[^\\])\"|'(.*?[^\\])')``. Looking
+at it, we can see that it starts with the typical ``^`` which means the beginning of a String. We then have a set of
+brackets which represent a capture group.
+
+Half way through the capture group you'll see a ``|`` which acts as a logical or, meaning it can match the pattern
+found before or after. Since both sides are the same besides the character used, we'll look at the first of these
+``"(.*?[^\\])"``. We start with a ``"`` in this case and have another set of brackets for a group to capture the text
+content found within. ``.*`` means match any character (``.``) 0 or more times (``*``). The next ``?`` means match as
+few characters as possible. We then have a group of characters which, as they start with a ``^`` character mean they
+are to be ignored. Why would we do this? Well, say we want to embed a String within a String, the only way for this
+to happen would be to use an escape character. In this case we're using the backslash to represent that.
+
+As such, we should be able to support both single and double-quoted Strings, but also those which contain escaped
+String quotations within the Strings themselves! Because we're using that logical or though, we do need to modify
+the way in which we map the capture groups. As such, this brings us onto the next change.
+
+### Match Method
+
+This method gets called when the lexer is trying to find a match for the next token. Typically it would use the single
+capture group defined (index 1). In our case though, we've defined not just one, but embedded groups two and three
+representing both sides of the or for ``"`` and ``'`` respectively. As such, we need to find which group returns a
+match and use that as our value.
+
+The majority of this code matches the method from which it overrides. The first line creates a regular expression
+matcher object from the pattern and returns it. We then determine if a match has been found and if so checks a
+dry-run boolean flag. This flag is used when we want to check for a match, but not affect the expression itself. If
+it is not a dry-run it removes the matched portion of text from the beginning of the expression. We then check capture
+group 2 (``"``) for a match and if none is found then we'll defer to group 3 (``'``). I've extracted the block of
+code we're using to select the group, modify it and pass it to become a new instance of the StringToken to be returned
+to the lexer:
+
+```java
+String value = Objects.isNull(m.group(2)) ? m.group(3) : m.group(2);
+value = value.replace("\\\"", "\"");
+value = value.replace("\\'", "'");
+return Optional.of(createToken(value));
+```
+
+Unfortunately I am not aware of a method to remove characters for this scenario via regex. As such, we use a standard
+``String.replace`` to remove the backslashes from our matched String. If you didn't manage to follow what I wrote above,
+it's not strictly necessary to understand all of this, but if you're interested I would suggest adding a breakpoint to
+the method to get a better idea of how it works.
+
+Ok, time to test it by adding it to our configuration and giving it a try in the expression runner:
+```java
+public class AardvarkConfig extends LARDConfig {
+    //...
+    @Override
+    protected void initTokenHandlers() {
+        //Literals
+        addTokenHandler(new NullToken());
+        addTokenHandler(new IntegerToken());
+        addTokenHandler(new DecimalToken());
+        addTokenHandler(new BooleanToken());  
+        addTokenHandler(new StringToken());
+
+        //Statements
+        addTokenHandler(new ExpressionToken());
+        addTokenHandler(new ConditionalToken());
+    }
+    //...
+}
+```
+Runner:
+```
+'hello'
+Result: hello (Type: String, Time taken: 11ms)
+"hello world!"
+Result: hello world! (Type: String, Time taken: 1ms)
+"The alien said \"zee oot!\", then flew off"
+Result: The alien said "zee oot!", then flew off (Type: String, Time taken: 1ms)
+```
+So far so good, but let's take things further by adding String operator support. To do this we'll start by adding a
+new StringOperation class to our operations package. Given the recent additions, the package structure and classes
+should look similar to the following:
+```
+...
+[src]
+   [main]
+       [java]
+           [com.aardvark]
+               [config]
+                   AardvarkConfig.java
+               [operations]
+                   NumericOperation.java
+                   StringOperation.java
+               [tokens]
+                   [operators]
+                       AardvarkArithmeticOperator.java
+                       AardvarkComparisonOperator.java
+                   [literals]
+                       BooleanToken.java
+                       DecimalToken.java
+                       IntegerToken.java
+                       NullToken.java
+                       StringToken.java
+                   [statements]
+                       ExpressionToken.java
+               Application.java
+...
+```
+In our operation class we define that either the first or second argument can be a String. This differs to other
+operation classes as you'd typically want them to be in that format i.e. Booleans or Numbers. In our case though
+we can use the passed Tokens value and call the ``toString()`` on it. As such, we can append whatever type it is
+either before or after our defined String.
+
+We'll add support for 3 operators for use with our String type. These will be add, equal and not-equal. You are
+however free to add your own additional operators. For example, you could make use of subtract by removing all
+instances of the right String from the original e.g. ``'William' - 'iam'`` would result in ``'Will'``. This could
+be done by using
+```java
+    case SUBTRACT: return new StringToken(first.getValue().toString()
+                        .replace(second.getValue().toString(), ""));
+```
+For this though, we'll keep things simple. It's worth noting here again that we're using multiple operator types.
+If you do want to use a specific one, please ensure you are casting the ``operator`` to the correct type.
+```java
+public class StringOperation implements TypeOperation {
+
+    @Override
+    public boolean canHandle(Token<?> first, OperatorHandler<?> operator, Token<?> second) {
+        //Other types (left or right side) are cast to Strings in operations
+        return first.is(String.class) || second.is(String.class);
+    }
+
+    @Override
+    public <T> T handleCustomOperator(Token<?> first, OperatorHandler<?> operator, Token<?> second) {
+        throw new ParserException(String.format("Unable to handle String operation with operator '%s'",
+                operator.getValue()));
+    }
+
+    @Override
+    public Token<?> process(LARDConfig config, LARDContext context, Token<?> first, OperatorHandler<?> operator,
+                            Token<?> second, Token<?> leftSide) {
+        if (operator instanceof ArithmeticOperator) {
+            switch (((ArithmeticOperator)operator).getOpType()) {
+                case ADD: return new StringToken(first.getValue().toString()
+                        .concat(second.getValue().toString()));
+            }
+        } else if (operator instanceof ComparisonOperator) {
+            switch (((ComparisonOperator)operator).getOpType()) {
+                case EQUAL: return new BooleanToken(first.getValue(String.class)
+                        .equalsIgnoreCase(second.getValue(String.class)));
+                case NOT_EQUAL: return new BooleanToken(!first.getValue(String.class)
+                        .equalsIgnoreCase(second.getValue(String.class)));
+            }
+        }
+        return handleCustomOperator(first, operator, second);
+    }
+}
+
+```
+Let's add our new operation class to the config:
+```java
+public class AardvarkConfig extends LARDConfig {
+    //...
+    @Override
+    protected TypeOperation initTypeOperations() {
+        addTypeOperation(new NumericOperation());
+        addTypeOperation(new StringOperation());
+        return null;
+    }
+    //...
+}
+```
+Finally, let's run some examples:
+```
+'hello ' + 'john'
+Result: hello john (Type: String, Time taken: 15ms)
+'William' - 'iam'
+Result: Will (Type: String, Time taken: 1ms)
+'abc' == 'abc'
+Result: true (Type: Boolean, Time taken: 1ms)
+'abc' == 'bdc'
+Result: false (Type: Boolean, Time taken: 1ms)
+'Johns age: ' + 41
+Result: Johns age: 41 (Type: String, Time taken: 1ms)
+```
+:::tip Mixing Types
+The last example is mixing String's with Integer's, but this is not a problem as previously mentioned as we're
+using the ``toString()`` on the Tokens value. This allows us some flexibility without having to specifically
+handle these scenarios.

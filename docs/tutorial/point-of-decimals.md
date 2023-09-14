@@ -58,6 +58,12 @@ public class DecimalToken extends Token<Double> {
     //...
 }
 ```
+:::tip Customisation
+
+LARD is completely customisable and most classes designed to be extensible or have their methods overridden. If you 
+don't like the default behaviour, change it and do something crazy!
+
+:::
 For Aardvark, I'll omit any localisation to keep things simple. Let's add our new token to the config:
 ```java
 public class AardvarkConfig extends LARDConfig {

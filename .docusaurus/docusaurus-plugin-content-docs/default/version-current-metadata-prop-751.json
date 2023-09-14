@@ -65,6 +65,12 @@
           },
           {
             "type": "link",
+            "label": "To be or not to be?",
+            "href": "/docs/tutorial/to-be-or-not-to-be",
+            "docId": "tutorial/to-be-or-not-to-be"
+          },
+          {
+            "type": "link",
             "label": "A character study",
             "href": "/docs/tutorial/a-character-study",
             "docId": "tutorial/a-character-study"
@@ -204,7 +210,7 @@
     "tutorial/a-character-study": {
       "id": "tutorial/a-character-study",
       "title": "A character study",
-      "description": "",
+      "description": "String Token",
       "sidebar": "tutorialSidebar"
     },
     "tutorial/could-you-repeat-that": {
@@ -222,7 +228,7 @@
     "tutorial/make-a-statement": {
       "id": "tutorial/make-a-statement",
       "title": "Making a statement",
-      "description": "Let's start by creating a new package within tokens called statements. We'll call it ExpressionToken.java as what",
+      "description": "If literals are considered the building blocks of a language, statements are considered the machinery and workers",
       "sidebar": "tutorialSidebar"
     },
     "tutorial/modus-operandi": {
@@ -247,6 +253,12 @@
       "id": "tutorial/speaking-literally",
       "title": "Speaking literally",
       "description": "Integer Token",
+      "sidebar": "tutorialSidebar"
+    },
+    "tutorial/to-be-or-not-to-be": {
+      "id": "tutorial/to-be-or-not-to-be",
+      "title": "To be or not to be?",
+      "description": "Ternary Conditional Statement",
       "sidebar": "tutorialSidebar"
     },
     "tutorial/type-operations": {

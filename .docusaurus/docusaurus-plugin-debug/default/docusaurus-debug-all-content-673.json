@@ -258,23 +258,23 @@
               "unversionedId": "tutorial/a-character-study",
               "id": "tutorial/a-character-study",
               "title": "A character study",
-              "description": "",
-              "source": "@site/docs/tutorial/a-character-study.md",
+              "description": "String Token",
+              "source": "@site/docs/tutorial/a-character-study.mdx",
               "sourceDirName": "tutorial",
               "slug": "/tutorial/a-character-study",
               "permalink": "/docs/tutorial/a-character-study",
               "draft": false,
-              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/tutorial/a-character-study.md",
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/tutorial/a-character-study.mdx",
               "tags": [],
               "version": "current",
-              "sidebarPosition": 8,
+              "sidebarPosition": 9,
               "frontMatter": {
-                "sidebar_position": 8
+                "sidebar_position": 9
               },
               "sidebar": "tutorialSidebar",
               "previous": {
-                "title": "Making a statement",
-                "permalink": "/docs/tutorial/make-a-statement"
+                "title": "To be or not to be?",
+                "permalink": "/docs/tutorial/to-be-or-not-to-be"
               },
               "next": {
                 "title": "Could you repeat that?",
@@ -294,9 +294,9 @@
               "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/tutorial/could-you-repeat-that.md",
               "tags": [],
               "version": "current",
-              "sidebarPosition": 9,
+              "sidebarPosition": 10,
               "frontMatter": {
-                "sidebar_position": 9
+                "sidebar_position": 10
               },
               "sidebar": "tutorialSidebar",
               "previous": {
@@ -339,7 +339,7 @@
               "unversionedId": "tutorial/make-a-statement",
               "id": "tutorial/make-a-statement",
               "title": "Making a statement",
-              "description": "Let's start by creating a new package within tokens called statements. We'll call it ExpressionToken.java as what",
+              "description": "If literals are considered the building blocks of a language, statements are considered the machinery and workers",
               "source": "@site/docs/tutorial/make-a-statement.md",
               "sourceDirName": "tutorial",
               "slug": "/tutorial/make-a-statement",
@@ -358,8 +358,8 @@
                 "permalink": "/docs/tutorial/point-of-decimals"
               },
               "next": {
-                "title": "A character study",
-                "permalink": "/docs/tutorial/a-character-study"
+                "title": "To be or not to be?",
+                "permalink": "/docs/tutorial/to-be-or-not-to-be"
               }
             },
             {
@@ -471,6 +471,33 @@
               }
             },
             {
+              "unversionedId": "tutorial/to-be-or-not-to-be",
+              "id": "tutorial/to-be-or-not-to-be",
+              "title": "To be or not to be?",
+              "description": "Ternary Conditional Statement",
+              "source": "@site/docs/tutorial/to-be-or-not-to-be.mdx",
+              "sourceDirName": "tutorial",
+              "slug": "/tutorial/to-be-or-not-to-be",
+              "permalink": "/docs/tutorial/to-be-or-not-to-be",
+              "draft": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/tutorial/to-be-or-not-to-be.mdx",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 8,
+              "frontMatter": {
+                "sidebar_position": 8
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Making a statement",
+                "permalink": "/docs/tutorial/make-a-statement"
+              },
+              "next": {
+                "title": "A character study",
+                "permalink": "/docs/tutorial/a-character-study"
+              }
+            },
+            {
               "unversionedId": "tutorial/type-operations",
               "id": "tutorial/type-operations",
               "title": "Type Operations",
@@ -538,6 +565,10 @@
                   {
                     "type": "doc",
                     "id": "tutorial/make-a-statement"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "tutorial/to-be-or-not-to-be"
                   },
                   {
                     "type": "doc",
