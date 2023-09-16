@@ -1,0 +1,20 @@
+{
+  "unversionedId": "operators",
+  "id": "operators",
+  "title": "operators",
+  "description": "",
+  "source": "@site/docs/operators.md",
+  "sourceDirName": ".",
+  "slug": "/operators",
+  "permalink": "/docs/operators",
+  "draft": false,
+  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/operators.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "grammar",
+    "permalink": "/docs/grammar"
+  }
+}

@@ -26,7 +26,7 @@ export default {
       "classic",
       {
         "docs": {
-          "sidebarPath": "c:\\github\\lard-site\\sidebars.js",
+          "sidebarPath": "C:\\github\\lard-site\\sidebars.js",
           "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/"
         },
         "blog": {
@@ -34,12 +34,13 @@ export default {
           "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/"
         },
         "theme": {
-          "customCss": "c:\\github\\lard-site\\src\\css\\custom.css"
+          "customCss": "C:\\github\\lard-site\\src\\css\\custom.css"
         }
       }
     ]
   ],
   "themeConfig": {
+    "primaryColor": "#0000FF",
     "image": "img/docusaurus-social-card.jpg",
     "navbar": {
       "title": "My Site",

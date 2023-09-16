@@ -61,10 +61,12 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      primaryColor: '#0000FF',
       // Replace with your project's social card
       image: 'img/docusaurus-social-card.jpg',
       navbar: {
         title: 'My Site',
+        backgroundColor: '#0000FF',
         logo: {
           alt: 'My Site Logo',
           src: 'img/logo.svg',

@@ -1,11 +1,11 @@
 {
   "title": "Tutorial",
-  "description": "5 minutes to learn the most important Docusaurus concepts.",
+  "description": "Starting from scratch and progressing step-by-step to a fully realised language",
   "slug": "/category/tutorial",
   "permalink": "/docs/category/tutorial",
   "navigation": {
     "previous": {
-      "title": "Tutorial Intro",
+      "title": "Introduction",
       "permalink": "/docs/intro"
     },
     "next": {

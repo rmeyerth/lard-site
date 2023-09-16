@@ -1,8 +1,8 @@
 {
   "unversionedId": "intro",
   "id": "intro",
-  "title": "Tutorial Intro",
-  "description": "Let's discover Docusaurus in less than 5 minutes.",
+  "title": "Introduction",
+  "description": "LARD is a tool that makes it easy to create interpreted programming languages. It does this by providing a high-level",
   "source": "@site/docs/intro.md",
   "sourceDirName": ".",
   "slug": "/intro",

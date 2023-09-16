@@ -1,0 +1,16 @@
+{
+  "title": "Toolkit",
+  "description": "Documentation for each feature within the framework",
+  "slug": "/category/toolkit",
+  "permalink": "/docs/category/toolkit",
+  "navigation": {
+    "previous": {
+      "title": "slop",
+      "permalink": "/docs/examples/slop"
+    },
+    "next": {
+      "title": "configuration",
+      "permalink": "/docs/toolkit/configuration"
+    }
+  }
+}
