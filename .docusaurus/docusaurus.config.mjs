@@ -43,10 +43,10 @@ export default {
     "primaryColor": "#0000FF",
     "image": "img/docusaurus-social-card.jpg",
     "navbar": {
-      "title": "My Site",
+      "title": "LARD",
       "logo": {
-        "alt": "My Site Logo",
-        "src": "img/logo.svg"
+        "alt": "LARD",
+        "src": "img/lard.png"
       },
       "items": [
         {

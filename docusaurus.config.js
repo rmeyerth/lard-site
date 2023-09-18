@@ -65,11 +65,10 @@ const config = {
       // Replace with your project's social card
       image: 'img/docusaurus-social-card.jpg',
       navbar: {
-        title: 'My Site',
-        backgroundColor: '#0000FF',
+        title: 'LARD',
         logo: {
-          alt: 'My Site Logo',
-          src: 'img/logo.svg',
+          alt: 'LARD',
+          src: 'img/lard.png',
         },
         items: [
           {
