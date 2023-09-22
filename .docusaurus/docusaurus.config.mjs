@@ -26,7 +26,7 @@ export default {
       "classic",
       {
         "docs": {
-          "sidebarPath": "C:\\github\\lard-site\\sidebars.js",
+          "sidebarPath": "/Users/tronied/gitlab/lard-site/sidebars.js",
           "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/"
         },
         "blog": {
@@ -34,7 +34,7 @@ export default {
           "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/"
         },
         "theme": {
-          "customCss": "C:\\github\\lard-site\\src\\css\\custom.css"
+          "customCss": "/Users/tronied/gitlab/lard-site/src/css/custom.css"
         }
       }
     ]

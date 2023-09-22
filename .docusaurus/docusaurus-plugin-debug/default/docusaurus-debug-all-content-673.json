@@ -15,9 +15,9 @@
           "editUrlLocalized": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/i18n/en/docusaurus-plugin-content-docs/current",
           "isLast": true,
           "routePriority": -1,
-          "sidebarFilePath": "C:\\github\\lard-site\\sidebars.js",
-          "contentPath": "C:\\github\\lard-site\\docs",
-          "contentPathLocalized": "C:\\github\\lard-site\\i18n\\en\\docusaurus-plugin-content-docs\\current",
+          "sidebarFilePath": "/Users/tronied/gitlab/lard-site/sidebars.js",
+          "contentPath": "/Users/tronied/gitlab/lard-site/docs",
+          "contentPathLocalized": "/Users/tronied/gitlab/lard-site/i18n/en/docusaurus-plugin-content-docs/current",
           "docs": [
             {
               "unversionedId": "examples/Aardvark",
