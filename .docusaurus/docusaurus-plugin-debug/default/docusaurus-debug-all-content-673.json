@@ -187,21 +187,75 @@
                 "permalink": "/docs/tutorial/to-be-or-not-to-be"
               },
               "next": {
-                "title": "Could you repeat that?",
-                "permalink": "/docs/tutorial/could-you-repeat-that"
+                "title": "Grammar System",
+                "permalink": "/docs/tutorial/grammar-system"
               }
             },
             {
               "unversionedId": "tutorial/could-you-repeat-that",
               "id": "tutorial/could-you-repeat-that",
               "title": "Could you repeat that?",
-              "description": "",
+              "description": "One of the mainstay features of any language are loops. They come in a number of varieties, but to get us started",
               "source": "@site/docs/tutorial/could-you-repeat-that.md",
               "sourceDirName": "tutorial",
               "slug": "/tutorial/could-you-repeat-that",
               "permalink": "/docs/tutorial/could-you-repeat-that",
               "draft": false,
               "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/tutorial/could-you-repeat-that.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 11,
+              "frontMatter": {
+                "sidebar_position": 11
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Grammar System",
+                "permalink": "/docs/tutorial/grammar-system"
+              },
+              "next": {
+                "title": "Examples",
+                "permalink": "/docs/category/examples"
+              }
+            },
+            {
+              "unversionedId": "tutorial/getting-started",
+              "id": "tutorial/getting-started",
+              "title": "Getting Started",
+              "description": "Dependency",
+              "source": "@site/docs/tutorial/getting-started.mdx",
+              "sourceDirName": "tutorial",
+              "slug": "/tutorial/getting-started",
+              "permalink": "/docs/tutorial/getting-started",
+              "draft": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/tutorial/getting-started.mdx",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 1,
+              "frontMatter": {
+                "sidebar_position": 1
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Tutorial",
+                "permalink": "/docs/category/tutorial"
+              },
+              "next": {
+                "title": "In the beginning...",
+                "permalink": "/docs/tutorial/in-the-beginning"
+              }
+            },
+            {
+              "unversionedId": "tutorial/grammar-system",
+              "id": "tutorial/grammar-system",
+              "title": "Grammar System",
+              "description": "Before we go any further, it will be a good time to cover the grammar system. I call this the Least Effort Grammar",
+              "source": "@site/docs/tutorial/grammar-system.md",
+              "sourceDirName": "tutorial",
+              "slug": "/tutorial/grammar-system",
+              "permalink": "/docs/tutorial/grammar-system",
+              "draft": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/tutorial/grammar-system.md",
               "tags": [],
               "version": "current",
               "sidebarPosition": 10,
@@ -214,8 +268,8 @@
                 "permalink": "/docs/tutorial/a-character-study"
               },
               "next": {
-                "title": "Examples",
-                "permalink": "/docs/category/examples"
+                "title": "Could you repeat that?",
+                "permalink": "/docs/tutorial/could-you-repeat-that"
               }
             },
             {
@@ -237,8 +291,8 @@
               },
               "sidebar": "tutorialSidebar",
               "previous": {
-                "title": "Project setup",
-                "permalink": "/docs/tutorial/project-setup"
+                "title": "Getting Started",
+                "permalink": "/docs/tutorial/getting-started"
               },
               "next": {
                 "title": "Speaking literally",
@@ -324,33 +378,6 @@
               "next": {
                 "title": "Making a statement",
                 "permalink": "/docs/tutorial/make-a-statement"
-              }
-            },
-            {
-              "unversionedId": "tutorial/project-setup",
-              "id": "tutorial/project-setup",
-              "title": "Project setup",
-              "description": "Dependency",
-              "source": "@site/docs/tutorial/project-setup.mdx",
-              "sourceDirName": "tutorial",
-              "slug": "/tutorial/project-setup",
-              "permalink": "/docs/tutorial/project-setup",
-              "draft": false,
-              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/tutorial/project-setup.mdx",
-              "tags": [],
-              "version": "current",
-              "sidebarPosition": 1,
-              "frontMatter": {
-                "sidebar_position": 1
-              },
-              "sidebar": "tutorialSidebar",
-              "previous": {
-                "title": "Tutorial",
-                "permalink": "/docs/category/tutorial"
-              },
-              "next": {
-                "title": "In the beginning...",
-                "permalink": "/docs/tutorial/in-the-beginning"
               }
             },
             {
@@ -450,7 +477,7 @@
                 "items": [
                   {
                     "type": "doc",
-                    "id": "tutorial/project-setup"
+                    "id": "tutorial/getting-started"
                   },
                   {
                     "type": "doc",
@@ -483,6 +510,10 @@
                   {
                     "type": "doc",
                     "id": "tutorial/a-character-study"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "tutorial/grammar-system"
                   },
                   {
                     "type": "doc",

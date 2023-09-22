@@ -186,7 +186,7 @@
     },
     "content": "content---markdown-page-393-028"
   },
-  "/docs-a5d": {
+  "/docs-b24": {
     "__comp": "__comp---theme-doc-page-1-be-9be",
     "__context": {
       "plugin": "plugin---docs-14-f-faa"
@@ -237,6 +237,14 @@
     "__comp": "__comp---theme-doc-item-178-a40",
     "content": "content---docs-tutorial-could-you-repeat-that-18-e-994"
   },
+  "/docs/tutorial/getting-started-aab": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-tutorial-getting-startedf-43-f71"
+  },
+  "/docs/tutorial/grammar-system-9a0": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-tutorial-grammar-systemd-4-f-fe7"
+  },
   "/docs/tutorial/in-the-beginning-e51": {
     "__comp": "__comp---theme-doc-item-178-a40",
     "content": "content---docs-tutorial-in-the-beginningfc-6-2a8"
@@ -252,10 +260,6 @@
   "/docs/tutorial/point-of-decimals-8e4": {
     "__comp": "__comp---theme-doc-item-178-a40",
     "content": "content---docs-tutorial-point-of-decimalsd-3-b-65e"
-  },
-  "/docs/tutorial/project-setup-f43": {
-    "__comp": "__comp---theme-doc-item-178-a40",
-    "content": "content---docs-tutorial-project-setupfb-3-5ca"
   },
   "/docs/tutorial/speaking-literally-288": {
     "__comp": "__comp---theme-doc-item-178-a40",

@@ -99,7 +99,7 @@ export default [
   },
   {
     path: '/docs',
-    component: ComponentCreator('/docs', 'a5d'),
+    component: ComponentCreator('/docs', 'b24'),
     routes: [
       {
         path: '/docs/category/examples',
@@ -168,6 +168,18 @@ export default [
         sidebar: "tutorialSidebar"
       },
       {
+        path: '/docs/tutorial/getting-started',
+        component: ComponentCreator('/docs/tutorial/getting-started', 'aab'),
+        exact: true,
+        sidebar: "tutorialSidebar"
+      },
+      {
+        path: '/docs/tutorial/grammar-system',
+        component: ComponentCreator('/docs/tutorial/grammar-system', '9a0'),
+        exact: true,
+        sidebar: "tutorialSidebar"
+      },
+      {
         path: '/docs/tutorial/in-the-beginning',
         component: ComponentCreator('/docs/tutorial/in-the-beginning', 'e51'),
         exact: true,
@@ -188,12 +200,6 @@ export default [
       {
         path: '/docs/tutorial/point-of-decimals',
         component: ComponentCreator('/docs/tutorial/point-of-decimals', '8e4'),
-        exact: true,
-        sidebar: "tutorialSidebar"
-      },
-      {
-        path: '/docs/tutorial/project-setup',
-        component: ComponentCreator('/docs/tutorial/project-setup', 'f43'),
         exact: true,
         sidebar: "tutorialSidebar"
       },

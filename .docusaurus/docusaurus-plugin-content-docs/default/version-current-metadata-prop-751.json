@@ -23,9 +23,9 @@
         "items": [
           {
             "type": "link",
-            "label": "Project setup",
-            "href": "/docs/tutorial/project-setup",
-            "docId": "tutorial/project-setup"
+            "label": "Getting Started",
+            "href": "/docs/tutorial/getting-started",
+            "docId": "tutorial/getting-started"
           },
           {
             "type": "link",
@@ -74,6 +74,12 @@
             "label": "A character study",
             "href": "/docs/tutorial/a-character-study",
             "docId": "tutorial/a-character-study"
+          },
+          {
+            "type": "link",
+            "label": "Grammar System",
+            "href": "/docs/tutorial/grammar-system",
+            "docId": "tutorial/grammar-system"
           },
           {
             "type": "link",
@@ -180,7 +186,19 @@
     "tutorial/could-you-repeat-that": {
       "id": "tutorial/could-you-repeat-that",
       "title": "Could you repeat that?",
-      "description": "",
+      "description": "One of the mainstay features of any language are loops. They come in a number of varieties, but to get us started",
+      "sidebar": "tutorialSidebar"
+    },
+    "tutorial/getting-started": {
+      "id": "tutorial/getting-started",
+      "title": "Getting Started",
+      "description": "Dependency",
+      "sidebar": "tutorialSidebar"
+    },
+    "tutorial/grammar-system": {
+      "id": "tutorial/grammar-system",
+      "title": "Grammar System",
+      "description": "Before we go any further, it will be a good time to cover the grammar system. I call this the Least Effort Grammar",
       "sidebar": "tutorialSidebar"
     },
     "tutorial/in-the-beginning": {
@@ -205,12 +223,6 @@
       "id": "tutorial/point-of-decimals",
       "title": "Point of decimals",
       "description": "Decimal Token",
-      "sidebar": "tutorialSidebar"
-    },
-    "tutorial/project-setup": {
-      "id": "tutorial/project-setup",
-      "title": "Project setup",
-      "description": "Dependency",
       "sidebar": "tutorialSidebar"
     },
     "tutorial/speaking-literally": {

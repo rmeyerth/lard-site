@@ -51,6 +51,16 @@
               "sidebar": "tutorialSidebar"
             },
             {
+              "id": "tutorial/getting-started",
+              "path": "/docs/tutorial/getting-started",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "tutorial/grammar-system",
+              "path": "/docs/tutorial/grammar-system",
+              "sidebar": "tutorialSidebar"
+            },
+            {
               "id": "tutorial/in-the-beginning",
               "path": "/docs/tutorial/in-the-beginning",
               "sidebar": "tutorialSidebar"
@@ -68,11 +78,6 @@
             {
               "id": "tutorial/point-of-decimals",
               "path": "/docs/tutorial/point-of-decimals",
-              "sidebar": "tutorialSidebar"
-            },
-            {
-              "id": "tutorial/project-setup",
-              "path": "/docs/tutorial/project-setup",
               "sidebar": "tutorialSidebar"
             },
             {
