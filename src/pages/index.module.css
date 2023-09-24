@@ -6,9 +6,11 @@
 .heroBanner {
   padding: 4rem 0;
   text-align: center;
+  align-content: center;
   position: relative;
   overflow: hidden;
   background-color: #397585;
+  background-image: url("../../static/img/test-blur.jpg");
 }
 
 @media screen and (max-width: 996px) {

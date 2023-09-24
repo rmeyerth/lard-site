@@ -45,7 +45,7 @@ symbol or word, or in some cases indentation.
 
 :::danger Indentation support
 
-Unfortunately support for indentation with code blocks are currently ot supported. It is however planned and on the roadmap
+Unfortunately support for indentation with code blocks are currently not supported. It is however planned and on the roadmap
 and will provide more updates soon.
 
 :::
