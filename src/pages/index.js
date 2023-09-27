@@ -12,7 +12,7 @@ function HomepageHeader() {
   return (
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
       <div className="container">
-        <img style={{width: '50%', height: '50%'}} src={'img/Icon SVG.svg'} />
+        <img className="myLogo" style={{width: '50%', height: '50%'}} src={'img/lard.svg'} />
       </div>
     </header>
   );

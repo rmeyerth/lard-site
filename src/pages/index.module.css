@@ -24,3 +24,12 @@
   align-items: center;
   justify-content: center;
 }
+
+:root {
+  --logo-color-light: #000000;
+  --logo-color-dark: #ffffff;
+}
+
+.achar {
+  fill: var(--logo-color-dark);
+}
