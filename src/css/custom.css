@@ -28,3 +28,19 @@
   --ifm-color-primary-lightest: #4fddbf;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
+
+[data-theme='dark'] .myLogo {
+  content: url('../../static/img/blah2.svg');
+}
+
+.myLogo {
+  content: url('../../static/img/blah.svg');
+}
+
+.hero__title {
+  color: #3cad6e;
+}
+
+[data-theme='dark'] .hero__title {
+  color: #3cad6e;
+}

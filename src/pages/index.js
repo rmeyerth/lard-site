@@ -24,6 +24,9 @@ export default function Home() {
       title={`Language Architect and Runtime Development`}
       description="Create a programming language">
       <HomepageHeader />
+      <div className="container">
+        <HomepageFeatures />
+      </div>
     </Layout>
   );
 }

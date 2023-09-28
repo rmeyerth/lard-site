@@ -4,32 +4,32 @@ import styles from './styles.module.css';
 
 const FeatureList = [
   {
-    title: 'Easy to Use',
+    title: 'Create Languages Fast',
     Svg: require('@site/static/img/rocket-312767.svg').default,
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        Create your project, import the dependency and start defining your language!
+        Still too slow? Starter projects allow you to hit the floor running.
       </>
     ),
   },
   {
-    title: 'Focus on What Matters',
+    title: 'Building Blocks',
     Svg: require('@site/static/img/Jigsaw-Puzzle.svg').default,
     description: (
       <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
+        All logic for your languages including literals, operations and statements
+        are contained within a single class providing easy maintenance and expansion.
       </>
     ),
   },
   {
-    title: 'Powered by React',
+    title: 'Flexible Framework',
     Svg: require('@site/static/img/Andy_Tools_Hammer_Spanner.svg').default,
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+        LARD has been built from the ground up to expand. Don't find the built-in parser
+        offers what you need? Override part or write your own
       </>
     ),
   },
@@ -41,10 +41,10 @@ function Feature({Svg, title, description}) {
       <div className="text--center">
         <Svg className={styles.featureSvg} role="img" />
       </div>
-      {/*<div className="text--center padding-horiz--md">*/}
-      {/*  <h3>{title}</h3>*/}
-      {/*  <p>{description}</p>*/}
-      {/*</div>*/}
+      <div className="text--center padding-horiz--md">
+        <h3>{title}</h3>
+        <p>{description}</p>
+      </div>
     </div>
   );
 }

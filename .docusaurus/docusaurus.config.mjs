@@ -26,7 +26,7 @@ export default {
       "classic",
       {
         "docs": {
-          "sidebarPath": "/Users/robertmeyer/github/lard-site/sidebars.js",
+          "sidebarPath": "C:\\github\\lard-site\\sidebars.js",
           "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/"
         },
         "blog": {
@@ -34,7 +34,7 @@ export default {
           "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/"
         },
         "theme": {
-          "customCss": "/Users/robertmeyer/github/lard-site/src/css/custom.css"
+          "customCss": "C:\\github\\lard-site\\src\\css\\custom.css"
         }
       }
     ]
@@ -53,7 +53,7 @@ export default {
           "type": "docSidebar",
           "sidebarId": "tutorialSidebar",
           "position": "left",
-          "label": "Tutorial"
+          "label": "Documentation"
         },
         {
           "to": "/blog",
