@@ -1,7 +1,7 @@
 {
   "unversionedId": "examples/slop",
   "id": "examples/slop",
-  "title": "slop",
+  "title": "SLOP (Typeless)",
   "description": "",
   "source": "@site/docs/examples/slop.md",
   "sourceDirName": "examples",
@@ -17,11 +17,11 @@
   },
   "sidebar": "tutorialSidebar",
   "previous": {
-    "title": "Aardvark (Tutorial Language)",
-    "permalink": "/docs/examples/Aardvark"
+    "title": "Aardvark (Tutorial)",
+    "permalink": "/docs/examples/aardvark"
   },
   "next": {
-    "title": "Toolkit",
-    "permalink": "/docs/category/toolkit"
+    "title": "MAL (Array Language)",
+    "permalink": "/docs/examples/mal"
   }
 }

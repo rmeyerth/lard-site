@@ -11,8 +11,13 @@
           "mainDocId": "intro",
           "docs": [
             {
-              "id": "examples/Aardvark",
-              "path": "/docs/examples/Aardvark",
+              "id": "examples/aardvark",
+              "path": "/docs/examples/aardvark",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "examples/mal",
+              "path": "/docs/examples/mal",
               "sidebar": "tutorialSidebar"
             },
             {
@@ -31,13 +36,78 @@
               "sidebar": "tutorialSidebar"
             },
             {
-              "id": "toolkit/grammar",
-              "path": "/docs/toolkit/grammar",
+              "id": "toolkit/context",
+              "path": "/docs/toolkit/context",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "toolkit/error-handling",
+              "path": "/docs/toolkit/error-handling",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "toolkit/functions",
+              "path": "/docs/toolkit/functions",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "toolkit/lexer",
+              "path": "/docs/toolkit/lexer",
               "sidebar": "tutorialSidebar"
             },
             {
               "id": "toolkit/operators",
               "path": "/docs/toolkit/operators",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "toolkit/parser/overview",
+              "path": "/docs/toolkit/parser/overview",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "toolkit/parser/parser-flags",
+              "path": "/docs/toolkit/parser/parser-flags",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "toolkit/parser/prefix-infix-postfix",
+              "path": "/docs/toolkit/parser/prefix-infix-postfix",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "toolkit/processor",
+              "path": "/docs/toolkit/processor",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "toolkit/runner",
+              "path": "/docs/toolkit/runner",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "toolkit/tokens/callbacks",
+              "path": "/docs/toolkit/tokens/callbacks",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "toolkit/tokens/grammar",
+              "path": "/docs/toolkit/tokens/grammar",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "toolkit/tokens/instances",
+              "path": "/docs/toolkit/tokens/instances",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "toolkit/tokens/token-class",
+              "path": "/docs/toolkit/tokens/token-class",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "toolkit/type-operations",
+              "path": "/docs/toolkit/type-operations",
               "sidebar": "tutorialSidebar"
             },
             {
@@ -108,6 +178,16 @@
             {
               "id": "/category/toolkit",
               "path": "/docs/category/toolkit",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "/category/tokens",
+              "path": "/docs/category/tokens",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "/category/parser",
+              "path": "/docs/category/parser",
               "sidebar": "tutorialSidebar"
             }
           ],

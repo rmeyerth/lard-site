@@ -1,0 +1,27 @@
+{
+  "unversionedId": "toolkit/functions",
+  "id": "toolkit/functions",
+  "title": "Functions",
+  "description": "",
+  "source": "@site/docs/toolkit/functions.md",
+  "sourceDirName": "toolkit",
+  "slug": "/toolkit/functions",
+  "permalink": "/docs/toolkit/functions",
+  "draft": false,
+  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/toolkit/functions.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 7,
+  "frontMatter": {
+    "sidebar_position": 7
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Processor",
+    "permalink": "/docs/toolkit/processor"
+  },
+  "next": {
+    "title": "Operators",
+    "permalink": "/docs/toolkit/operators"
+  }
+}

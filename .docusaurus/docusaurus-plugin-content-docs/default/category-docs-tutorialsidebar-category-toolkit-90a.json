@@ -5,11 +5,11 @@
   "permalink": "/docs/category/toolkit",
   "navigation": {
     "previous": {
-      "title": "slop",
-      "permalink": "/docs/examples/slop"
+      "title": "MAL (Array Language)",
+      "permalink": "/docs/examples/mal"
     },
     "next": {
-      "title": "configuration",
+      "title": "Configuration",
       "permalink": "/docs/toolkit/configuration"
     }
   }

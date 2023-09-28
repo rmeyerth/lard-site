@@ -14,11 +14,7 @@
   "frontMatter": {},
   "sidebar": "tutorialSidebar",
   "previous": {
-    "title": "blah",
-    "permalink": "/docs/examples/blah"
-  },
-  "next": {
-    "title": "grammar",
-    "permalink": "/docs/grammar"
+    "title": "prefix-infix-postfix",
+    "permalink": "/docs/toolkit/prefix-infix-postfix"
   }
 }

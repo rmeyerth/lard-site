@@ -1,0 +1,24 @@
+{
+  "unversionedId": "parser-flags",
+  "id": "parser-flags",
+  "title": "parser-flags",
+  "description": "",
+  "source": "@site/docs/parser-flags.md",
+  "sourceDirName": ".",
+  "slug": "/parser-flags",
+  "permalink": "/docs/parser-flags",
+  "draft": false,
+  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/parser-flags.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "language-runner",
+    "permalink": "/docs/language-runner"
+  },
+  "next": {
+    "title": "prefix-infix-postfix",
+    "permalink": "/docs/prefix-infix-postfix"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "title": "Tokens",
+  "description": "Documentation for each feature within the framework",
+  "slug": "/category/tokens",
+  "permalink": "/docs/category/tokens",
+  "navigation": {
+    "previous": {
+      "title": "Configuration",
+      "permalink": "/docs/toolkit/configuration"
+    },
+    "next": {
+      "title": "Token Class",
+      "permalink": "/docs/toolkit/tokens/token-class"
+    }
+  }
+}

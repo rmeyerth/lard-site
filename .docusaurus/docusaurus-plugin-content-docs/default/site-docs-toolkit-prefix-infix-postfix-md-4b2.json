@@ -1,0 +1,20 @@
+{
+  "unversionedId": "toolkit/prefix-infix-postfix",
+  "id": "toolkit/prefix-infix-postfix",
+  "title": "prefix-infix-postfix",
+  "description": "",
+  "source": "@site/docs/toolkit/prefix-infix-postfix.md",
+  "sourceDirName": "toolkit",
+  "slug": "/toolkit/prefix-infix-postfix",
+  "permalink": "/docs/toolkit/prefix-infix-postfix",
+  "draft": false,
+  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/toolkit/prefix-infix-postfix.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "language-runner",
+    "permalink": "/docs/toolkit/language-runner"
+  }
+}

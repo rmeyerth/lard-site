@@ -14,11 +14,11 @@
   "frontMatter": {},
   "sidebar": "tutorialSidebar",
   "previous": {
-    "title": "configuration",
-    "permalink": "/docs/toolkit/configuration"
+    "title": "error-handling",
+    "permalink": "/docs/toolkit/error-handling"
   },
   "next": {
-    "title": "operators",
-    "permalink": "/docs/toolkit/operators"
+    "title": "language-runner",
+    "permalink": "/docs/toolkit/language-runner"
   }
 }

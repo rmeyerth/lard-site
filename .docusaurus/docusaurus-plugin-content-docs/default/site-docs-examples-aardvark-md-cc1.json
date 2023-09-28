@@ -1,7 +1,7 @@
 {
   "unversionedId": "examples/Aardvark",
   "id": "examples/Aardvark",
-  "title": "Aardvark (Tutorial Language)",
+  "title": "Aardvark (Tutorial)",
   "description": "",
   "source": "@site/docs/examples/Aardvark.md",
   "sourceDirName": "examples",
@@ -21,7 +21,7 @@
     "permalink": "/docs/category/examples"
   },
   "next": {
-    "title": "slop",
+    "title": "SLOP (Typeless)",
     "permalink": "/docs/examples/slop"
   }
 }

@@ -15,21 +15,21 @@
           "editUrlLocalized": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/i18n/en/docusaurus-plugin-content-docs/current",
           "isLast": true,
           "routePriority": -1,
-          "sidebarFilePath": "/Users/tronied/gitlab/lard-site/sidebars.js",
-          "contentPath": "/Users/tronied/gitlab/lard-site/docs",
-          "contentPathLocalized": "/Users/tronied/gitlab/lard-site/i18n/en/docusaurus-plugin-content-docs/current",
+          "sidebarFilePath": "/Users/robertmeyer/github/lard-site/sidebars.js",
+          "contentPath": "/Users/robertmeyer/github/lard-site/docs",
+          "contentPathLocalized": "/Users/robertmeyer/github/lard-site/i18n/en/docusaurus-plugin-content-docs/current",
           "docs": [
             {
-              "unversionedId": "examples/Aardvark",
-              "id": "examples/Aardvark",
-              "title": "Aardvark (Tutorial Language)",
+              "unversionedId": "examples/aardvark",
+              "id": "examples/aardvark",
+              "title": "Aardvark (Tutorial)",
               "description": "",
-              "source": "@site/docs/examples/Aardvark.md",
+              "source": "@site/docs/examples/aardvark.md",
               "sourceDirName": "examples",
-              "slug": "/examples/Aardvark",
-              "permalink": "/docs/examples/Aardvark",
+              "slug": "/examples/aardvark",
+              "permalink": "/docs/examples/aardvark",
               "draft": false,
-              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/examples/Aardvark.md",
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/examples/aardvark.md",
               "tags": [],
               "version": "current",
               "sidebarPosition": 1,
@@ -42,14 +42,41 @@
                 "permalink": "/docs/category/examples"
               },
               "next": {
-                "title": "slop",
+                "title": "SLOP (Typeless)",
                 "permalink": "/docs/examples/slop"
+              }
+            },
+            {
+              "unversionedId": "examples/mal",
+              "id": "examples/mal",
+              "title": "MAL (Array Language)",
+              "description": "",
+              "source": "@site/docs/examples/mal.md",
+              "sourceDirName": "examples",
+              "slug": "/examples/mal",
+              "permalink": "/docs/examples/mal",
+              "draft": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/examples/mal.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 3,
+              "frontMatter": {
+                "sidebar_position": 3
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "SLOP (Typeless)",
+                "permalink": "/docs/examples/slop"
+              },
+              "next": {
+                "title": "Toolkit",
+                "permalink": "/docs/category/toolkit"
               }
             },
             {
               "unversionedId": "examples/slop",
               "id": "examples/slop",
-              "title": "slop",
+              "title": "SLOP (Typeless)",
               "description": "",
               "source": "@site/docs/examples/slop.md",
               "sourceDirName": "examples",
@@ -65,12 +92,12 @@
               },
               "sidebar": "tutorialSidebar",
               "previous": {
-                "title": "Aardvark (Tutorial Language)",
-                "permalink": "/docs/examples/Aardvark"
+                "title": "Aardvark (Tutorial)",
+                "permalink": "/docs/examples/aardvark"
               },
               "next": {
-                "title": "Toolkit",
-                "permalink": "/docs/category/toolkit"
+                "title": "MAL (Array Language)",
+                "permalink": "/docs/examples/mal"
               }
             },
             {
@@ -99,7 +126,7 @@
             {
               "unversionedId": "toolkit/configuration",
               "id": "toolkit/configuration",
-              "title": "configuration",
+              "title": "Configuration",
               "description": "",
               "source": "@site/docs/toolkit/configuration.md",
               "sourceDirName": "toolkit",
@@ -109,45 +136,132 @@
               "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/toolkit/configuration.md",
               "tags": [],
               "version": "current",
-              "frontMatter": {},
+              "sidebarPosition": 1,
+              "frontMatter": {
+                "sidebar_position": 1
+              },
               "sidebar": "tutorialSidebar",
               "previous": {
                 "title": "Toolkit",
                 "permalink": "/docs/category/toolkit"
               },
               "next": {
-                "title": "grammar",
-                "permalink": "/docs/toolkit/grammar"
+                "title": "Tokens",
+                "permalink": "/docs/category/tokens"
               }
             },
             {
-              "unversionedId": "toolkit/grammar",
-              "id": "toolkit/grammar",
-              "title": "grammar",
+              "unversionedId": "toolkit/context",
+              "id": "toolkit/context",
+              "title": "Context",
               "description": "",
-              "source": "@site/docs/toolkit/grammar.md",
+              "source": "@site/docs/toolkit/context.md",
               "sourceDirName": "toolkit",
-              "slug": "/toolkit/grammar",
-              "permalink": "/docs/toolkit/grammar",
+              "slug": "/toolkit/context",
+              "permalink": "/docs/toolkit/context",
               "draft": false,
-              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/toolkit/grammar.md",
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/toolkit/context.md",
               "tags": [],
               "version": "current",
-              "frontMatter": {},
+              "sidebarPosition": 3,
+              "frontMatter": {
+                "sidebar_position": 3
+              },
               "sidebar": "tutorialSidebar",
               "previous": {
-                "title": "configuration",
-                "permalink": "/docs/toolkit/configuration"
+                "title": "Grammar",
+                "permalink": "/docs/toolkit/tokens/grammar"
               },
               "next": {
-                "title": "operators",
+                "title": "Lexer",
+                "permalink": "/docs/toolkit/lexer"
+              }
+            },
+            {
+              "unversionedId": "toolkit/error-handling",
+              "id": "toolkit/error-handling",
+              "title": "Error Handling",
+              "description": "",
+              "source": "@site/docs/toolkit/error-handling.md",
+              "sourceDirName": "toolkit",
+              "slug": "/toolkit/error-handling",
+              "permalink": "/docs/toolkit/error-handling",
+              "draft": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/toolkit/error-handling.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 10,
+              "frontMatter": {
+                "sidebar_position": 10
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Type Operations",
+                "permalink": "/docs/toolkit/type-operations"
+              },
+              "next": {
+                "title": "Runner",
+                "permalink": "/docs/toolkit/runner"
+              }
+            },
+            {
+              "unversionedId": "toolkit/functions",
+              "id": "toolkit/functions",
+              "title": "Functions",
+              "description": "",
+              "source": "@site/docs/toolkit/functions.md",
+              "sourceDirName": "toolkit",
+              "slug": "/toolkit/functions",
+              "permalink": "/docs/toolkit/functions",
+              "draft": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/toolkit/functions.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 7,
+              "frontMatter": {
+                "sidebar_position": 7
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Processor",
+                "permalink": "/docs/toolkit/processor"
+              },
+              "next": {
+                "title": "Operators",
                 "permalink": "/docs/toolkit/operators"
+              }
+            },
+            {
+              "unversionedId": "toolkit/lexer",
+              "id": "toolkit/lexer",
+              "title": "Lexer",
+              "description": "",
+              "source": "@site/docs/toolkit/lexer.md",
+              "sourceDirName": "toolkit",
+              "slug": "/toolkit/lexer",
+              "permalink": "/docs/toolkit/lexer",
+              "draft": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/toolkit/lexer.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 4,
+              "frontMatter": {
+                "sidebar_position": 4
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Context",
+                "permalink": "/docs/toolkit/context"
+              },
+              "next": {
+                "title": "Parser",
+                "permalink": "/docs/category/parser"
               }
             },
             {
               "unversionedId": "toolkit/operators",
               "id": "toolkit/operators",
-              "title": "operators",
+              "title": "Operators",
               "description": "",
               "source": "@site/docs/toolkit/operators.md",
               "sourceDirName": "toolkit",
@@ -157,11 +271,284 @@
               "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/toolkit/operators.md",
               "tags": [],
               "version": "current",
-              "frontMatter": {},
+              "sidebarPosition": 8,
+              "frontMatter": {
+                "sidebar_position": 8
+              },
               "sidebar": "tutorialSidebar",
               "previous": {
-                "title": "grammar",
-                "permalink": "/docs/toolkit/grammar"
+                "title": "Functions",
+                "permalink": "/docs/toolkit/functions"
+              },
+              "next": {
+                "title": "Type Operations",
+                "permalink": "/docs/toolkit/type-operations"
+              }
+            },
+            {
+              "unversionedId": "toolkit/parser/overview",
+              "id": "toolkit/parser/overview",
+              "title": "Overview",
+              "description": "",
+              "source": "@site/docs/toolkit/parser/overview.md",
+              "sourceDirName": "toolkit/parser",
+              "slug": "/toolkit/parser/overview",
+              "permalink": "/docs/toolkit/parser/overview",
+              "draft": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/toolkit/parser/overview.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 1,
+              "frontMatter": {
+                "sidebar_position": 1
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Parser",
+                "permalink": "/docs/category/parser"
+              },
+              "next": {
+                "title": "Parser Flags",
+                "permalink": "/docs/toolkit/parser/parser-flags"
+              }
+            },
+            {
+              "unversionedId": "toolkit/parser/parser-flags",
+              "id": "toolkit/parser/parser-flags",
+              "title": "Parser Flags",
+              "description": "",
+              "source": "@site/docs/toolkit/parser/parser-flags.md",
+              "sourceDirName": "toolkit/parser",
+              "slug": "/toolkit/parser/parser-flags",
+              "permalink": "/docs/toolkit/parser/parser-flags",
+              "draft": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/toolkit/parser/parser-flags.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 2,
+              "frontMatter": {
+                "sidebar_position": 2
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Overview",
+                "permalink": "/docs/toolkit/parser/overview"
+              },
+              "next": {
+                "title": "Prefix, Infix and Postfix",
+                "permalink": "/docs/toolkit/parser/prefix-infix-postfix"
+              }
+            },
+            {
+              "unversionedId": "toolkit/parser/prefix-infix-postfix",
+              "id": "toolkit/parser/prefix-infix-postfix",
+              "title": "Prefix, Infix and Postfix",
+              "description": "",
+              "source": "@site/docs/toolkit/parser/prefix-infix-postfix.md",
+              "sourceDirName": "toolkit/parser",
+              "slug": "/toolkit/parser/prefix-infix-postfix",
+              "permalink": "/docs/toolkit/parser/prefix-infix-postfix",
+              "draft": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/toolkit/parser/prefix-infix-postfix.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 3,
+              "frontMatter": {
+                "sidebar_position": 3
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Parser Flags",
+                "permalink": "/docs/toolkit/parser/parser-flags"
+              },
+              "next": {
+                "title": "Processor",
+                "permalink": "/docs/toolkit/processor"
+              }
+            },
+            {
+              "unversionedId": "toolkit/processor",
+              "id": "toolkit/processor",
+              "title": "Processor",
+              "description": "",
+              "source": "@site/docs/toolkit/processor.md",
+              "sourceDirName": "toolkit",
+              "slug": "/toolkit/processor",
+              "permalink": "/docs/toolkit/processor",
+              "draft": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/toolkit/processor.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 6,
+              "frontMatter": {
+                "sidebar_position": 6
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Prefix, Infix and Postfix",
+                "permalink": "/docs/toolkit/parser/prefix-infix-postfix"
+              },
+              "next": {
+                "title": "Functions",
+                "permalink": "/docs/toolkit/functions"
+              }
+            },
+            {
+              "unversionedId": "toolkit/runner",
+              "id": "toolkit/runner",
+              "title": "Runner",
+              "description": "",
+              "source": "@site/docs/toolkit/runner.md",
+              "sourceDirName": "toolkit",
+              "slug": "/toolkit/runner",
+              "permalink": "/docs/toolkit/runner",
+              "draft": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/toolkit/runner.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 11,
+              "frontMatter": {
+                "sidebar_position": 11
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Error Handling",
+                "permalink": "/docs/toolkit/error-handling"
+              }
+            },
+            {
+              "unversionedId": "toolkit/tokens/callbacks",
+              "id": "toolkit/tokens/callbacks",
+              "title": "Callbacks",
+              "description": "",
+              "source": "@site/docs/toolkit/tokens/callbacks.md",
+              "sourceDirName": "toolkit/tokens",
+              "slug": "/toolkit/tokens/callbacks",
+              "permalink": "/docs/toolkit/tokens/callbacks",
+              "draft": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/toolkit/tokens/callbacks.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 3,
+              "frontMatter": {
+                "sidebar_position": 3
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Instances",
+                "permalink": "/docs/toolkit/tokens/instances"
+              },
+              "next": {
+                "title": "Grammar",
+                "permalink": "/docs/toolkit/tokens/grammar"
+              }
+            },
+            {
+              "unversionedId": "toolkit/tokens/grammar",
+              "id": "toolkit/tokens/grammar",
+              "title": "Grammar",
+              "description": "",
+              "source": "@site/docs/toolkit/tokens/grammar.md",
+              "sourceDirName": "toolkit/tokens",
+              "slug": "/toolkit/tokens/grammar",
+              "permalink": "/docs/toolkit/tokens/grammar",
+              "draft": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/toolkit/tokens/grammar.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 4,
+              "frontMatter": {
+                "sidebar_position": 4
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Callbacks",
+                "permalink": "/docs/toolkit/tokens/callbacks"
+              },
+              "next": {
+                "title": "Context",
+                "permalink": "/docs/toolkit/context"
+              }
+            },
+            {
+              "unversionedId": "toolkit/tokens/instances",
+              "id": "toolkit/tokens/instances",
+              "title": "Instances",
+              "description": "",
+              "source": "@site/docs/toolkit/tokens/instances.md",
+              "sourceDirName": "toolkit/tokens",
+              "slug": "/toolkit/tokens/instances",
+              "permalink": "/docs/toolkit/tokens/instances",
+              "draft": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/toolkit/tokens/instances.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 2,
+              "frontMatter": {
+                "sidebar_position": 2
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Token Class",
+                "permalink": "/docs/toolkit/tokens/token-class"
+              },
+              "next": {
+                "title": "Callbacks",
+                "permalink": "/docs/toolkit/tokens/callbacks"
+              }
+            },
+            {
+              "unversionedId": "toolkit/tokens/token-class",
+              "id": "toolkit/tokens/token-class",
+              "title": "Token Class",
+              "description": "",
+              "source": "@site/docs/toolkit/tokens/token-class.md",
+              "sourceDirName": "toolkit/tokens",
+              "slug": "/toolkit/tokens/token-class",
+              "permalink": "/docs/toolkit/tokens/token-class",
+              "draft": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/toolkit/tokens/token-class.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 1,
+              "frontMatter": {
+                "sidebar_position": 1
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Tokens",
+                "permalink": "/docs/category/tokens"
+              },
+              "next": {
+                "title": "Instances",
+                "permalink": "/docs/toolkit/tokens/instances"
+              }
+            },
+            {
+              "unversionedId": "toolkit/type-operations",
+              "id": "toolkit/type-operations",
+              "title": "Type Operations",
+              "description": "",
+              "source": "@site/docs/toolkit/type-operations.md",
+              "sourceDirName": "toolkit",
+              "slug": "/toolkit/type-operations",
+              "permalink": "/docs/toolkit/type-operations",
+              "draft": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/toolkit/type-operations.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 9,
+              "frontMatter": {
+                "sidebar_position": 9
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Operators",
+                "permalink": "/docs/toolkit/operators"
+              },
+              "next": {
+                "title": "Error Handling",
+                "permalink": "/docs/toolkit/error-handling"
               }
             },
             {
@@ -535,11 +922,15 @@
                 "items": [
                   {
                     "type": "doc",
-                    "id": "examples/Aardvark"
+                    "id": "examples/aardvark"
                   },
                   {
                     "type": "doc",
                     "id": "examples/slop"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "examples/mal"
                   }
                 ],
                 "link": {
@@ -560,12 +951,92 @@
                     "id": "toolkit/configuration"
                   },
                   {
+                    "type": "category",
+                    "label": "Tokens",
+                    "collapsible": true,
+                    "collapsed": true,
+                    "items": [
+                      {
+                        "type": "doc",
+                        "id": "toolkit/tokens/token-class"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "toolkit/tokens/instances"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "toolkit/tokens/callbacks"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "toolkit/tokens/grammar"
+                      }
+                    ],
+                    "link": {
+                      "type": "generated-index",
+                      "description": "Documentation for each feature within the framework",
+                      "slug": "/category/tokens",
+                      "permalink": "/docs/category/tokens"
+                    }
+                  },
+                  {
                     "type": "doc",
-                    "id": "toolkit/grammar"
+                    "id": "toolkit/context"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "toolkit/lexer"
+                  },
+                  {
+                    "type": "category",
+                    "label": "Parser",
+                    "collapsible": true,
+                    "collapsed": true,
+                    "items": [
+                      {
+                        "type": "doc",
+                        "id": "toolkit/parser/overview"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "toolkit/parser/parser-flags"
+                      },
+                      {
+                        "type": "doc",
+                        "id": "toolkit/parser/prefix-infix-postfix"
+                      }
+                    ],
+                    "link": {
+                      "type": "generated-index",
+                      "description": "Documentation for each feature within the framework",
+                      "slug": "/category/parser",
+                      "permalink": "/docs/category/parser"
+                    }
+                  },
+                  {
+                    "type": "doc",
+                    "id": "toolkit/processor"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "toolkit/functions"
                   },
                   {
                     "type": "doc",
                     "id": "toolkit/operators"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "toolkit/type-operations"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "toolkit/error-handling"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "toolkit/runner"
                   }
                 ],
                 "link": {

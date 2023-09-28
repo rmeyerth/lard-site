@@ -98,15 +98,21 @@
         "items": [
           {
             "type": "link",
-            "label": "Aardvark (Tutorial Language)",
-            "href": "/docs/examples/Aardvark",
-            "docId": "examples/Aardvark"
+            "label": "Aardvark (Tutorial)",
+            "href": "/docs/examples/aardvark",
+            "docId": "examples/aardvark"
           },
           {
             "type": "link",
-            "label": "slop",
+            "label": "SLOP (Typeless)",
             "href": "/docs/examples/slop",
             "docId": "examples/slop"
+          },
+          {
+            "type": "link",
+            "label": "MAL (Array Language)",
+            "href": "/docs/examples/mal",
+            "docId": "examples/mal"
           }
         ],
         "href": "/docs/category/examples"
@@ -119,21 +125,117 @@
         "items": [
           {
             "type": "link",
-            "label": "configuration",
+            "label": "Configuration",
             "href": "/docs/toolkit/configuration",
             "docId": "toolkit/configuration"
           },
           {
-            "type": "link",
-            "label": "grammar",
-            "href": "/docs/toolkit/grammar",
-            "docId": "toolkit/grammar"
+            "type": "category",
+            "label": "Tokens",
+            "collapsible": true,
+            "collapsed": true,
+            "items": [
+              {
+                "type": "link",
+                "label": "Token Class",
+                "href": "/docs/toolkit/tokens/token-class",
+                "docId": "toolkit/tokens/token-class"
+              },
+              {
+                "type": "link",
+                "label": "Instances",
+                "href": "/docs/toolkit/tokens/instances",
+                "docId": "toolkit/tokens/instances"
+              },
+              {
+                "type": "link",
+                "label": "Callbacks",
+                "href": "/docs/toolkit/tokens/callbacks",
+                "docId": "toolkit/tokens/callbacks"
+              },
+              {
+                "type": "link",
+                "label": "Grammar",
+                "href": "/docs/toolkit/tokens/grammar",
+                "docId": "toolkit/tokens/grammar"
+              }
+            ],
+            "href": "/docs/category/tokens"
           },
           {
             "type": "link",
-            "label": "operators",
+            "label": "Context",
+            "href": "/docs/toolkit/context",
+            "docId": "toolkit/context"
+          },
+          {
+            "type": "link",
+            "label": "Lexer",
+            "href": "/docs/toolkit/lexer",
+            "docId": "toolkit/lexer"
+          },
+          {
+            "type": "category",
+            "label": "Parser",
+            "collapsible": true,
+            "collapsed": true,
+            "items": [
+              {
+                "type": "link",
+                "label": "Overview",
+                "href": "/docs/toolkit/parser/overview",
+                "docId": "toolkit/parser/overview"
+              },
+              {
+                "type": "link",
+                "label": "Parser Flags",
+                "href": "/docs/toolkit/parser/parser-flags",
+                "docId": "toolkit/parser/parser-flags"
+              },
+              {
+                "type": "link",
+                "label": "Prefix, Infix and Postfix",
+                "href": "/docs/toolkit/parser/prefix-infix-postfix",
+                "docId": "toolkit/parser/prefix-infix-postfix"
+              }
+            ],
+            "href": "/docs/category/parser"
+          },
+          {
+            "type": "link",
+            "label": "Processor",
+            "href": "/docs/toolkit/processor",
+            "docId": "toolkit/processor"
+          },
+          {
+            "type": "link",
+            "label": "Functions",
+            "href": "/docs/toolkit/functions",
+            "docId": "toolkit/functions"
+          },
+          {
+            "type": "link",
+            "label": "Operators",
             "href": "/docs/toolkit/operators",
             "docId": "toolkit/operators"
+          },
+          {
+            "type": "link",
+            "label": "Type Operations",
+            "href": "/docs/toolkit/type-operations",
+            "docId": "toolkit/type-operations"
+          },
+          {
+            "type": "link",
+            "label": "Error Handling",
+            "href": "/docs/toolkit/error-handling",
+            "docId": "toolkit/error-handling"
+          },
+          {
+            "type": "link",
+            "label": "Runner",
+            "href": "/docs/toolkit/runner",
+            "docId": "toolkit/runner"
           }
         ],
         "href": "/docs/category/toolkit"
@@ -141,15 +243,21 @@
     ]
   },
   "docs": {
-    "examples/Aardvark": {
-      "id": "examples/Aardvark",
-      "title": "Aardvark (Tutorial Language)",
+    "examples/aardvark": {
+      "id": "examples/aardvark",
+      "title": "Aardvark (Tutorial)",
+      "description": "",
+      "sidebar": "tutorialSidebar"
+    },
+    "examples/mal": {
+      "id": "examples/mal",
+      "title": "MAL (Array Language)",
       "description": "",
       "sidebar": "tutorialSidebar"
     },
     "examples/slop": {
       "id": "examples/slop",
-      "title": "slop",
+      "title": "SLOP (Typeless)",
       "description": "",
       "sidebar": "tutorialSidebar"
     },
@@ -161,19 +269,97 @@
     },
     "toolkit/configuration": {
       "id": "toolkit/configuration",
-      "title": "configuration",
+      "title": "Configuration",
       "description": "",
       "sidebar": "tutorialSidebar"
     },
-    "toolkit/grammar": {
-      "id": "toolkit/grammar",
-      "title": "grammar",
+    "toolkit/context": {
+      "id": "toolkit/context",
+      "title": "Context",
+      "description": "",
+      "sidebar": "tutorialSidebar"
+    },
+    "toolkit/error-handling": {
+      "id": "toolkit/error-handling",
+      "title": "Error Handling",
+      "description": "",
+      "sidebar": "tutorialSidebar"
+    },
+    "toolkit/functions": {
+      "id": "toolkit/functions",
+      "title": "Functions",
+      "description": "",
+      "sidebar": "tutorialSidebar"
+    },
+    "toolkit/lexer": {
+      "id": "toolkit/lexer",
+      "title": "Lexer",
       "description": "",
       "sidebar": "tutorialSidebar"
     },
     "toolkit/operators": {
       "id": "toolkit/operators",
-      "title": "operators",
+      "title": "Operators",
+      "description": "",
+      "sidebar": "tutorialSidebar"
+    },
+    "toolkit/parser/overview": {
+      "id": "toolkit/parser/overview",
+      "title": "Overview",
+      "description": "",
+      "sidebar": "tutorialSidebar"
+    },
+    "toolkit/parser/parser-flags": {
+      "id": "toolkit/parser/parser-flags",
+      "title": "Parser Flags",
+      "description": "",
+      "sidebar": "tutorialSidebar"
+    },
+    "toolkit/parser/prefix-infix-postfix": {
+      "id": "toolkit/parser/prefix-infix-postfix",
+      "title": "Prefix, Infix and Postfix",
+      "description": "",
+      "sidebar": "tutorialSidebar"
+    },
+    "toolkit/processor": {
+      "id": "toolkit/processor",
+      "title": "Processor",
+      "description": "",
+      "sidebar": "tutorialSidebar"
+    },
+    "toolkit/runner": {
+      "id": "toolkit/runner",
+      "title": "Runner",
+      "description": "",
+      "sidebar": "tutorialSidebar"
+    },
+    "toolkit/tokens/callbacks": {
+      "id": "toolkit/tokens/callbacks",
+      "title": "Callbacks",
+      "description": "",
+      "sidebar": "tutorialSidebar"
+    },
+    "toolkit/tokens/grammar": {
+      "id": "toolkit/tokens/grammar",
+      "title": "Grammar",
+      "description": "",
+      "sidebar": "tutorialSidebar"
+    },
+    "toolkit/tokens/instances": {
+      "id": "toolkit/tokens/instances",
+      "title": "Instances",
+      "description": "",
+      "sidebar": "tutorialSidebar"
+    },
+    "toolkit/tokens/token-class": {
+      "id": "toolkit/tokens/token-class",
+      "title": "Token Class",
+      "description": "",
+      "sidebar": "tutorialSidebar"
+    },
+    "toolkit/type-operations": {
+      "id": "toolkit/type-operations",
+      "title": "Type Operations",
       "description": "",
       "sidebar": "tutorialSidebar"
     },
