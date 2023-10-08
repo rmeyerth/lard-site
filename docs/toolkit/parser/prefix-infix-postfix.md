@@ -25,3 +25,11 @@ public class AardvarkRunner extends LARDRunner {
     }
 }
 ```
+Prefix notation works by placing the operators before each pair of values. For example, using the
+above example of adding 1 and 2, this would be ``+ 1 2``. Operator order is not needed for Prefix
+and Postfix notation because the order in which the operations are defined tell the parser how
+to execute it. Using the above example of addition and multiplication, this would now become
+``+ 1 * 2 3``. Going from right to left, we can see our first pair of numbers are 2 and 3. We then
+read our first operator which is multiply which gives 6. We then come across another number (1) and
+the final operator (1 add 6) to give 7.
+### Postfix Notation
