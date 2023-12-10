@@ -80,7 +80,7 @@ public class AardvarkConfig extends LARDConfig {
 ### Changes to the Type Operation Class
 Now let's go back to our IntegerOperation class. The natural behaviour of Java as well as other languages is to stick
 to the types being used in the operation. As such, when we do ``Integer <divide> Integer``, we get back an Integer even
-if we wanted to keep precision. One solution to this to use a type that can handle both number formats and then case 
+if we wanted to keep precision. One solution to this to use a type that can handle both number formats and then cast 
 the result to the desired type. Let's look back at the ``IntegerOperation.process`` method:
 
 ```java

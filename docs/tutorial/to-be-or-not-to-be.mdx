@@ -322,7 +322,7 @@ Ok, that's a big chunk of code but let's break it down:
     ```java
     Token<?> conditionResult = parser.processExpression(getTokenGroups().get(0).getTokens(), context);
     ```
-   Passes evaluation of the condition (the first token group) back to∫******** the parser for a result. We then check to see
+   Passes evaluation of the condition (the first token group) back to the parser for a result. We then check to see
    if the result is a BooleanToken, otherwise we'll throw an error. For example, defining ``1 + 1 ? 1 : 2`` would
    cause this error to be thrown. I've aggregated a few steps into the final line, but effectively we evaluate the
    result of the condition using Java's own ternary condition operator. In each scenario, we pass the relevant
