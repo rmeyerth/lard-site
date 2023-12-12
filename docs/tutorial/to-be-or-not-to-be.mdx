@@ -5,7 +5,7 @@ sidebar_position: 8
 ### Ternary Conditional Statement
 I'm sure we're all familiar with these. They generally take the form ``condition ? trueResult : falseResult``.
 We've got several issues to overcome though. Namely, how can we define a condition when we have no way to compare
-values? More immediate though, how do we make LARD understand the condition result (Boolean)? Let's first start then
+values? More immediate though, how do we make LARF understand the condition result (Boolean)? Let's first start then
 by defining a BooleanToken. If you're feeling confident writing your own token using what you learned, go ahead and
 try it yourself. Alternatively, click the spoiler below for help:
 
@@ -60,7 +60,7 @@ public class BooleanToken extends Token<Boolean> {
     }
 
     @Override
-    public List<Token<?>> process(LARDParser parser, LARDContext context, LARDConfig config) {
+    public List<Token<?>> process(LARFParser parser, LARFContext context, LARFConfig config) {
         return Collections.singletonList(this);
     }
 
@@ -73,7 +73,7 @@ public class BooleanToken extends Token<Boolean> {
 Finally, let's add it to the configuration:
 
 ```java
-public class AardvarkConfig extends LARDConfig {
+public class AardvarkConfig extends LARFConfig {
     //...
     @Override
     protected void initTokenHandlers() {
@@ -170,7 +170,7 @@ public class AardvarkComparisonOperator extends ComparisonOperator {
 Add the operator class to the configuration:
 ```java
 @Override
-public class AardvarkConfig extends LARDConfig {
+public class AardvarkConfig extends LARFConfig {
     //...
     @Override
     protected void initOperators() {
@@ -187,23 +187,23 @@ We're one step closer to defining our statement. We've got the comparison operat
 see what happens in the runner app:
 ```
 1 == 1
-dev.lard.exception.ParserException: Unable to handle numeric operation with operator '=='
-	at dev.lard.languages.aardvark.operations.NumericOperation.handleCustomOperator(NumericOperation.java:34)
-	at dev.lard.languages.aardvark.operations.NumericOperation.process(NumericOperation.java:53)
-	at dev.lard.parser.LARDParser.processOp(LARDParser.java:321)
-	at dev.lard.parser.LARDParser.processExpression(LARDParser.java:113)
-	at dev.lard.parser.LARDParser.process(LARDParser.java:44)
-	at dev.lard.processor.LARDProcessor.process(LARDProcessor.java:83)
-	at dev.lard.runner.LARDRunner.run(LARDRunner.java:39)
-	at dev.lard.runner.LARDRunner.run(LARDRunner.java:11)
-	at dev.lard.languages.aardvark.AardvarkRunner.main(AardvarkRunner.java:11)
+dev.larf.exception.ParserException: Unable to handle numeric operation with operator '=='
+	at dev.larf.languages.aardvark.operations.NumericOperation.handleCustomOperator(NumericOperation.java:34)
+	at dev.larf.languages.aardvark.operations.NumericOperation.process(NumericOperation.java:53)
+	at dev.larf.parser.LARFParser.processOp(LARFParser.java:321)
+	at dev.larf.parser.LARFParser.processExpression(LARFParser.java:113)
+	at dev.larf.parser.LARFParser.process(LARFParser.java:44)
+	at dev.larf.processor.LARFProcessor.process(LARFProcessor.java:83)
+	at dev.larf.runner.LARFRunner.run(LARFRunner.java:39)
+	at dev.larf.runner.LARFRunner.run(LARFRunner.java:11)
+	at dev.larf.languages.aardvark.AardvarkRunner.main(AardvarkRunner.java:11)
 ```
 Yes, we need to update our NumericOperation class to handle those operators. Let's do that now:
 ```java
 public class NumericOperation implements TypeOperation {
     //...
     @Override
-    public Token<?> process(LARDConfig config, LARDContext context, Token<?> firstToken, OperatorHandler<?> operator,
+    public Token<?> process(LARFConfig config, LARFContext context, Token<?> firstToken, OperatorHandler<?> operator,
                             Token<?> secondToken, Token<?> leftSide) {
         BigDecimal first = new BigDecimal(firstToken.getValue().toString());
         BigDecimal second = new BigDecimal(secondToken.getValue().toString());
@@ -276,7 +276,7 @@ public class ConditionalToken extends Token<Void> {
     }
 
     @Override
-    public List<Token<?>> process(LARDParser parser, LARDContext context, LARDConfig config) {
+    public List<Token<?>> process(LARFParser parser, LARFContext context, LARFConfig config) {
         //Expect that there are 3 tokens groups representing the condition and true / false token groups
         if (getTokenGroups().size() < 3) {
             String found = getTokenGroups().stream().map(Token::toSimpleString).collect(Collectors.joining(","));
@@ -333,7 +333,7 @@ Ok, that's a big chunk of code but let's break it down:
 ### Configure and Run
 Ok, let's add our new Token as a new token handler to the configuration:
 ```java
-public class AardvarkConfig extends LARDConfig {
+public class AardvarkConfig extends LARFConfig {
     //...
     @Override
     protected void initTokenHandlers() {

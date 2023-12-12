@@ -11,7 +11,7 @@ function HomepageHeader() {
   return (
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
       <div className="container">
-        <img className="myLogo" style={{width: '50%', height: '50%'}} src={'img/blah.svg'} />
+        <img className="myLogo" style={{width: '30%', height: '30%'}} src={'img/icon.svg'} />
       </div>
     </header>
   );
@@ -23,9 +23,10 @@ export default function Home() {
       title={`Language Architect and Runtime Development`}
       description="Create a programming language">
       <HomepageHeader />
-      <div className="container">
-        <HomepageFeatures />
-      </div>
+        <h1>Language Architect and Runtime Framework</h1>
+      {/*<div className="container">*/}
+      {/*  <HomepageFeatures />*/}
+      {/*</div>*/}
     </Layout>
   );
 }

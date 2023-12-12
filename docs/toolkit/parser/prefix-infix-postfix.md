@@ -3,7 +3,7 @@ sidebar_position: 3
 ---
 # Prefix, Infix and Postfix
 The majority of programming languages follow the standard left-to-right (Infix) execution of values 
-and operators. LARD however offers support for alternatives to this, commonly used in mathematical
+and operators. LARF however offers support for alternatives to this, commonly used in mathematical
 notation called Prefix and Postfix.
 ### Infix Notation
 This is enabled by default and follows the typical pattern where an operator is placed between two
@@ -16,11 +16,11 @@ will be performed before the addition. There is a way to influence the order of 
 [Making a Statement](/docs/tutorial/make-a-statement.md)).
 ### Prefix Notation
 ```java
-public class AardvarkRunner extends LARDRunner {
+public class AardvarkRunner extends LARFRunner {
     public static void main(String[] args) {
         AardvarkConfig config = new AardvarkConfig();
         config.setNotationType(ExpressionNotationType.PREFIX);
-        LARDProcessor processor = new LARDProcessor(config);
+        LARFProcessor processor = new LARFProcessor(config);
         run("Aardvark Language", processor);
     }
 }

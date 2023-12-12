@@ -13,7 +13,7 @@ public class PrintFunction implements SystemFunction {
     }
 
     @Override
-    public Token<?> execute(LARDConfig config, List<Token<?>> values) {
+    public Token<?> execute(LARFConfig config, List<Token<?>> values) {
         if (values.size() == 2) {
             throw new ParserException("PRINT expects 1 or 3 or more parameters. Either a value to print e.g. PRINT('test') " +
                     "or with the delimiter used to join values as the firs parameter e.g. PRINT(' ','hello','world'");
@@ -58,7 +58,7 @@ sys:print(' ','the','sheep','jumped','over','the','moon')
 the sheep jumped over the moon
 Result: null (Type: Null, Time taken: 1ms)
 ```
-System functions provide a bridge between the LARD language and LARD's native language (Java). Because they support 
+System functions provide a bridge between the LARF language and LARF's native language (Java). Because they support 
 returning values, it means we can use the result of that code within our own languages.
 
 :::tip Not to be confused...

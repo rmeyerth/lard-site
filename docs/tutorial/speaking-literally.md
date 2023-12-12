@@ -29,7 +29,7 @@ public class IntegerToken extends Token<Integer> {
     }
 
     @Override
-    public List<Token<?>> process(LARDParser parser, LARDContext context, LARDConfig config) {
+    public List<Token<?>> process(LARFParser parser, LARFContext context, LARFConfig config) {
         return Collections.singletonList(this);
     }
 
@@ -53,7 +53,7 @@ we should have no conversion issues.
 
 Again, let's add this to our configuration class:
 ```java
-public class AardvarkConfig extends LARDConfig {
+public class AardvarkConfig extends LARFConfig {
     //...
     @Override
     protected void initTokenHandlers() {
@@ -76,13 +76,13 @@ Result: 10 (Type: Integer, Time taken: 1ms)
 We now have simple Integer support in our language. Let's try to do a basic calculation:
 ```
 10 + 10
-dev.lard.exception.ParserException: Unexpected token '+' found in expression. Strict syntax checking is enabled
-	at dev.lard.lexer.LARDLexer.analysePatterns(LARDLexer.java:98)
-	at dev.lard.lexer.LARDLexer.tokenize(LARDLexer.java:57)
-	at dev.lard.lexer.Lexer.tokenize(Lexer.java:49)
-	at dev.lard.processor.LARDProcessor.process(LARDProcessor.java:82)
-	at dev.lard.runner.LARDRunner.run(LARDRunner.java:39)
-	at dev.lard.runner.LARDRunner.run(LARDRunner.java:10)
-	at dev.lard.runner.Application.main(Application.java:10)
+dev.larf.exception.ParserException: Unexpected token '+' found in expression. Strict syntax checking is enabled
+	at dev.larf.lexer.LARFLexer.analysePatterns(LARFLexer.java:98)
+	at dev.larf.lexer.LARFLexer.tokenize(LARFLexer.java:57)
+	at dev.larf.lexer.Lexer.tokenize(Lexer.java:49)
+	at dev.larf.processor.LARFProcessor.process(LARFProcessor.java:82)
+	at dev.larf.runner.LARFRunner.run(LARFRunner.java:39)
+	at dev.larf.runner.LARFRunner.run(LARFRunner.java:10)
+	at dev.larf.runner.Application.main(Application.java:10)
 ```
 You knew it wasn't going to be that simple. Move onto the next section to learn about operators.

@@ -28,7 +28,7 @@ const FeatureList = [
     Svg: require('@site/static/img/Andy_Tools_Hammer_Spanner.svg').default,
     description: (
       <>
-        LARD has been built from the ground up to expand. Don't find the built-in parser
+        LARF has been built from the ground up to expand. Don't find the built-in parser
         offers what you need? Override part or write your own
       </>
     ),

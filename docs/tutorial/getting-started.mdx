@@ -20,14 +20,14 @@ I will put in a request to expedite this and will update this page accordingly.
 :::
 ```gradle title="build.gradle"
 dependencies {
-    implementation 'dev.lard:lard-core:1.0'
+    implementation 'dev.larf:larf-core:1.0'
 }
 ```
 ```xml title="pom.xml"
 <dependencies>
     <dependency>
-        <groupId>dev.lard</groupId>
-        <artifactId>lard-core</artifactId>
+        <groupId>dev.larf</groupId>
+        <artifactId>larf-core</artifactId>
         <version>1.0</version>
     </dependency>
 </dependencies>
@@ -61,9 +61,9 @@ and put our new class in that:
                    AardvarkConfig.java
                Application.java
 ```
-Extending our class from LARDConfig will require us to implement several methods:
+Extending our class from LARFConfig will require us to implement several methods:
 ```java
-public class AardvarkConfig extends LARDConfig {
+public class AardvarkConfig extends LARFConfig {
 
   @Override
   protected void initTokenHandlers() { }
@@ -84,15 +84,15 @@ public class AardvarkConfig extends LARDConfig {
 Don't worry about the content of these methods as we'll get to these in due time.
 
 ### Runner
-Next we'll modify the existing Application.java file in the root of the project directory. We'll change it to extend another class called LARDRunner*
+Next we'll modify the existing Application.java file in the root of the project directory. We'll change it to extend another class called LARFRunner*
 and define the following in the main method:
 
 ```java
-public class Application extends LARDRunner {
+public class Application extends LARFRunner {
 
   public static void main(String[] args) {
     AardvarkConfig config = new AardvarkConfig();
-    LARDProcessor processor = new LARDProcessor(config);
+    LARFProcessor processor = new LARFProcessor(config);
     run("Aardvark Language", processor);
   }
 }
@@ -100,7 +100,7 @@ public class Application extends LARDRunner {
 
 :::tip Runner class
 
-The LARDRunner utility class is runnable allowing you to write, evaluate and test code in your language.
+The LARFRunner utility class is runnable allowing you to write, evaluate and test code in your language.
 
 :::
 

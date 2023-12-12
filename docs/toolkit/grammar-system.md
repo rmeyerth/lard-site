@@ -19,13 +19,13 @@ when it is processed by your code.
 | [...]  | ``[ ref1, ref2 ]`` | Grammar references defer responsibility to one or more other tokens to handle execution. This allows grammar branching so one token can support multiple implementation e.g. for / foreach both using the same ``for`` keyword. |
 | :      | ``val:String``     | Used in conjunction with a single capture group. This forces a given value to adhere to the provided name / type specified.                                                                                                     |
 | type   | ``type``           | Captures a type when defining a typed language. Types can be used when defining variables, return types of methods / classes or generics. Literals representing types should implement the TypedToken interface.                |
-| mod    | ``( mod )+?``      | Modifiers are used to affect access to a variable, function or type. These tokens implement the TokenModifier interface.                                                                                                        |
+| mod    | ``( mod )+?``      | Modifiers are used to change the immutability or visibility of a variable, function or type. These tokens implement the TokenModifier interface.                                                                                                        |
 
 Let's look at a couple of examples from various languages to see how we would define them.
 ### Kotlin - Elvis Operator (Easy)
 In Kotlin, including several other languages there is the elvis operator. This is the equivalent of what the 
 Optional.ofNullable does in Java. An example of this would be ``customerAges.get("mary") ?: -1``. It looks at the value of the 
-left-side and if found to be null, uses the right-side as a fallback. The grammar for this in LARD would be:
+left-side and if found to be null, uses the right-side as a fallback. The grammar for this in LARF would be:
 ```java
 @Override
 public String getPattern() {
@@ -38,7 +38,7 @@ at this in terms of token groups. In this simple example there are only two, whi
 the fallback. Since we now know this, we can write our process method as the following:
 ```java
 @Override
-public List<Token<?>> process(LARDParser parser, LARDContext context, LARDConfig config) {
+public List<Token<?>> process(LARFParser parser, LARFContext context, LARFConfig config) {
     if (getTokenGroups().size() != 2) {
         throw new ParserException(String.format("Expected both a value to check for null and a fallback. " +
                 "Found %s tokens", getTokenGroups().size()));
@@ -90,7 +90,7 @@ Let's break this down:
 Before we dive into look at the single and multi-line tokens, let's look at the process method implementation for this:
 ```java
 @Override
-public List<Token<?>> process(LARDParser parser, LARDContext context, LARDConfig config) {
+public List<Token<?>> process(LARFParser parser, LARFContext context, LARFConfig config) {
     Token<?> condition = parser.processExpression(getTokenGroups().get(0).getFlatTokens(), context);
     if (!condition.is(Boolean.class)) {
         throw new ParserException("If requires a boolean to be used as a the condition!");
@@ -137,7 +137,7 @@ public class SingleLineToken extends Token<Void> {
     }
 
     @Override
-    public List<Token<?>> process(LARDParser parser, LARDContext context, LARDConfig config) {
+    public List<Token<?>> process(LARFParser parser, LARFContext context, LARFConfig config) {
         if (getTokenGroups().isEmpty())
             return Collections.singletonList(config.getNullToken());
         //Fetch all inner tokens within line to process
@@ -191,7 +191,7 @@ public class MultiLineToken extends Token<Void> {
     }
 
     @Override
-    public List<Token<?>> process(LARDParser parser, LARDContext context, LARDConfig config) {
+    public List<Token<?>> process(LARFParser parser, LARFContext context, LARFConfig config) {
         if (getTokenGroups().isEmpty()) return Collections.singletonList(new NullToken());
         List<Token<?>> singleLines = getTokenGroups().get(0).getFlatTokens();
         return Collections.singletonList(parser.processExpression(singleLines, context));
@@ -209,7 +209,7 @@ public class MultiLineToken extends Token<Void> {
 }
 ```
 There are some subtle differences to this token:
-1. Firstly we pass the TokenType.SECONDARY in the constructor to make it clear this cannot be used on its own.
+1. Firstly we pass the ``TokenType.SECONDARY`` in the constructor to make it clear this cannot be used on its own.
 2. The grammar string expects the body to be wrapped in curly braces e.g. ``{ ... }``. We do something interesting
 here in that we reference the singleLine token in a group that can occur one or more times. This might be a bit 
 confusing, but it saves having to repeat ourselves and just defer responsibility to the other class. As such, we'll
@@ -219,8 +219,8 @@ list of tokens to our parser and return the result.
 4. Again we override the ``isExpression`` method and return true.
 
 This might seem a bit confusing, but we don't need to cater to ``else if`` scenarios as this is already covered. This
-is because ``if (...) { ... } else ...`` covers that. The next ``if`` statement will be read as a separate statement 
+is because ``if (...) { ... } else ...`` covers that. The next ``if`` statement will be a follow-on statement 
 and executed as such. You can join as many if ... else if ... else if ... else ... statements as you like. This is 
-something to keep in mind when designing your statements.
+something to keep in mind when designing your language.
 
 ### C / C++ / Java - For Loop (Medium / Hard)

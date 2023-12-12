@@ -48,7 +48,7 @@ public class IntegerOperation implements TypeOperation {
     }
 
     @Override
-    public Token<?> process(LARDConfig config, LARDContext context, Token<?> firstToken, OperatorHandler<?> operator,
+    public Token<?> process(LARFConfig config, LARFContext context, Token<?> firstToken, OperatorHandler<?> operator,
                             Token<?> secondToken, Token<?> leftSide) {
         //Extract token values
         Integer first = firstToken.getValue(Integer.class);
@@ -76,7 +76,7 @@ public class IntegerOperation implements TypeOperation {
 Next we add this to our config class:
 ```java
 @Override
-public class AardvarkConfig extends LARDConfig {
+public class AardvarkConfig extends LARFConfig {
     //...
     @Override
     protected TypeOperation initTypeOperations() {
