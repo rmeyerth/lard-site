@@ -62,13 +62,14 @@ caught by the syntax checker and throw an error during the lexing stage. Still, 
 unforeseen issues, it is always best to verify the groups you're expecting are present before using them.
 
 :::
-### C / C++ / Java - If Statement (Medium)
+### C++ - If Statement (Medium)
 A common statement across all languages is the conditional of ``if`` statement. It evaluates a boolean condition and
 executes one or more statements or expressions. It could include an alternative group of expressions to execute using 
 an ``else`` which could be chained with other ``if`` statements. Although the nature of this statement is simple, there
 is actually a branch in the body. This is because we could do ``if (i == 1) j = 4;`` or we could have multiple lines
 in a code-block:
 ```java
+int j, j;
 if (i == 1) {
     i = j;
     j += 2;
@@ -160,7 +161,7 @@ We can see that when we create a Token, the superclass constructor must be calle
 This is where we can see our unique reference for our token that can be used in grammar references. Here are some
 observations about the class:
 1. The SingleLineToken is TokenType.PRIMARY rather than SECONDARY. This is because we define use it on it's own by
-defining ``i = 1 + 2;``. It needs no other token to exist.
+defining ``int i = 1 + 2;``. It needs no other token to exist.
 2. In our case, the grammar for this is very simple with one or more tokens being defined, ending with a ';' character.
 3. Moving into our process method, if no token groups are found then a NullToken is returned.
 4. If a token group does exist, we evaluate and return the result from token group 0 and return it.
@@ -223,4 +224,95 @@ is because ``if (...) { ... } else ...`` covers that. The next ``if`` statement 
 and executed as such. You can join as many if ... else if ... else if ... else ... statements as you like. This is 
 something to keep in mind when designing your language.
 
-### C / C++ / Java - For Loop (Medium / Hard)
+### SLOP - Switch Statement (Hard)
+The core of LARF was taken from another language project called [SLOP](https://www.slop.dev). As a test to prove it
+worked I decided to take the idea of the switch statement and give it a boost. The grammar for this ended up looking
+like the following:
+```java
+@Override
+public String getPattern() {
+    return "'switch' '(' ( expr ','? )+ ')' '[' ( ( expr ','? )+ ':' expr '!'<? ';'? )+ ( 'default' ':' expr )? ']'";
+}
+```
+Now before you close your browser in utter confusion, let's get back to basics and look at a Java switch statement:
+```java
+switch (myEnum) {
+    case VALUE_A:
+        //Handle A
+        break;
+    case VALUE_B:
+        //Handle B
+        break;
+    default:
+        //Fallback
+}
+```
+If we were to use what we've learned so far and write the grammar, it could look like the following:
+```java
+public class SwitchToken extends Token<Void> {
+
+    //...
+    //Constructor and GRAMMAR pattern type
+    //...
+
+    @Override
+    public String getPattern() {
+        //Can change expr to val if you want to be more restrictive
+        return "'switch' '(' expr ')' [ switchBody ]";
+    }
+    
+}
+```
+We'd then define another class called SwitchBodyToken with the following:
+```java
+public class SwitchBodyToken extends Token<Void> {
+
+    public MultiLineToken() {
+        super("switchBody", null, TokenType.SECONDARY);
+    }
+    
+    @Override
+    public String getPattern() {
+        //One or more standard cases with an optional default case wrapped in curly braces
+        return "'{' ( [ switchCase ] )+ ( [ defaultCase ])? '}'";
+    }
+    
+    //...
+}
+```
+Finally we'd have third representing the standard case:
+```java
+public class SwitchCaseToken extends Token<Void> {
+
+    public MultiLineToken() {
+        super("switchCase", null, TokenType.SECONDARY);
+    }
+    
+    @Override
+    public String getPattern() {
+        //Capture case comparison value and lines to execute if a match
+        return "'case' val ':' ( expr ';' )+";
+    }
+    
+    //...
+}
+```
+And a fourth token for the default case:
+```java
+public class DefaultCaseToken extends Token<Void> {
+
+    public MultiLineToken() {
+        super("defaultCase", null, TokenType.SECONDARY);
+    }
+    
+    @Override
+    public String getPattern() {
+        //Just capture lines if default case triggered
+        return "'default' ':' ( expr ';' )+";
+    }
+    
+    //...
+}
+```
+You could break this down further by making a grammar reference to a SingleLineToken, but without wanting to
+confuse you further, I'll stop at four.
