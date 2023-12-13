@@ -2,10 +2,12 @@
 sidebar_position: 10
 ---
 # Grammar System
-Before we go any further, it will be a good time to cover the grammar system. I call this the Least Effort Grammar
-System (LEGS for short). This allows you to outline to the lexer the pattern it should look for when tokenizing an
-expression. It also tells the lexer the groups to which individual tokens should be assigned so that they can be used
-when it is processed by your code.
+The grammar system you to outline to the lexer the pattern for your statement it should look for when tokenizing an 
+expression. It also tells the lexer the groups to which tokens should be assigned so that they are accessible during 
+parsing when your Token ``process`` method gets called. During its development it became fondly known as the Least
+Effort Grammar System (LEGS for short). This is because you don't have to outline every possible interaction between
+sets of tokens. Instead we give it the basic structure, state what will be captured at a given point and the Lexer 
+will figure out the rest. Below is a table showing the symbols you can use within the grammar and what they do:
 
 | Symbol | Example            | Description                                                                                                                                                                                                                     |
 |--------|--------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
