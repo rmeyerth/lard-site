@@ -87,11 +87,19 @@ you can follow the following steps:
    }
    ```
 2. Define a concrete class for your Operators e.g. CustomOperators and extend the OperatorHandler class while passing 
-   in your enum as a generic type:
+   in your enum as a generic type.
+
+   :::tip Ensure correct regex order
+
+   You'll also need to pass the class of your operator enum type in the constructor for these custom operator classes. 
+   This is not necessary when using the standard operator templates.
+   
+   :::
    ```java
-   public class CustomOperatoes extends OperatorHandler<MyCustomOperators> {
-       protected ArithmeticOperator(String value) {
-           super("Arithmetic Operator", value);
+   public class CustomOperators extends OperatorHandler<MyCustomOperators> {
+   
+       protected CustomOperators(String value) {
+           super(MyCustomOperators.class, "Custom Operator", value);
        }
 
        @Override
@@ -111,13 +119,16 @@ you can follow the following steps:
    
        @Override
        public String getPattern() {
-           return "^(^|_/)";
+           return "^(\\^|_/)";
        }
 
        @Override
        protected void initOperators() {
-           addOperator("^", MyCustomOperators.SQUARE);        // 4 ^ 2 (16)
-           addOperator("_/", MyCustomOperators.SQUARE_ROOT);  // _/4   (2)
+           // 4 ^ 2 = 16
+           addOperator("^", MyCustomOperators.SQUARE);
+           // _/16 = 4
+           addOperator("_/", MyCustomOperators.SQUARE_ROOT, 
+                 Collections.singletonList(Operands.RIGHT_HAND_SIDE));
        }
 
        @Override
@@ -132,4 +143,45 @@ you can follow the following steps:
            return 1;
        }
    }
+   ```
+   You'll notice that on the square root operator above, we're passing in another parameter. This is a list of
+   applicable operands that can be used with the operator. The default is Operands.BOTH where the operator takes
+   both a left and right side. In this case though the square root only take a right-side operand and cannot be
+   used in any other situation.
+3. Modify your operation class and handle both operator types within the ``process`` method:
+   ```java
+   @Override
+   public Token<?> process(LARFConfig config, LARFContext context, Token<?> firstToken, OperatorHandler<?> operator,
+                           Token<?> secondToken, UnhandledEvent unhandledEvent) {
+       BigDecimal first = Objects.isNull(firstToken.getValue()) ?
+               BigDecimal.ZERO : new BigDecimal(firstToken.getValue().toString());
+       BigDecimal second = Objects.isNull(secondToken.getValue()) ?
+               BigDecimal.ZERO : new BigDecimal(secondToken.getValue().toString());
+       if (operator instanceof ArithmeticOperator) {
+           //... 
+       } else if (operator instanceof IndentCustomOperator) {
+           switch (((IndentCustomOperator)operator).getOpType()) {
+              case SQUARE: return convert(first.pow(second.abs().intValue()));
+              case SQUARE_ROOT: return convert(BigDecimal.valueOf(Math.sqrt(second.doubleValue())));
+           }
+       }
+       return unhandledEvent.trigger();
+   }
+   ```
+4. Add your custom operator class to the configuration file:
+   ```java
+   @Override
+   protected void initOperators() {
+       //...
+       addOperatorHandler(new IndentCustomOperator(null));
+   }
+   ```
+5. Give it a try:
+   ```
+   Indent Language Test Utility
+   ============================
+   4 ^ 2
+   Result: 16 (Type: Integer, Time taken: 26ms)
+   _/16
+   Result: 4 (Type: Integer, Time taken: 3ms)
    ```
