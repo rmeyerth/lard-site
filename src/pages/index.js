@@ -23,6 +23,7 @@ export default function Home() {
       title={`Language Architect and Runtime Development`}
       description="Create a programming language">
       <HomepageHeader />
+      <div className="quote"><span style={{color: "cadetblue"}}>sys</span>:print(<span style={{color: "lightgreen"}}>'Discover the secret to turn your programming language dreams into a reality'</span>)</div>
       <div className="container">
         <HomepageFeatures />
       </div>

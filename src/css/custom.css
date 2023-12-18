@@ -40,3 +40,33 @@
 [data-theme='dark'] .hero__title {
   color: #3cad6e;
 }
+
+[data-theme='dark'] .titleClass {
+  font-family: Calibri;
+  font-size: xxx-large;
+  color: #FE2020;
+}
+
+.titleClass {
+  font-family: "Tempus Sans ITC";
+  font-size: xxx-large;
+  color: #121212;
+}
+
+[data-theme='dark'] .quote {
+  font-family: "Courier New";
+  font-size: large;
+  color: white;
+  width: 100%;
+  text-align: center;
+  padding-top: 10px;
+}
+
+.quote {
+  font-family: "Courier New";
+  font-size: large;
+  color: black;
+  width: 100%;
+  text-align: center;
+  padding-top: 10px;
+}

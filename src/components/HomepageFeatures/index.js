@@ -9,7 +9,7 @@ const FeatureList = [
     description: (
       <>
         Create your project, import the dependency and start defining your language!
-        Still too slow? Starter projects allow you to hit the floor running.
+        Still too slow? Sample starter projects allow you to hit the floor running.
       </>
     ),
   },
@@ -18,8 +18,8 @@ const FeatureList = [
     Svg: require('@site/static/img/Jigsaw-Puzzle.svg').default,
     description: (
       <>
-        All logic for your languages including literals, operations and statements
-        are contained within a single class providing easy maintenance and expansion.
+        All logic for your literals, operations and statements are contained within
+        single classes providing easy maintenance and expansion.
       </>
     ),
   },
@@ -28,8 +28,8 @@ const FeatureList = [
     Svg: require('@site/static/img/Andy_Tools_Hammer_Spanner.svg').default,
     description: (
       <>
-        LARF has been built from the ground up to expand. Don't find the built-in parser
-        offers what you need? Override part or write your own
+        LARF is completely customisable with the ability to override any property and
+        framework component. Don't like the default parser? Write your own!
       </>
     ),
   },
@@ -43,7 +43,7 @@ function Feature({Svg, title, description}) {
       </div>
       <div className="text--center padding-horiz--md">
         <h3>{title}</h3>
-        <p>{description}</p>
+        <p className="featureText">{description}</p>
       </div>
     </div>
   );
