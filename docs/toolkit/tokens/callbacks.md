@@ -85,7 +85,7 @@ public class VariableLoopToken extends Token<Void> implements TokenCallback {
     }
 }
 ```
-Firstly you'll notice that the VariableLoopToken (just like the equivalent FixedLoopToken) implements the TokenCallback
+First you'll notice that the VariableLoopToken (just like the equivalent FixedLoopToken) implements the TokenCallback
 interface. This requires us to implement the process method with the extra ReferenceCallback parameter. Looking at the
 implementation of the code this look complicated, but let's break it down and see where that ``ReferenceCallback`` is used.
 
