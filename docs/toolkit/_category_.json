@@ -1,8 +1,4 @@
 {
   "label": "Toolkit",
-  "position": 2,
-  "link": {
-    "type": "generated-index",
-    "description": "Documentation for each feature within the framework"
-  }
+  "position": 2
 }

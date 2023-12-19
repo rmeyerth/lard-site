@@ -141,7 +141,7 @@ const config = {
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} LARF. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} Robert Meyer. Built with Docusaurus.`,
       },
       prism: {
         theme: lightCodeTheme,

@@ -79,9 +79,13 @@
   color: #eee;
   border-radius: 0 0 8px 8px;
   background-color: black;
+  border-bottom: 1px solid gray;
+  border-right: 1px solid gray;
+  border-left: 1px solid gray;
 }
 
 .testHeader {
+  display: flex;
   vertical-align: center;
   background-color: #252a33;
   padding-top: 2px;
@@ -92,4 +96,15 @@
   color: lightgray;
   textAlign: center;
   border-radius: 8px 8px 0px 0px;
+  border-top: 1px solid gray;
+  border-right: 1px solid gray;
+  border-left: 1px solid gray;
+}
+
+.myContainer {
+  display: flex;
+}
+
+.invisibleBox {
+  flex: 1;
 }

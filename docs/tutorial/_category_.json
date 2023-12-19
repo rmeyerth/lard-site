@@ -1,8 +1,4 @@
 {
   "label": "Tutorial",
-  "position": 1,
-  "link": {
-    "type": "generated-index",
-    "description": "Starting from scratch and progressing step-by-step to a fully realised language"
-  }
+  "position": 1
 }
