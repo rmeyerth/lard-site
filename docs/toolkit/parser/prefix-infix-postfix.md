@@ -11,7 +11,7 @@ argument. An example of running a language with prefix notation would be:
 public class PrefixRunner extends LARFRunner {
     public static void main(String[] args) {
         PrefixConfig config = new PrefixConfig();
-        //ExpressionNotationType: SUFFIX [Default], PREFIX, POSTFIX
+        //ExpressionNotationType: INFIX [Default], PREFIX, POSTFIX
         config.setNotationType(ExpressionNotationType.PREFIX);
         LARFProcessor processor = new LARFProcessor(config);
         run("My Prefix Language", processor);
