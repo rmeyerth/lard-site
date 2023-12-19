@@ -19,7 +19,7 @@ function HomepageHeader() {
                   <div className="terminal">
                     <div><span>Your Language Test Utility</span></div>
                     <div><span>==========================</span></div>
-                    <div>&gt; <span style={{color: "cadetblue"}}>sys</span>:print(<span style={{color: "lightgreen"}}>'Discover the secret to turn your programming language dreams into a reality'</span>)</div>
+                    <div>&gt; <span style={{color: "cadetblue"}}>sys</span>:print(<span style={{color: "lightgreen"}}>'Discover the secret to turn your programming language ideas into a reality'</span>)</div>
                   </div>
                 </div>
               <div className="invisibleBox"></div>
