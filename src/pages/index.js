@@ -15,10 +15,10 @@ function HomepageHeader() {
           <div className="myContainer">
               <div className="invisibleBox"></div>
                 <div>
-                  <div className="testHeader"><img style={{paddingLeft: 5, width: 70, height: 25, float: "left"}} src={'img/buttons.png'} />Language Architect and Runtime Framework</div>
+                  <div className="testHeader"><img style={{paddingLeft: 5, width: 70, height: 25, float: "left"}} src={'img/buttons.png'} />&nbsp;&nbsp;Language Architect and Runtime Framework</div>
                   <div className="terminal">
-                    <div><span>Your Language Runner</span></div>
-                    <div><span>====================</span></div>
+                    <div><span>Your Language Test Utility</span></div>
+                    <div><span>==========================</span></div>
                     <div>&gt; <span style={{color: "cadetblue"}}>sys</span>:print(<span style={{color: "lightgreen"}}>'Discover the secret to turn your programming language dreams into a reality'</span>)</div>
                   </div>
                 </div>
