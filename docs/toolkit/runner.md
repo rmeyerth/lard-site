@@ -1,5 +1,5 @@
 ---
-sidebar_position: 11
+sidebar_position: 12
 ---
 # Runner
 The runner is a test class used to quickly test the features of your language. To create a new runner
@@ -51,7 +51,7 @@ int i = 1
 if i == 1 then
     i = 2
     if i == 2 then
-       i = 3
+        i = 3
         if i == 3 then
             int j = 4
             return i * j

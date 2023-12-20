@@ -78,6 +78,7 @@ const config = {
             label: 'Documentation',
           },
           {to: '/blog', label: 'Blog', position: 'left'},
+          {to: '/license', label: 'License', position: 'left'},
           {
             href: 'https://github.com/facebook/docusaurus',
             label: 'GitHub',
@@ -141,7 +142,7 @@ const config = {
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} Robert Meyer. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} <a href='mailto:rmeyer@hotmail.co.uk'>Robert Meyer</a>. Built with Docusaurus.`,
       },
       prism: {
         theme: lightCodeTheme,

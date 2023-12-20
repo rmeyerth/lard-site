@@ -8,8 +8,8 @@ const FeatureList = [
     Svg: require('@site/static/img/rocket-312767.svg').default,
     description: (
       <>
-        Create your project, import the dependency and start defining your language!
-        Still too slow? Sample starter projects allow you to hit the floor running.
+        Create your project, import the dependency and define your language.
+        Still too slow? Sample starter projects allow you to get a running start.
       </>
     ),
   },
@@ -18,8 +18,8 @@ const FeatureList = [
     Svg: require('@site/static/img/Jigsaw-Puzzle.svg').default,
     description: (
       <>
-        All logic for your literals, operations and statements are contained within
-        single classes providing easy maintenance and expansion.
+        LARF uses an object orientated approach to language development. All literal,
+        operation or statement logic is contained within a single class.
       </>
     ),
   },
@@ -28,8 +28,8 @@ const FeatureList = [
     Svg: require('@site/static/img/Andy_Tools_Hammer_Spanner.svg').default,
     description: (
       <>
-        LARF is completely customisable with the ability to override any property and
-        framework component. Don't like the default parser? Write your own!
+        It is completely customisable with the ability to override any property and
+        component. Don't like the default parser? Write your own!
       </>
     ),
   },

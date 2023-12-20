@@ -28,16 +28,17 @@ complex process that involves many different steps. These steps include:
 - Documenting the language's features and usage
 
 Even after all of these steps have been completed, the language may still need to be improved or updated over time.
-This is because new features are constantly being developed, and the language needs to be able to adapt to changes in
-as new ideas are introduced. This is where LARF can help as it is built around the concept of adaptability and
-change. LARF also provides the following:
+This is because new features are constantly being developed, and the language needs to be able to adapt as new ideas 
+are introduced. This is where LARF can help as it is built around the concept of adaptability and change. LARF 
+provides the following:
 
 - Simple to learn and use: The LARF API is well-documented and easy to understand. Even if you have no prior experience
-  with language development, you should be able to get up and running with LARF quickly.
+  with language development, you should be able to get up and running quickly.
+- Large number of features: Aside from the ability to customise nearly every aspect of LARF, the framework provides
+  a lot of features included in the basic package. These include support for whitespace (inferred or fixed), expression 
+  notation customisation (infix, prefix and postfix), custom operators, typed / types languages and much more.
 - Fast development time: LARF takes care of the low-level details of lexing and parsing so that you can focus on the
   more important aspects of language development, such as syntax and semantics. This can save you a lot of time and effort.
-- Tried and tested lexer: LARF has an extensive testing suite to ensure correct behaviour. This means that you can be
-  confident that your language will be able to correctly parse a wide range of input.
 - Powered by Java: LARF is written in Java, which is a multi-platform, secure, and a well-supported programming language.
   This means that your language will be able to run on a wide range of platforms, including Windows, macOS, and Linux and
   make use of a large number of underlying frameworks to enhance your language.
