@@ -69,7 +69,7 @@ used as a stand-in until your language has progressed.
 
 :::
 ### Custom Function
-Let's take a look at creating a random function:
+Let's take a look at creating a function to create random numbers:
 
 ```java
 public class RandomFunction implements Function {
@@ -111,10 +111,10 @@ public class RandomFunction implements Function {
     }
 }
 ```
-Functions are simple from a code standpoint as it requires only to implement the Function interface and methods.
+Functions are simple from a code standpoint as they require to only implement the Function interface and methods.
 The above will provide the ability to create random numbers using a type parameter to be used in an expression.
 It is important when creating functions to check and throw errors if the parameter list is not in the expected
-format. The code itself is fairly self-explanatory and will allow it to be called by using the RAND name and two
+format. The code itself is fairly self-explanatory and will allow it to be called by using the ``rand`` name and two
 parameters (the second being restricted on the type). Next we need to add it to our config:
 ```java
 @Override

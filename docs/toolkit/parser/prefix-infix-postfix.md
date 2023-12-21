@@ -1,5 +1,5 @@
 ---
-sidebar_position: 3
+sidebar_position: 4
 ---
 # Prefix, Infix and Postfix
 The majority of programming languages follow the standard left-to-right (Infix) execution of values 

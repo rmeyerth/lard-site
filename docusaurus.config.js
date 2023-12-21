@@ -71,6 +71,7 @@ const config = {
           src: 'img/larf.png',
         },
         items: [
+          {to: '/docs/tutorial/getting-started', label: 'Get Started', position: 'left'},
           {
             type: 'docSidebar',
             sidebarId: 'tutorialSidebar',
