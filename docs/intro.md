@@ -36,7 +36,7 @@ provides the following:
   with language development, you should be able to get up and running quickly.
 - Large number of features: Aside from the ability to customise nearly every aspect of LARF, the framework provides
   a lot of features included in the basic package. These include support for whitespace (inferred or fixed), expression 
-  notation customisation (infix, prefix and postfix), custom operators, typed / types languages and much more.
+  notation customisation (infix, prefix and postfix), custom operators, typed / types languages, error handling and much more.
 - Fast development time: LARF takes care of the low-level details of lexing and parsing so that you can focus on the
   more important aspects of language development, such as syntax and semantics. This can save you a lot of time and effort.
 - Powered by Java: LARF is written in Java, which is a multi-platform, secure, and a well-supported programming language.

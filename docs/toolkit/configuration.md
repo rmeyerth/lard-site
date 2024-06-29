@@ -2,6 +2,7 @@
 sidebar_position: 1
 ---
 # Configuration
+### Overview
 At the basic level, the configuration class is used to define which tokens are to be used in your language. 
 When you first create the class and extend the ``LARFConfig`` class, several methods are required to be
 implemented:
@@ -71,3 +72,40 @@ Parser back to their Java equivalents if required. Please see [Formatters](/docs
 7. ``initErrorHandlers``: Allows handlers to be defined for in-language errors. This could be as simple
 as checked / unchecked or handling thrown Java exceptions for null or Arithmetic events. 
 See [Error Handling](/error-handling.md) for more details.
+
+### Properties
+Properties can be set to change how your language operates and behaves. Properties can be set either on
+the object itself e.g. ``myLanguageConfig.setProperty(DefaultProperty.DEBUG_MODE, true);`` or within the
+constructor:
+```java
+public class MyLanguageConfig extends LARFConfig {
+
+    public IndentConfig() {
+        super("My Language", 0.5);
+        setProperty(DefaultProperty.DEBUG_MODE, true);
+    }
+
+    //...
+}
+```
+Common properties can be found in the DefaultProperty enum class and are listed below:
+
+| Value              | Type         | Description                                                                                                                                                                                                                     |
+|--------------------|--------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| DATE_FORMAT        | String | This default date pattern used by the in-built DATE function e.g. ``setProperty(DefaultProperty.DATE_FORMAT, "dd-MM-yyyy")`` would support specifying ``DATE(23-05-1999)``. A second argument can be provided to the date function with a custom pattern.
+| DEBUG_MODE         | Boolean | This enabled in-depth logging of all parser and token operations e.g. ``setProperty(DefaultProperty.DEBUG_MODE, true)``. This is useful when debugging your own tokens / statements.
+| SAFE_OPERATIONS    | Boolean | This can be used as a flag in your language to enable / disable certain features. For example, if you defined a Token that used reflection to import Java objects into your language, you may want to restrict method invocations to avoid unwanted code being run (code injection attacks if running on a server).
+| STRICT_SYNTAX      | Boolean | If this option is enabled then all values in an expression must have a matching Token to be written to. If this is enabled and no [Reference Token](tokens/references.md) is used then all names of variables, functions and types will throw an lexing error. Using a Reference Token along with this option being enabled is the recommended approach to ensure correct syntax checking. However, there are exceptions where you may not want to use this.
+| NOTATION_TYPE      | ExpressionNotationType | This determines the order in which operators and values are evaluated. There are three types which are [PREFIX, INFIX and POSTFIX](parser/prefix-infix-postfix.md).
+| CODE_BLOCK_STYLE   | CodeBlockStyle | 
+| WHITESPACE_VALUE   | String |
+| STRICT_WHITESPACE  | Boolean | 
+| LANGUAGE_TYPED     | LanguageTyped | 
+| FLAG_NATIVE_ERRORS | Boolean |
+| JVM_TRACE_LIMIT    | Integer |
+| JUMP_SUPPORT       | Boolean |
+| FORWARD_JUMPING    | Boolean | 
+| GLOBAL_SCOPE       | Boolean |
+| CASE_SENSITIVE     | Boolean |
+
+#### Custom Properties
