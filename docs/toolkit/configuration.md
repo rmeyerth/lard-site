@@ -73,9 +73,9 @@ Parser back to their Java equivalents if required. Please see [Formatters](/docs
 as checked / unchecked or handling thrown Java exceptions for null or Arithmetic events. 
 See [Error Handling](/error-handling.md) for more details.
 
-### Properties
-Properties can be set to change how your language operates and behaves. Properties can be set either on
-the object itself e.g. ``myLanguageConfig.setProperty(DefaultProperty.DEBUG_MODE, true);`` or within the
+### Common Properties
+Properties can change how your language operates and behaves. Properties can be set either on the 
+configuration object itself e.g. ``myLanguageConfig.setProperty(DefaultProperty.DEBUG_MODE, true);`` or within the
 constructor:
 ```java
 public class MyLanguageConfig extends LARFConfig {
@@ -108,4 +108,8 @@ Common properties can be found in the DefaultProperty enum class and are listed 
 | GLOBAL_SCOPE       | Boolean | Values stored to context obey scope by default. As such, code which does not share that same scope cannot access those values directly. This suits most languages, but may want to treat all values for simplicity as accessible. This option will disable variable scoping and make all values irrespective of where they're declared accessible.
 | CASE_SENSITIVE     | Boolean | When writing a language, you may want to allow people to use any case. For example, if you were defining a new language you could allow people to use ``copy R1 to R2`` or ``COPY R1 TO R2``.
 
-#### Custom Properties
+:::tip Custom Properties
+
+You can define custom properties using an overloaded version of the ``setProperty`` method. For example, to set a property to enable some of the more experimental features of your language you could use ``myLanguageConfig.setProperty("experimentalFeatures", true);``.You can then read this from any Token ``process(...)`` method using ``boolean enableFeatures = config.getProperty("experimentalFeatures", Boolean.class);``.
+
+:::
