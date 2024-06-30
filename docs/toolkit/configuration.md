@@ -97,15 +97,15 @@ Common properties can be found in the DefaultProperty enum class and are listed 
 | SAFE_OPERATIONS    | Boolean | This can be used as a flag in your language to enable / disable certain features. For example, if you defined a Token that used reflection to import Java objects into your language, you may want to restrict method invocations to avoid unwanted code being run (code injection attacks if running on a server).
 | STRICT_SYNTAX      | Boolean | If this option is enabled then all values in an expression must have a matching Token to be written to. If this is enabled and no [Reference Token](tokens/references.md) is used then all names of variables, functions and types will throw an lexing error. Using a Reference Token along with this option being enabled is the recommended approach to ensure correct syntax checking. However, there are exceptions where you may not want to use this.
 | NOTATION_TYPE      | ExpressionNotationType | This determines the order in which operators and values are evaluated. There are three types which are [PREFIX, INFIX and POSTFIX](parser/prefix-infix-postfix.md).
-| CODE_BLOCK_STYLE   | CodeBlockStyle | 
-| WHITESPACE_VALUE   | String |
-| STRICT_WHITESPACE  | Boolean | 
-| LANGUAGE_TYPED     | LanguageTyped | 
-| FLAG_NATIVE_ERRORS | Boolean |
-| JVM_TRACE_LIMIT    | Integer |
-| JUMP_SUPPORT       | Boolean |
-| FORWARD_JUMPING    | Boolean | 
-| GLOBAL_SCOPE       | Boolean |
-| CASE_SENSITIVE     | Boolean |
+| CODE_BLOCK_STYLE   | CodeBlockStyle | Language code blocks are typically split between those which start and end with a character or phrase, or alternatively use indentation (whitespace). LARF supports three options for code-blocks which are DELIMITER, WHITESPACE_FIXED, WHITESPACE_IDENTIFY. Please see [here](code-blocks.md) for more details.
+| WHITESPACE_VALUE   | String | When using the CODE_BLOCK_STYLE property with the WHITESPACE_FIXED option, this value determines the fixed value used to represent each stacked indentation code-block. For example, you may choose to specify four spaces or a tab. Alternatively, you can specify multiple of these values using an or (pipe i.e. "...\|..."). Tabs can be represented by using ``\t``.
+| STRICT_WHITESPACE  | Boolean | When using WHITESPACE_FIXED or WHITESPACE_IDENTIFY, if a line is defined which doesn't follow either the pattern determined by WHITESPACE_VALUE or the pattern identified using WHITESPACE_IDENTIFY then an error is thrown.
+| LANGUAGE_TYPED     | LanguageTyped | Languages can either be typed or typeless. Typed languages require a type to be assigned to values within context. If a value is assigned which is not compatible then errors will be thrown.
+| FLAG_NATIVE_ERRORS | Boolean | When an error is thrown from the underlying language and mapped to an in-language error (See [Error Checking](error-handling.md)) then by default a JVM stack trace will be included. If this is disabled then only the language stack trace will be provided.
+| JVM_TRACE_LIMIT    | Integer | If the FLAG_NATIVE_ERRORS is enabled, this option determines the number of lines of the stack trace to include. This is useful as JVM error and the accompanying stack trace can be quite extensive.
+| JUMP_SUPPORT       | Boolean | Adds support for jumps within a language. This provides the ability for a program to jump directly to defined label (See [Jumping](jumping.md) for more information).
+| FORWARD_JUMPING    | Boolean | By default, jumping through using JUMP_SUPPORT only supports backward jumping. If this option is enabled then jumps forward are permitted.
+| GLOBAL_SCOPE       | Boolean | Values stored to context obey scope by default. As such, code which does not share that same scope cannot access those values directly. This suits most languages, but may want to treat all values for simplicity as accessible. This option will disable variable scoping and make all values irrespective of where they're declared accessible.
+| CASE_SENSITIVE     | Boolean | When writing a language, you may want to allow people to use any case. For example, if you were defining a new language you could allow people to use ``copy R1 to R2`` or ``COPY R1 TO R2``.
 
 #### Custom Properties
