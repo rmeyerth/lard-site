@@ -25,20 +25,11 @@ public class MyTypeToken extends Token<Token<?>> implements TokenInstance {
     @Override
     public String getPattern() {
         return "'type' val:String ( '(' ( val:String ','? )+? ')' )? ( '<-' val:String )? [ multiLine ]";
-    }    
-
-    @Override
-    public Token<?> createInstance(LARFParser parser, LARFContext context, LARFConfig config, 
-                                   String typeName) { ... }    
+    }      
 
     @Override
     protected List<Token<?>> process(LARFParser parser, LARFContext context, LARFConfig config) {
         while (getTokenGroups().size() < 4) getTokenGroups().add(new TokenGroup());
-        if (!getTokenGroups().get(1).getFlatTokens().isEmpty() &&
-                !getContainedTokensOfType(getTokenGroups().get(3), "Constructor").isEmpty()) {
-            throw new ParserException("Found both type param definitions and constructors. The current " +
-                    "type implementation only supports one at a time.");
-        }
         if (getTokenGroups().get(0).getFlatTokens().size() != 1) {
             throw new ParserException(String.format("Expected a single TokenValue for the function name " + 
                     "but found %d tokens provided", getTokenGroups().get(0).getTokenPosition()));
@@ -47,7 +38,13 @@ public class MyTypeToken extends Token<Token<?>> implements TokenInstance {
 
         context.set(typeName, this, VariableType.PROTOTYPE);
         return Collections.singletonList(new NullToken());
-    }                                   
+    }    
+
+    //Will define the below later...
+
+    @Override
+    public Token<?> createInstance(LARFParser parser, LARFContext context, LARFConfig config, 
+                                   String typeName) { ... }                                     
 
     @Override
     public List<Token<?>> process(Token<?> source, LARFParser parser, LARFContext context, LARFConfig config, 
@@ -82,32 +79,31 @@ type MyType(a,b,c) {
 }
 ```
 This is similar to the ``record`` in Java where you can define a class and it's values using the list of parameters.
-Next let's look at the ``process`` method. The majority of it is dedicated to the validation of the token groups and their
-content. For example, the first checks to see if any type parameters have been passed, but if a constructor has also been
-defined then an error will be thrown stating that you can't use both constructors and type parameters. The second check
-just ensures that a name has been specified for the type. The following two lines are crucial:
+Next let's look at the ``process`` method. The first part is dedicated to the validation of the token groups and their
+content. It just checks to ensure that a name has been specified for the type. The next two lines are key:
 ```java
-        String typeName = getTokenGroups().get(0).getFlatTokens().get(0).getValue().toString();
+String typeName = getTokenGroups().get(0).getFlatTokens().get(0).getValue().toString();
 
-        context.set(typeName, this, VariableType.PROTOTYPE);
+context.set(typeName, this, VariableType.PROTOTYPE);
 ```
-The first retrieves the name of the type stored in the first token group e.g. MyType. This is used as the unique identifier
+The first retrieves the name of the type found in the first capture group e.g. MyType. This is used as the unique identifier
 for this type in context. It is also registered as a ``VariableType.PROTOTYPE`` which means there can only ever be one. From
 this other versions can be cloned, but a prototype is essentially the blueprint for the type as defined in the code.
 
-In addition to the standard Token methods, there are several new methods that our new TypeToken class must implement:
-- **createInstance**: Gets called by another token when a request to create a new object is triggered. The class from
-which this is triggered will typically be a token that uses a keyword to trigger off this action e.g. 
-``new CustomObject(...);``. This will be described in a later [section](instances.md#invoking-creation-from-a-defined-type) on this page.
+In addition to the standard Token methods, there are several new methods that our new TypeToken class must implement. An
+example of each will be defined later but for now I'll briefly describe what these methods do:
+- **createInstance**: Gets called by another token to invoke an instance of this type in the language. The token class from
+which this is triggered will typically use a keyword e.g. ``new`` to trigger off this action. This will be described in a 
+later [section](instances.md#invoking-creation-from-a-defined-type) on this page.
 - **process**: An overloaded variant of the process method which accepts a target and list of parameters. This can be 
 used when targetting a specific child resource on the object instance e.g. a method.
 - **getTypeName**: Returns the unique identifier of the current object to store in context
 - **getDependencies**: Provides a list of references to other type instances which this class extends / inherits.
 
-### Creating a Typed Object
+### Triggering Token Creation
 Now that we've got the shell of our type token defined, the next thing we'll want is a way to create an instance of that
-type in our language. This is typically done with a keyword and for this example will be copying the Java ``new`` keyword.
-For this, we'll create a new CreateTypeToken class with the following definition:
+type in our language. For this example we'll be copying Java's implementation and using the ``new`` keyword. For this, we'll 
+create a new CreateTypeToken class with the following definition:
 ```java
 public class CreateTypeToken extends Token<Token<?>> {
 
@@ -158,3 +154,85 @@ allowed.
 5. ``')'``: A fixed closing brace for the end of the parameter list passed to the constructor of the type.
 Another point to note in the CreateTypeToken implementation is the ``getGuidance`` method. This is catching two scenarios where they have
 defined a new token but are missing either the start or end of the brackets for the list of parameters.
+
+Now that we have both tokens to create an instance of a type and the token class used to represent the type itself, it's time to start
+linking them up together. Let's start with writing the ``process`` method on the CreateTypeToken. I'll break this into multiple sections
+as there are a few things we need to do:
+```java
+@Override
+protected List<Token<?>> process(LARFParser parser, LARFContext context, LARFConfig config) {
+    //Validate values found in capture groups    
+    String name = getTokenGroups().get(0).getFlatTokens().get(0).getValue(String.class);
+    if (!context.getPrototypes().contains(name)) {
+        throw new ParserException("No registered type found with the name " + name);
+    }
+    Token<?> result = (Token<?>) context.getContextObject(name);
+    if (Objects.isNull(result) || !(result instanceof MyTypeToken)) {
+        throw new ParserException(String.format("Target type '%s' is null or not a MyTypeToken!",
+                result.getClass().getSimpleName()));
+    }
+    Token<?> clonedToken = ((TypeToken)result).createInstance(parser, context, config, name);
+    //...
+}
+```
+The first step is to verify the values we find in the capture group. First we'll verify that the first capture group (type name) is a String. 
+This should be enforced by the Lexer, but it never hurts to put in your own validation. Next, we'll retrieve our type from context. We did
+this earlier on with the ``context.set(typeName, this, VariableType.PROTOTYPE);``. The next check simply verifies that it is not null and is
+the same type as our type token class. Finally, we invoke the ``createInstance`` method on our type token class and whose responsibility it 
+is to create a new instance of itself. If you wish to see the implementation of that method, please see the [Creating an Instance](instances.md#creating-a-clone).
+
+Let's now take a look at the second part to the ``process`` method:
+```java
+protected List<Token<?>> process(LARFParser parser, LARFContext context, LARFConfig config) {
+    //...
+    try {
+        //Part 1        
+        parser.tokenStart(clonedToken);
+        if (getTokenGroups().size() > 1 && !getTokenGroups().get(1).getTokens().isEmpty()) {
+            //Part 2
+            List<Token<?>> actualParams = getTokenGroups().get(1).getTokens().stream()
+                    .map(tg -> {
+                        if (tg instanceof TokenGroup)
+                            return parser.processExpression(((TokenGroup)tg).getTokens(), context);
+                        return tg;
+                    }).collect(Collectors.toList());
+            List<Token<?>> expectedParams = result.getTokenGroups().get(1).getFlatTokens();
+            //Part 3
+            if (actualParams.size() != expectedParams.size()) {
+                throw new ParserException(String.format("Could not invoke default type constructor as " +
+                                "parameter requirement not met. Found %d instead of expected %d", 
+                        getTokenGroups().get(1).getTokens().size(),
+                        result.getTokenGroups().get(1).getTokens().size()));
+            }
+            //Part 4
+            for (int i = 0; i < expectedParams.size(); i++) {
+                context.set(expectedParams.get(i).getValue(String.class), actualParams.get(i).getValue());
+            }
+        }
+    } finally {
+        parser.tokenEnd(clonedToken, false);
+    }
+    //Part 5
+    clonedToken.setVariableType(VariableType.INSTANCE);
+    return Collections.singletonList(clonedToken);
+}
+```
+There is quite a lot going on here in this second section. I've broken in down into parts (see comments) and will describe it below:
+- **Part 1**: Firstly we wrap the entire next stage in a ``try...finally`` with a ``parser.startToken(clonedToken);`` and matching ``parse.tokenEnd(clonedToken, false);``.
+This part is important as this tells the parser to keep the instance and it's resources in scope. These are invoked traditionally by the
+parser itself to manage scope and cleanup resources of tokens after completion. Here though we're artificially calling it to ensure 
+that the instance is added and kept part of the runtime stack. The ``tokenEnd(..., false);`` informs the parser not to clean up associated
+resources upon completion. The next if block only executes the main code-block if parameters are present.
+- **Part 2**: This fetches not only the parameter values passed to our CreateTypeToken e.g. ``new MyType(1,2,3)`` but also the expected
+parameters from our original type definition e.g. ``type MyType(a,b,c) { ... }``. From this we'll have both our parameters ``[1,2,3]``
+and the expected ``[a,b,c]``.
+- **Part 3**: This verifies that the expected and provided parameters match. If not then we throw a runtime error as the parameter
+requirement was not met.
+- **Part 4**: We loop through the expected parameters and add each into context. Each of these will be associated with our new instance.
+- **Part 5**: Finally we set the type of token to ``VariableType.INSTANCE`` and return it.
+
+### Creating a Clone
+Let's look at the implementation of the ``createInstance`` method in our MyTypeToken class now:
+```java
+
+```
