@@ -2,6 +2,14 @@
 sidebar_position: 2
 ---
 # Instances
+:::tip Type System Suggestion
+
+This section covers the implementation of one possible route for a type system created using LARF. Type support was purposefully
+left ambigious to prevent the authors ideas of how types should operate and interfere with your own type ambitions. As such
+although the following represents one approach, this is not the only way you can approach it and is merely here as a 
+guide for you to get started.
+
+:::
 ### Introduction
 Token instances provide a route to implement and represent types (custom objects) within your language. It is important
 to understand that no strict type handling is written into LARF itself, instead it provides this interface to act as a 
@@ -156,7 +164,7 @@ Another point to note in the CreateTypeToken implementation is the ``getGuidance
 defined a new token but are missing either the start or end of the brackets for the list of parameters.
 
 Now that we have both tokens to create an instance of a type and the token class used to represent the type itself, it's time to start
-linking them up together. Let's start with writing the ``process`` method on the CreateTypeToken. I'll break this into multiple sections
+linking them up together. Let's start with writing the ``process`` method on the CreateTypeToken. I'll break this into two sections
 as there are a few things we need to do:
 ```java
 @Override
@@ -232,7 +240,140 @@ requirement was not met.
 - **Part 5**: Finally we set the type of token to ``VariableType.INSTANCE`` and return it.
 
 ### Creating a Clone
-Let's look at the implementation of the ``createInstance`` method in our MyTypeToken class now:
+Let's look at the implementation of the ``createInstance`` method in our MyTypeToken class called from the CreateTypeToken ``process`` method.
+This is the longest of our methods and as such I'll split the description into three sections. This is because we first need to identify type 
+dependencies (for inheritance), copy across those resources to a temporary body group and then set the correct scope and modifiers before
+storing to context. Let's look at the first part:
 ```java
+@Override
+public Token<?> createInstance(LARFParser parser, LARFContext context, LARFConfig config) {
+    //Part 1
+    TypeToken clonedToken = (TypeToken) clone();
+    List<Token<?>> dependencies = new ArrayList<>();
+    for (String dependency : clonedToken.getDependencies()) {
+        //Part 3
+        config.getErrorHandlers().stream()
+                .filter(eh -> eh.canHandle(dependency))
+                .findFirst()
+                .ifPresent(l -> clonedToken.setValue(getTokenGroups().get(2).getFlatTokens().get(0)));
+        //Part 4
+        if (Objects.isNull(clonedToken.getValue())) {
+            Object found = context.getContextObject(dependency);
+            if (Objects.isNull(found)) {
+                throw new ParserException(String.format("Unknown parent object '%s' declared for type '%s'",
+                        dependency, getTypeName()));
+            }
+            dependencies.add((Token<?>) found);
+        }
+    }
+    //Part 5
+    if (dependencies.stream().anyMatch(d -> d instanceof ErrorInstance)) {
+        //If any of the parents are an error then set error parser flag
+        addParserFlag(ParserFlag.ERROR);
+    }        
+    //...
+}
 
+@Override
+public String getTypeName() {
+    return getTokenGroups().get(0).getFlatTokens().get(0).getValue(String.class);
+}
+
+@Override
+public List<String> getDependencies() {
+    //Part 2
+    List<Token<?>> parents = getTokenGroups().get(2).getFlatTokens();
+    return parents.stream()
+            .map(Token::getValue)
+            .filter(Objects::nonNull)
+            .map(Object::toString)
+            .collect(Collectors.toList());
+}
+```
+Let's look at each part as it would be executed:
+- **Part 1**: The current type token is cloned and a dependency list is created. This will be used to store all upstream dependencies which
+have directly (or indirectly) declared.
+- **Part 2**: This is another of the methods we implemented from the TokenInstance class. This simply maps the list of types declared in 
+our inheritance list. For our case you can only declare a single type, but it returns a list should interface equivalents also be included
+or... multiple inheritance. I would not recommend the latter, but new languages are there to push boundaries and established norms.
+- **Part 3**: This part dives into Error Handling and what happens if a defined type extends either a checked or unchecked error within the 
+language. We first try and find a match for the type of error we're inheriting from which will dictate how the parser handle it. To do this
+we attempt to find a matching error handler against the name and set it as the value. You'll notice that when we defined our type token 
+(``public class MyTypeToken extends Token<Token<?>>``) it used a generic type of ``Token<?>``. This was solely done to store this error handler. 
+This is done so that when the error is thrown, this error handler instance can be used to create the associated error type using the contained
+properties. For more information, please see [Error Handling](./../error-handling.md).
+- **Part 4**: The final part in this section checks to see whether an error handler has been found and set. If not then the current dependency
+is searched for in context. If not found then an error is thrown, but otherwise is added to the list of dependencies for use later.
+- **Part 5**: Related to Part 2, if this type inherits from a mapped error then we set the parser flag against this token. This tells the
+parser to handle this token in a special way. For more information on parser flags, please see [Parser Flags](./../parser/parser-flags.md).
+
+Let's look at the next part which deals processing those dependencies:
+```java
+@Override
+public Token<?> createInstance(LARFParser parser, LARFContext context, LARFConfig config, String typeName) {
+    //...
+    //Part 1
+    TokenGroup bodyGroup = new TokenGroup();
+    if (getTokenGroups().get(3).getTokens().size() == 1) {
+        Token<?> found = clonedToken.getTokenGroups().get(3).getTokens().get(0);
+        if (!found.getTokenGroups().isEmpty()) {
+            bodyGroup.getTokens().addAll(found.getTokenGroups().get(0).getFlatTokens());
+        }
+    } else {
+        throw new ParserException(String.format("Expected single token which is either a MultiLine or SingleLine " +
+                        "token! Instead found %d being [%s]", getTokenGroups().get(3).getTokens().size(),
+                Stream.of(getTokenGroups().get(3).getTokens()).map(o ->
+                        o.getClass().getSimpleName()).collect(Collectors.joining(","))));
+    }
+    //Part 2
+    bodyGroup.getTokens().forEach(t -> t.setOriginalParent(typeName));
+    for (Token<?> dependency : dependencies) {
+        if (!(dependency instanceof TokenInstance)) {
+            throw new ParserException(String.format("Expected parent to be of type 'TokenInstance' but instead found '%s'",
+                    dependency.getClass().getSimpleName()));
+        }
+        TokenInstance parentType = (TokenInstance) dependency;
+        //Part 3
+        verifyParentGroupParameters(parentType);
+        TokenGroup parentTokenGroup = parentType.getBodyGroup();
+        if (!parentTokenGroup.getTokens().isEmpty()) {
+            Token<?> body = parentTokenGroup.getTokens().get(0);
+            if (!(body instanceof MultiLineToken)) {
+                throw new ParserException(String.format("Expected type to have a body section of type 'MultiLineToken' " +
+                        "but instead found '%s'", body.getClass().getSimpleName()));
+            }
+            TokenGroup parentTokens = parentTokenGroup.findGroupWithTokens(true)
+                    .orElse(new TokenGroup());
+            parentTokens.getTokens().forEach(t -> t.setOriginalParent(parentType.getTypeName()));
+            bodyGroup.getTokens().addAll(parentTokens.getTokens());
+        }
+    }
+    //...
+}
+```
+
+```java
+@Override
+public Token<?> createInstance(LARFParser parser, LARFContext context, LARFConfig config, String typeName) {
+    //...
+    try {
+        parser.tokenStart(clonedToken);
+        for (Token<?> token : bodyGroup.getTokens()) {
+            if (!token.isExpression() && token.getVariableName().isPresent()) {
+                List<TokenModifier> modifiers = new ArrayList<>();
+                String dataType = null;
+                if (token instanceof TypedReference) {
+                    modifiers = token.getModifiers(config);
+                    dataType = ((TypedReference) token).getDataType();
+                }
+                context.set(token.getVariableName().get(), token, dataType, modifiers);
+            } else {
+                parser.processExpression(Collections.singletonList(token), context);
+            }
+        }
+    } finally {
+        parser.tokenEnd(clonedToken, false);
+    }
+    return clonedToken;
+}
 ```
