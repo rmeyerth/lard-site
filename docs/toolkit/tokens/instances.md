@@ -419,13 +419,14 @@ associated with our type, we fetch the modifiers and data type to store it into 
 not a variable, constant or attribute we defer execution to the parser.
 
 ### Handling Type Interactions
-As with all interactions with types, they require another token to work. In most languages you can do the following:
+As with most type interactions, they require other tokens to work. In most languages you can call a type's resources using an object
+orientatd approach. Typically this is using the names of the object and sub-level resources using a delimiter. For example:
 ```
 myObject.aMethod();
 myObject.a
 ```
-For this we'll need a new two new Tokens called FieldToken and InvocationToken. I won't take you through the full implementation of 
-these, but will provide a brief overview:
+We will mimic this functionality by introducing three new tokens being FieldToken, InvocationToken and FunctionToken. I won't take 
+you through the full implementation, but will provide a brief overview of each:
 ```java
 public class FieldToken extends Token<Void> {
     //...
@@ -436,8 +437,8 @@ public class FieldToken extends Token<Void> {
     //...
 }
 ```
-The pattern of the FieldToken places all captured values into a single token group that is repeatable. These values are separated by an 
-optional ``.`` character. The next token we'll need is the InvocationToken which will be reponsible for invoking methods:
+The FieldToken places all captured values into a single token group that is repeatable. These values are separated by an optional 
+``.`` character. The next token we'll need is the InvocationToken which will be reponsible for invoking methods:
 ```java
 public class InvocationToken extends Token<Void> {
     //...
@@ -448,7 +449,31 @@ public class InvocationToken extends Token<Void> {
     //...
 }
 ```
-With both of these, given everything we've written we can achieve the following (minus the simple Function implementation):
+This captures the name of the method to invoke and captures a list of parameters. The final token is a FunctionToken which uses a
+special interface called TokenParameters:
+```java
+public class FunctionToken extends Token<Void> implements TokenParameters {
+    //...
+    @Override
+    public String getPattern() {
+        return "'func' val '(' ( val ','? )+ ')' ( [ throws ] )? [ singleLine, multiLine ]";
+    }
+
+    public List<Token<?>> process(LARFParser parser, LARFContext context, LARFConfig config, 
+                                  List<Token<?>> providedParams) { ... }
+    //...
+}    
+```
+The function token starts with a ``func`` keyword and then uses a single capture group for the name. It then captures a group
+of single value parameters. This is because it's a typeless language, but if you were opting for Typed then you'd simply use
+``'(' ( [ typedVariable ] ','? )+ ')'`` with ``typedVariable`` being the name of your Typed value token. Moving on in the 
+pattern it then defined a single capture group for a ``throws`` token which will be used to capture thrown errors. Finally it
+will use a grammar branch where you can define either single or multi-line body implementation.
+
+You'll also notice that as part of the TokenParameters, there is a new ``process`` method which contains an additional set of
+parameters. This will be called from the InvocationToken to pass the parameter values to the FunctionToken. For more information
+on creating Functions along with the InvocationToken and TokenParameters interface, please see [here](functions.md). With these 
+and everything we've written up until now, the following can now be processed:
 ```
 type MyType(a,b,c) {
     func aMethod() {
@@ -462,14 +487,12 @@ anObject.aMethod();
 The FieldToken will work in parallel with the InvocationToken to handle the ``anObject.aMethod();`` call. Hierachically, these values would 
 be captured in the FieldToken as the following:
 ```
-[0] TokenGroup
-- ReferenceToken("anObject")
-- InvocationToken("aMethod")
-    [0] TokenGroup
-    (Empty Group)
+0: TokenGroup
+  - ReferenceToken("anObject")
+  - InvocationToken("aMethod")
+      0: TokenGroup
+        (Empty Parameter Group)
 ```
-As such the FieldToken would fetch from context the value of "anObject" from context. If it's found to be a TokenInstance, then we'll progress
-to the next value. The next token has been specifically created to handle function invocations. As such I've called it the InvocationToken and
-the pattern can be seen below:
-
-This token simply captures the name of the method and any passed parameters. 
+When the FieldToken's ``process`` is excuted, it would fetch from context the value of first token value (``"anObject"``) from context. 
+Since that is found to be a TokenInstance, we'll store that as context for the next value which is the InvocationToken. This token is
+solely there to handle function invocations. 

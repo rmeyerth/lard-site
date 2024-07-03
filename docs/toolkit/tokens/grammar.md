@@ -2,7 +2,7 @@
 sidebar_position: 10
 ---
 # Grammar
-The grammar system you to outline to the lexer the pattern for your statement it should look for when tokenizing an 
+The grammar system allows you to outline the pattern the lexer it should match for your statement when tokenizing an 
 expression. It also tells the lexer the groups to which tokens should be assigned so that they are accessible during 
 parsing when your Token ``process`` method gets called. During its development it became fondly known as the Least
 Effort Grammar System (LEGS for short). This is because you don't have to outline every possible interaction between
@@ -21,7 +21,8 @@ will figure out the rest. Below is a table showing the symbols you can use withi
 | [...]  | ``[ ref1, ref2 ]`` | Grammar references defer responsibility to one or more other tokens to handle execution. This allows grammar branching so one token can support multiple implementation e.g. for / foreach both using the same ``for`` keyword. |
 | :      | ``val:String``     | Used in conjunction with a single capture group. This forces a given value to adhere to the provided name / type specified.                                                                                                     |
 | type   | ``type``           | Captures a type when defining a typed language. Types can be used when defining variables, return types of methods / classes or generics. Literals representing types should implement the TypedToken interface.                |
-| mod    | ``( mod )+?``      | Modifiers are used to change the immutability or visibility of a variable, function or type. These tokens implement the TokenModifier interface.                                                                                                        |
+| mod    | ``( mod )+?``      | Modifiers are used to change the immutability or visibility of a variable, function or type. These tokens implement the TokenModifier interface.                                                                                |
+| error  | ``error``          | Captures an error handler which is thrown by the resources on which it is defined.                                                                                                                                              |
 
 Let's look at a couple of examples from various languages to see how we would define them.
 ### Kotlin - Elvis Operator (Easy)
