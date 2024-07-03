@@ -32,15 +32,17 @@ public class MyTypeToken extends Token<Token<?>> implements TokenInstance {
 
     @Override
     public String getPattern() {
-        return "'type' val:String ( '(' ( val:String ','? )+? ')' )? ( '<-' val:String )? [ multiLine ]";
+        return "'type' val:String ( '(' ( val:String ','? )+? ')' )? ( '<-' val:String )? "+
+                    "[ multiLine ]";
     }      
 
     @Override
     protected List<Token<?>> process(LARFParser parser, LARFContext context, LARFConfig config) {
         while (getTokenGroups().size() < 4) getTokenGroups().add(new TokenGroup());
         if (getTokenGroups().get(0).getFlatTokens().size() != 1) {
-            throw new ParserException(String.format("Expected a single TokenValue for the function name " + 
-                    "but found %d tokens provided", getTokenGroups().get(0).getTokenPosition()));
+            throw new ParserException(String.format("Expected a single TokenValue for the " +
+                    "function name but found %d tokens provided", 
+                    getTokenGroups().get(0).getTokenPosition()));
         }
         String typeName = getTokenGroups().get(0).getFlatTokens().get(0).getValue().toString();
 
@@ -55,8 +57,9 @@ public class MyTypeToken extends Token<Token<?>> implements TokenInstance {
                                    String typeName) { ... }                                     
 
     @Override
-    public List<Token<?>> process(Token<?> source, LARFParser parser, LARFContext context, LARFConfig config, 
-                                  String target, List<Token<?>> params) { ... }
+    public List<Token<?>> process(Token<?> source, LARFParser parser, LARFContext context, 
+                                  LARFConfig config, String target, List<Token<?>> params) 
+                                  { ... }
 
     @Override
     public String getTypeName() { ... }    
@@ -137,11 +140,11 @@ public class CreateTypeToken extends Token<Token<?>> {
     @Override
     public Optional<String> getGuidance(String token, List<Integer> groupsCount) {
         if (token.equalsIgnoreCase("("))
-            return Optional.of("A new keyword requires an open bracket to be defined for the parameter list " +
-                    "e.g. new MyType (<-- a, b, c )");
+            return Optional.of("A new keyword requires an open bracket to be defined for the " +
+                    "parameter list e.g. new MyType (<-- a, b, c )");
         if (token.equalsIgnoreCase(")"))
-            return Optional.of("A new keyword requires a closing bracket to be defined for the parameter list " +
-                    "e.g. new MyType ( a, b, c )<--");
+            return Optional.of("A new keyword requires a closing bracket to be defined for " +
+                    "the parameter list e.g. new MyType ( a, b, c )<--");
         return Optional.empty();
     }    
 
@@ -207,14 +210,16 @@ protected List<Token<?>> process(LARFParser parser, LARFContext context, LARFCon
             List<Token<?>> expectedParams = result.getTokenGroups().get(1).getFlatTokens();
             //Part 3
             if (actualParams.size() != expectedParams.size()) {
-                throw new ParserException(String.format("Could not invoke default type constructor as " +
-                                "parameter requirement not met. Found %d instead of expected %d", 
+                throw new ParserException(String.format("Could not invoke default type " +
+                                " constructor as parameter requirement not met. Found " + 
+                                "%d instead of expected %d", 
                         getTokenGroups().get(1).getTokens().size(),
                         result.getTokenGroups().get(1).getTokens().size()));
             }
             //Part 4
             for (int i = 0; i < expectedParams.size(); i++) {
-                context.set(expectedParams.get(i).getValue(String.class), actualParams.get(i).getValue());
+                context.set(expectedParams.get(i).getValue(String.class), 
+                    actualParams.get(i).getValue());
             }
         }
     } finally {
@@ -240,10 +245,21 @@ requirement was not met.
 - **Part 5**: Finally we set the type of token to ``VariableType.INSTANCE`` and return it.
 
 ### Creating a Clone
-Let's look at the implementation of the ``createInstance`` method in our MyTypeToken class called from the CreateTypeToken ``process`` method.
-This is the longest of our methods and as such I'll split the description into three sections. This is because we first need to identify type 
-dependencies (for inheritance), copy across those resources to a temporary body group and then set the correct scope and modifiers before
-storing to context. Let's look at the first part:
+Before we dive in, let's remind ourselves about the token groups and what they represent in the pattern:
+```
+'type' val:String ( '(' ( val:String ','? )+? ')' )? ( '<-' val:String )? [ multiLine ]
+```
+Token Groups (0-indexed):
+
+0. ``val:String`` = The name of the type
+1. ``( '(' ( val:String ','? )+? ')' )?`` = An optional bracketed list of parameters passed to the type
+2. ``( '<-' val:String )?`` = An optional ``<-`` notation used for extending other types e.g. ``type MyType <- ParentType``.
+3. ``[ multiLine ]`` = A multi-line code block
+
+Using this, let's look at the implementation of the ``createInstance`` method in our MyTypeToken class called from the CreateTypeToken 
+``process`` method. This is the longest of our methods and as such I'll split the description into three sections. This is because we first 
+need to identify type dependencies (for inheritance), copy across those resources to a temporary body group and then set the correct scope 
+and modifiers before storing to context. Let's look at the first part:
 ```java
 @Override
 public Token<?> createInstance(LARFParser parser, LARFContext context, LARFConfig config) {
@@ -255,13 +271,14 @@ public Token<?> createInstance(LARFParser parser, LARFContext context, LARFConfi
         config.getErrorHandlers().stream()
                 .filter(eh -> eh.canHandle(dependency))
                 .findFirst()
-                .ifPresent(l -> clonedToken.setValue(getTokenGroups().get(2).getFlatTokens().get(0)));
+                .ifPresent(l -> 
+                    clonedToken.setValue(getTokenGroups().get(2).getFlatTokens().get(0)));
         //Part 4
         if (Objects.isNull(clonedToken.getValue())) {
             Object found = context.getContextObject(dependency);
             if (Objects.isNull(found)) {
-                throw new ParserException(String.format("Unknown parent object '%s' declared for type '%s'",
-                        dependency, getTypeName()));
+                throw new ParserException(String.format("Unknown parent object '%s' declared " +
+                        "for type '%s'", dependency, getTypeName()));
             }
             dependencies.add((Token<?>) found);
         }
@@ -310,7 +327,8 @@ parser to handle this token in a special way. For more information on parser fla
 Let's look at the next part which deals processing those dependencies:
 ```java
 @Override
-public Token<?> createInstance(LARFParser parser, LARFContext context, LARFConfig config, String typeName) {
+public Token<?> createInstance(LARFParser parser, LARFContext context, LARFConfig config, 
+                               String typeName) {
     //...
     //Part 1
     TokenGroup bodyGroup = new TokenGroup();
@@ -320,17 +338,18 @@ public Token<?> createInstance(LARFParser parser, LARFContext context, LARFConfi
             bodyGroup.getTokens().addAll(found.getTokenGroups().get(0).getFlatTokens());
         }
     } else {
-        throw new ParserException(String.format("Expected single token which is either a MultiLine or SingleLine " +
-                        "token! Instead found %d being [%s]", getTokenGroups().get(3).getTokens().size(),
-                Stream.of(getTokenGroups().get(3).getTokens()).map(o ->
-                        o.getClass().getSimpleName()).collect(Collectors.joining(","))));
+        throw new ParserException(String.format("Expected single token which is either a " +
+                        "MultiLine or SingleLine token! Instead found %d being [%s]", 
+                        getTokenGroups().get(3).getTokens().size(),
+                        Stream.of(getTokenGroups().get(3).getTokens()).map(o ->
+                                o.getClass().getSimpleName()).collect(Collectors.joining(","))));
     }
     //Part 2
     bodyGroup.getTokens().forEach(t -> t.setOriginalParent(typeName));
     for (Token<?> dependency : dependencies) {
         if (!(dependency instanceof TokenInstance)) {
-            throw new ParserException(String.format("Expected parent to be of type 'TokenInstance' but instead found '%s'",
-                    dependency.getClass().getSimpleName()));
+            throw new ParserException(String.format("Expected parent to be of type 'TokenInstance'" +
+                    " but instead found '%s'", dependency.getClass().getSimpleName()));
         }
         TokenInstance parentType = (TokenInstance) dependency;
         //Part 3
@@ -339,8 +358,9 @@ public Token<?> createInstance(LARFParser parser, LARFContext context, LARFConfi
         if (!parentTokenGroup.getTokens().isEmpty()) {
             Token<?> body = parentTokenGroup.getTokens().get(0);
             if (!(body instanceof MultiLineToken)) {
-                throw new ParserException(String.format("Expected type to have a body section of type 'MultiLineToken' " +
-                        "but instead found '%s'", body.getClass().getSimpleName()));
+                throw new ParserException(String.format("Expected type to have a body section of " +
+                        "type 'MultiLineToken' but instead found '%s'", 
+                        body.getClass().getSimpleName()));
             }
             TokenGroup parentTokens = parentTokenGroup.findGroupWithTokens(true)
                     .orElse(new TokenGroup());
@@ -351,10 +371,25 @@ public Token<?> createInstance(LARFParser parser, LARFContext context, LARFConfi
     //...
 }
 ```
+There are three main parts to this section:
+- **Part 1**: This creates the body group, to which all resources from the current type and it's parents (direct or indirect) are
+added. If no body is provided then an error is thrown.
+- **Part 2**: Loops through all child resources in the body of the current type (not inherited) and sets the original parent value. 
+This is used for tracability for error handling. We then start a loop of the dependencies to which this type inherits from and 
+performs a check to verify that they are token instances (types). If so, we then store the current dependency to a TokenInstance
+variable called parentType.
+- **Part 3**: The final part firstly validates the parameters passed to this type match any parent type requirements if they exist. 
+For example, if we have a ``ParentType`` which declares a parameter ``d``, we expect a ``ChildType`` to reflect that in its own 
+parameters e.g. ``type ChildType(a,b,c,d) <- ParentType { ... }`` I won't provide the full code for this here, but but this can be 
+found in [this](./../../examples/slop.md) example project. The next part is fetches the parent tokens body tokens, associates the
+correct parent to them and adds them to the current body group. This ensures accessibility of parent type resources from our current
+type. 
 
+Resource scoping will happen in the final part which we'll look at now:
 ```java
 @Override
-public Token<?> createInstance(LARFParser parser, LARFContext context, LARFConfig config, String typeName) {
+public Token<?> createInstance(LARFParser parser, LARFContext context, LARFConfig config, 
+                               String typeName) {
     //...
     try {
         parser.tokenStart(clonedToken);
@@ -377,3 +412,64 @@ public Token<?> createInstance(LARFParser parser, LARFContext context, LARFConfi
     return clonedToken;
 }
 ```
+The final part of this method is relatively simple. Similar to what we did with our CreateTypeToken, we also use the ``try...finally``
+to manually set the current scope of the clonedToken to be active. This is so that when a value is set to context, it is assigned
+to the correct token (in our case the TypeToken instance). It loops through each body token and if it can be identified as a variable
+associated with our type, we fetch the modifiers and data type to store it into context. Alternatively, for everything which is
+not a variable, constant or attribute we defer execution to the parser.
+
+### Handling Type Interactions
+As with all interactions with types, they require another token to work. In most languages you can do the following:
+```
+myObject.aMethod();
+myObject.a
+```
+For this we'll need a new two new Tokens called FieldToken and InvocationToken. I won't take you through the full implementation of 
+these, but will provide a brief overview:
+```java
+public class FieldToken extends Token<Void> {
+    //...
+    @Override
+    public String getPattern() {
+        return "( val '.'? )+";
+    }
+    //...
+}
+```
+The pattern of the FieldToken places all captured values into a single token group that is repeatable. These values are separated by an 
+optional ``.`` character. The next token we'll need is the InvocationToken which will be reponsible for invoking methods:
+```java
+public class InvocationToken extends Token<Void> {
+    //...
+    @Override
+    public String getPattern() {
+        return "val:String '(' ( expr ','? )+ ')'";
+    }
+    //...
+}
+```
+With both of these, given everything we've written we can achieve the following (minus the simple Function implementation):
+```
+type MyType(a,b,c) {
+    func aMethod() {
+        return a + b + c;
+    }
+}
+
+anObject = new MyType(1,2,3);
+anObject.aMethod();
+```
+The FieldToken will work in parallel with the InvocationToken to handle the ``anObject.aMethod();`` call. Hierachically, these values would 
+be captured in the FieldToken as the following:
+```
+[0] TokenGroup
+- ReferenceToken("anObject")
+- InvocationToken("aMethod")
+    [0] TokenGroup
+    (Empty Group)
+```
+As such the FieldToken would fetch from context the value of "anObject" from context. If it's found to be a TokenInstance, then we'll progress
+to the next value. The next token has been specifically created to handle function invocations. As such I've called it the InvocationToken and
+the pattern can be seen below:
+
+This token simply captures the name of the method and any passed parameters. 
