@@ -10,6 +10,13 @@ although the following represents one approach, this is not the only way you can
 guide for you to get started.
 
 :::
+:::danger Walk before you run
+
+Creating and handling types I would argue is one of the more challenging aspects to creating a language. I've tried to lay out in simple
+terms what is required below, but it is one of the more involved sections. As such, if you're new to LARF I would suggest becoming
+familiar with the basics before attempting this section.
+
+:::
 ### Introduction
 Token instances provide a route to implement and represent types (custom objects) within your language. It is important
 to understand that no strict type handling is written into LARF itself, instead it provides this interface to act as a 
