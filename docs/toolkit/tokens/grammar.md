@@ -22,7 +22,7 @@ will figure out the rest. Below is a table showing the symbols you can use withi
 | :      | ``val:String``     | Used in conjunction with a single capture group. This forces a given value to adhere to the provided name / type specified.                                                                                                     |
 | type   | ``type``           | Captures a type when defining a typed language. Types can be used when defining variables, return types of methods / classes or generics. Literals representing types should implement the TypedToken interface.                |
 | mod    | ``( mod )+?``      | Modifiers are used to change the immutability or visibility of a variable, function or type. These tokens implement the TokenModifier interface.                                                                                |
-| error  | ``error``          | Captures an error handler which is thrown by the resources on which it is defined.                                                                                                                                              |
+| error  | ``error``          | Captures an error handler which is thrown by the resources upon which it is defined.                                                                                                                                              |
 
 Let's look at a couple of examples from various languages to see how we would define them and how they get mapped to token groups.
 ### Kotlin - Elvis Operator (Easy)

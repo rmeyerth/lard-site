@@ -21,8 +21,8 @@ public List<Token<?>> process(LARFParser parser, LARFContext context, LARFConfig
                 .flatMap(tg -> tg.getFlatTokens().stream())
                 .map(t -> t.getClass().getSimpleName())
                 .collect(Collectors.joining(", "));
-        throw new ParserException("For token expects two tokens being the looping portion and the body. Instead got "
-                + foundTokens);
+        throw new ParserException("For token expects two tokens being the looping portion and the body. " + 
+                "Instead got " + foundTokens);
     }
     Token<?> loopToken = getTokenGroups().get(0).getFlatTokens().get(0);
     Token<?> bodyToken = getTokenGroups().get(1).getFlatTokens().get(0);
@@ -48,7 +48,8 @@ public class VariableLoopToken extends Token<Void> implements TokenCallback {
     public List<Token<?>> process(LARFParser parser, LARFContext context, LARFConfig config, ReferenceCallback callback) {
         List<Token<?>> arrayResult = new ArrayList<>();
         if (getTokenGroups().size() < 2) {
-            throw new ParserException("Expected a variable and a collection provided in the for each iterator statement");
+            throw new ParserException("Expected a variable and a collection provided in the for each " + 
+                    "iterator statement");
         }
         Token<?> varArg = getTokenGroups().get(0).getFlatTokens().get(0);
         //Resolve the variable name to be used to store the iterated object in context
@@ -62,8 +63,9 @@ public class VariableLoopToken extends Token<Void> implements TokenCallback {
             String collectionRef = collectionArgs.get(0).getValue(String.class);
             Object suspectedCollection = context.getContextObject(collectionRef);
             if (!(suspectedCollection instanceof Collection)) {
-                throw new ParserException(String.format("The reference used in the for each loop (%s) did not result " +
-                        "in a collection. Instead found '%s'", collectionRef, suspectedCollection.getClass().getSimpleName()));
+                throw new ParserException(String.format("The reference used in the for each loop (%s) " + 
+                        "did not result in a collection. Instead found '%s'", collectionRef, 
+                            suspectedCollection.getClass().getSimpleName()));
             }
             collection = (Collection<?>)suspectedCollection;
         } else {
