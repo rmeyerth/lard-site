@@ -24,7 +24,7 @@ will figure out the rest. Below is a table showing the symbols you can use withi
 | mod    | ``( mod )+?``      | Modifiers are used to change the immutability or visibility of a variable, function or type. These tokens implement the TokenModifier interface.                                                                                |
 | error  | ``error``          | Captures an error handler which is thrown by the resources on which it is defined.                                                                                                                                              |
 
-Let's look at a couple of examples from various languages to see how we would define them.
+Let's look at a couple of examples from various languages to see how we would define them and how they get mapped to token groups.
 ### Kotlin - Elvis Operator (Easy)
 In Kotlin, including several other languages there is the elvis operator. This is the equivalent of what the 
 Optional.ofNullable does in Java. An example of this would be ``customerAges.get("mary") ?: -1``. It looks at the value of the 
