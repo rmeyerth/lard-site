@@ -71,8 +71,9 @@ public class AardvarkConfig extends LARFConfig {
     @Override
     protected void initTokenHandlers() {
         addTokenHandler(new NullToken());
+        addTokenHandler(new DecimalToken());        
+        //As both decimal and integers use number regular expressions, avoid issues by placing Decimal before Integers
         addTokenHandler(new IntegerToken());
-        addTokenHandler(new DecimalToken());
     }
     //...
 }
