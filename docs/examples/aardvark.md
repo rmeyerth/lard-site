@@ -2,10 +2,10 @@
 sidebar_position: 2
 ---
 # Aardvark Tutorial Language
-URL: [https://gitlab.com/tronied/aardvark](https://gitlab.com/tronied/aardvark)
+Repository: [https://gitlab.com/tronied/aardvark](https://gitlab.com/tronied/aardvark)
 
 This language was created to take a developer through a step-by-step guide along the process of creating a new language
-from scratch using LARF. This project will be modified as more steps are added.
+from scratch using LARF. This project will be modified as steps are added so keep checking back for updates.
 
 ### Build Project
 :::tip Standalone
@@ -30,7 +30,7 @@ Aardvark Language Test Utility
 
 ```
 You can then run expressions to be executed in the language:
-```bash
+```
 Aardvark Language Test Utility
 ==============================
 'hello' + 1
@@ -41,7 +41,10 @@ Result: 0.5 (Type: Double, Time taken: 5ms)
 Result: 0.375 (Type: Double, Time taken: 2ms)
 10 / 3
 Result: 3.333333 (Type: Double, Time taken: 2ms)
+3 + 3 / 2 >= 9 / 3 ? 'Yes' : 'No'
+Result: Yes (Type: String, Time taken: 20ms)
 exit
+>
 ```
 
 ### Further notes
