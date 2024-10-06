@@ -49,8 +49,8 @@ To compile the project run the following command in the main projects folder:
 ```bash
 gradle clean shadowJar
 ```
-### Running the project
-Once the project has been built, to run runner class type the following:
+### Using the Languages Runner
+Once the project has been built, to run the runner class type the following:
 ```bash
 java -jar ./build/libs/mal-0.1-all.jar
 ```
