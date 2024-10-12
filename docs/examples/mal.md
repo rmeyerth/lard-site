@@ -60,14 +60,8 @@ My Assembly Language Test Utility
 =================================
 [Multi-line enabled] Please add <newline> + '.' + <return> to the end of a finished expression to evaluate the result.
 ```
-To run the example, we need to use a different approach as the result is not returned but instead set to a register.
-To verify that nothing is in the register to start with, we can type:
-```
-eax
-.
-Result: eax (Type: String, Time taken: 23ms)
-```
-Next we can run our assembly code example:
+To run the example, we need to use a different approach to normal as the result is not returned but instead set to a 
+register. Let's see this by running the example:
 ```
 section .data
     counter db 1
@@ -90,10 +84,14 @@ _start:
 .
 Result: null (Type: Null, Time taken: 51ms)
 ```
-We get a result of null, but to see the actual result we can evaluate ``eax`` again:
+Since the actual result is set to a register called ``eax``, we can evaluate this by specifying this along with a period
+on a new line:
 ```
 eax
 .
 Result: 15 (Type: Integer, Time taken: 1ms)
 ```
+We get a result of 15 which is expected. If the counter is initially set to 1 and on each iteration added to sum. We get 
+``1 + 2 + 3 + 4 + 5`` as we've set the number of iterations at 5. This therefore correctly prints out 15.
+
 To exit, simply type ``exit`` and enter.

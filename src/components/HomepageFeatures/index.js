@@ -9,7 +9,7 @@ const FeatureList = [
     description: (
       <>
         Create your project, import the dependency and define your language.
-        Still too slow? Sample starter projects allow you to get a running start.
+        Still too slow? The sample starter project allows you to get a running start.
       </>
     ),
   },
@@ -19,7 +19,7 @@ const FeatureList = [
     description: (
       <>
         LARF uses an object orientated approach to language development. All literal,
-        operation or statement logic is contained within a single class.
+        operation or statement logic is contained within single classes.
       </>
     ),
   },
