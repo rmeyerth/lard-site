@@ -26,16 +26,18 @@ public class ConditionalToken extends Token<Void> {
     public List<Token<?>> process(LARFParser parser, LARFContext context, LARFConfig config) {
         //Expect that there are 3 tokens groups representing the condition and true / false token groups
         if (getTokenGroups().size() < 3) {
-            String found = getTokenGroups().stream().map(Token::toSimpleString).collect(Collectors.joining(","));
-            throw new ParserException(String.format("Condition does not have required arguments to execute. Expecting " +
-                    "3 groups being condition, trueResult and falseResult. Found: [%s]", found));
+            String found = getTokenGroups().stream().map(Token::toSimpleString)
+                    .collect(Collectors.joining(","));
+            throw new ParserException(String.format("Condition does not have required arguments to " +
+                    "execute. Expecting 3 groups being condition, trueResult and falseResult. " + 
+                    "Found: [%s]", found));
         }
         //Evaluate the condition using the tokens found in the first token group
         Token<?> conditionResult = parser.processExpression(getTokenGroups().get(0).getTokens(), context);
         //If the condition is not a Boolean then throw an error i.e. "1 + 2 ? 3 : 4"
         if (!(conditionResult instanceof BooleanToken)) {
-            throw new ParserException(String.format("Expected a boolean result from condition '%s'. Possible invalid " +
-                            "condition specified", getTokenGroups().get(0)));
+            throw new ParserException(String.format("Expected a boolean result from condition '%s'. " + 
+                            "Possible invalid condition specified", getTokenGroups().get(0)));
         }
         //Execute the relevant set of tokens based on the condition result
         return Collections.singletonList((((BooleanToken) conditionResult).getValue()) ?
