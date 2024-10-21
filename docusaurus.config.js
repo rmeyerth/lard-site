@@ -81,8 +81,8 @@ const config = {
           {to: '/blog', label: 'Blog', position: 'left'},
           {to: '/license', label: 'License', position: 'left'},
           {
-            href: 'https://github.com/facebook/docusaurus',
-            label: 'GitHub',
+            href: 'https://gitlab.com/tronied/larf',
+            label: 'GitLab',
             position: 'right',
           },
         ],
@@ -104,11 +104,11 @@ const config = {
               },
               {
                 label: 'Toolkit',
-                to: '/docs/intro',
+                to: '/docs/toolkit/configuration',
               },
               {
                 label: 'Examples',
-                to: '/docs/intro',
+                to: '/docs/examples/aardvark',
               },
             ],
           },
@@ -116,16 +116,16 @@ const config = {
             title: 'Community',
             items: [
               {
-                label: 'Stack Overflow',
-                href: 'https://stackoverflow.com/questions/tagged/docusaurus',
+                label: 'Forum',
+                href: 'https://larf.forumotion.com/',
               },
               {
                 label: 'Discord',
-                href: 'https://discordapp.com/invite/docusaurus',
+                href: 'https://discord.gg/2pAGbpgm',
               },
               {
-                label: 'Twitter',
-                href: 'https://twitter.com/docusaurus',
+                label: 'X',
+                href: 'https://x.com/lang_framework',
               },
             ],
           },
