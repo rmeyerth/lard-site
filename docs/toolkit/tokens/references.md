@@ -2,6 +2,7 @@
 sidebar_position: 2
 ---
 # References
+![References](/img/references.jpg)
 When strict syntax checking is enabled, all values outside of literals and static syntax are blocked by the lexer 
 by default. This includes things like names assigned to variables, constants and functions. This is where the 
 ``ReferenceToken`` class can be used to store and represent these values. If no reference token is set then for 

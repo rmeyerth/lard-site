@@ -2,6 +2,7 @@
 sidebar_position: 3
 ---
 # Callbacks
+![Callbacks](/img/callback.jpg)
 A token callback is used when two tokens must work together in order to achieve a goal. Let's take the ``for``
 loop example where we defer the loop and body portions to other token classes. For example, here is the pattern
 for a ForToken:

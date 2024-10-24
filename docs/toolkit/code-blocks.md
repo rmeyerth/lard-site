@@ -2,6 +2,7 @@
 sidebar_position: 11
 ---
 # Code Block Style
+![Code Blocks](/img/code-block.jpg)
 Languages typically use either a block-structured (Delimiter) or whitespace / indentation style of code blocks. LARF supports both of
 these using ``config.setProperty(DefaultProperty.CODE_BLOCK_STYLE, CodeBlockStyle.*)`` with the possible values:
 - CodeBlockStyle.DELIMITER

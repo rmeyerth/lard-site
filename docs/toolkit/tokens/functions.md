@@ -2,6 +2,7 @@
 sidebar_position: 2
 ---
 # Functions
+![Functions](/img/functions.jpg)
 Regardless of which language you use, it will likely provide some way to provide a callable block of code. These may differ in design
 and capability but they generally follow the same principles:
 1. They have a unique name within that namespace to call the function. Functions so long as they're made public or within scope can be

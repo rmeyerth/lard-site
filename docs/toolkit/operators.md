@@ -2,6 +2,7 @@
 sidebar_position: 8
 ---
 # Operators
+![Operators](/img/operators.jpg)
 Operators can be broken down into 5 distinct types:
 1. Arithmetic (Add, Subtract, Multiply, Divide, Modulo etc)
 2. Assignment (Assign, Subtract Equals, Add Equals, Multiply Equals etc)

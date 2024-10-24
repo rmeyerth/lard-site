@@ -2,6 +2,7 @@
 sidebar_position: 1
 ---
 # Token Overview
+![Tokens](/img/tokens.jpg)
 ### How Tokens are used
 :::tip Optional Reading
 

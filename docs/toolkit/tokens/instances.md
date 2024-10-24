@@ -2,6 +2,7 @@
 sidebar_position: 2
 ---
 # Instances
+![Instances](/img/instances.jpg)
 :::tip Type System Suggestion
 
 This section covers the implementation of one possible route for a type system created using LARF. Type support was purposefully

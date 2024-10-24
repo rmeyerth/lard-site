@@ -2,6 +2,7 @@
 sidebar_position: 9
 ---
 # Type Operations
+![Type Operations](/img/operations.jpg)
 Whilst operators are used as an identifier to allow the developer to perform operations on two operands, a 
 type operation is the class which defines the action that operator has and the types that are supported. Let's 
 look at an example of a simple type operation class:

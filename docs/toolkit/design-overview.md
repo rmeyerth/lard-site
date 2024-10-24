@@ -2,7 +2,7 @@
 sidebar_position: 4
 ---
 # Design Overview
-
+![Design Overview](/img/design.jpg)
 :::tip Optional Reading
 If you're curious as to how LARF processes code and maps it to tokens then this section is for you. This however
 is not required reading and if you're just starting out, I'd recommend looking at the 

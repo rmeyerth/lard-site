@@ -2,6 +2,7 @@
 sidebar_position: 10
 ---
 # Grammar
+![Grammar](/img/grammar.jpg)
 The grammar system allows you to outline the pattern the lexer it should match for your statement when tokenizing an 
 expression. It also tells the lexer the groups to which tokens should be assigned so that they are accessible during 
 parsing when your Token ``process`` method gets called. During its development it became fondly known as the Least

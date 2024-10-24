@@ -2,6 +2,7 @@
 sidebar_position: 12
 ---
 # Runner
+![Runner](/img/runner.jpg)
 The runner is a test class used to quickly test the features of your language. To create a new runner
 class simply create a new Class within your package and extend the ``LARFRunner`` class. Add a main
 method and create a version of your languages config to pass to a new instance of the LARFProcessor. 

@@ -2,6 +2,7 @@
 sidebar_position: 3
 ---
 # Context
+![Context](/img/context.jpg)
 The context object is used primarily as storage and is accessible from any token via the ``process`` method.
 It can be pre-populated with objects prior to expressions being evaluated or loaded dynamically. When setting
 an object within the context, a unique name is specified which allows that reference to be used from within

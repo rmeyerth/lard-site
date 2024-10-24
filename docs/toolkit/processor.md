@@ -2,6 +2,7 @@
 sidebar_position: 6
 ---
 # Processor
+![Processor](/img/processor.jpg)
 The processor class is primary class you'll be dealing with when executing code in your own language. By using the
 overloaded constructors, it provides the ability to override any of the default components found within LARF if 
 you so choose. 
