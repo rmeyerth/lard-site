@@ -137,8 +137,8 @@ const config = {
                 to: '/blog',
               },
               {
-                label: 'GitHub',
-                href: 'https://github.com/facebook/docusaurus',
+                label: 'GitLab',
+                href: 'https://gitlab.com/tronied/larf',
               },
             ],
           },

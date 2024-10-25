@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 # Configuration
-![Configuration](/img/config.jpg)
+![Configuration](/img/config2.jpg)
 ### Overview
 At the basic level, the configuration class is used to define which tokens are to be used in your language. 
 When you first create the class and extend the ``LARFConfig`` class, several methods are required to be
