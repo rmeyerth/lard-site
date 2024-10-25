@@ -2,6 +2,7 @@
 sidebar_position: 4
 ---
 # Prefix, Infix and Postfix
+![Ordering](/img/order.jpg)
 The majority of programming languages follow the standard left-to-right (Infix) execution of values 
 and operators. LARF however offers support for alternatives including Prefix and Postfix which are 
 more commonly used in mathematical notation. To change the expression notation type, a method on the

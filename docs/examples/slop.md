@@ -2,6 +2,7 @@
 sidebar_position: 4
 ---
 # SLOP: Typeless, Codeblocks
+![SLOP](/img/slop.jpg)
 Repository: [https://www.gitlab.com/tronied/larf-slop](https://www.gitlab.com/tronied/larf-slop)
 
 This is a project that started off as a proof of concept, grew and eventually inspired me to write a framework to 

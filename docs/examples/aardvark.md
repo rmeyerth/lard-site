@@ -2,6 +2,7 @@
 sidebar_position: 2
 ---
 # Aardvark Tutorial Language
+![Tutorial](/img/aardvark.jpg)
 Repository: [https://gitlab.com/tronied/aardvark](https://gitlab.com/tronied/aardvark)
 
 This language was created to take a developer through a step-by-step guide along the process of creating a new language

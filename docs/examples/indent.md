@@ -2,6 +2,7 @@
 sidebar_position: 3
 ---
 # Indent: Typed, Whitespace
+![Indent](/img/indent.jpg)
 Repository: [https://www.gitlab.com/tronied/indent](https://www.gitlab.com/tronied/indent)
 
 This project shows off both typed and whitespace support for languages using LARF. The language shows off features

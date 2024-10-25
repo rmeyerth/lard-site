@@ -2,6 +2,7 @@
 sidebar_position: 1
 ---
 # Overview
+![Parser Overview](/img/parser.jpg)
 Where lexers transform code into a series of hierarchical tokens, the parser is responsible for executing those 
 tokens and deriving results from them. It acts as a central pillar for all the literals, operators, handlers
 and statements in your language and enable them to work cohesively together. Every token has access to the 

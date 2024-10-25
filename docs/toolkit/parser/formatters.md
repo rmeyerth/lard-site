@@ -2,6 +2,7 @@
 sidebar_position: 2
 ---
 # Formatters
+![Formatters](/img/formatter.jpg)
 :::tip Time and Place
 You only need to start writing formatters once you start dealing with arrays, maps and custom structures that you'd
 want to return from your language. They are easy to write but only come later once you've laid the basic types

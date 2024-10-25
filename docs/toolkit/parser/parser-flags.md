@@ -2,6 +2,7 @@
 sidebar_position: 3
 ---
 # Parser Flags
+![Parser Flags](/img/flags.jpg)
 Regardless of which programming language you would have used, to mimic certain types of behaviour such as 
 returning a value or using continue or break in a loop, to achieve this in LARF you'll need to use parser flags. 
 This is because the parser needs to change the way it processes tokens in order to support this. For example, 

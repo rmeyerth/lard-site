@@ -2,6 +2,7 @@
 sidebar_position: 5
 ---
 # My Assembly Language (MAL)
+![My Assembly Language](/img/mal.jpg)
 Repository: [https://www.gitlab.com/tronied/mal](https://www.gitlab.com/tronied/mal)
 
 This project was a proof of concept for an assembly language interpreter in LARF. The scope of this project

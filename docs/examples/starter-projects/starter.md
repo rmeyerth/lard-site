@@ -2,6 +2,7 @@
 sidebar_position: 1
 ---
 # Starter: Basic Literals / Operations
+![Starter](/img/starter.jpg)
 Repository: [https://www.gitlab.com/tronied/larf-starter](https://www.gitlab.com/tronied/larf-starter)
 
 This is a starter project for Language Architect and Runtime Framework (LAF). It contains a basic set of

@@ -2,6 +2,7 @@
 sidebar_position: 7
 ---
 # System Functions
+![System Functions](/img/sys-functions.jpg)
 System functions provide the ability to include functionality in their language that would not be easy to implement 
 within the language itself. It does this by deferring calls to the underlying language (Java). Let's look at an example 
 of a default function provided in the LARF framework to print to the console:
