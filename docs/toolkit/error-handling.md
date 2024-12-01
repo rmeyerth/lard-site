@@ -113,4 +113,58 @@ public class SLOPNativeErrorHandler extends NativeErrorHandler {
     }
 }
 ```
-In the case above we're assigning ``Error`` to checked errors and ``RunError` to unchecked errors.
+In the case above we're assigning ``Error`` to checked errors and ``RunError` to unchecked errors. We can now
+add this along with our standard error handler in our configuration:
+```java
+@Override
+protected void initErrorHandlers() {
+    addErrorHandler(new SLOPStandardErrorHandler(null));
+    addErrorHandler(new SLOPNativeErrorHandler(null));
+}
+```
+SLOP follows the typical form of error handling where errors / exceptions can be thrown. As such, the next step
+is to create a token to handle this:
+```java
+public class ThrowsToken extends ErrorToken {
+
+    public ThrowsToken() {
+        super("throws", ErrorAction.THROWS);
+    }
+
+    @Override
+    public Token<Void> createToken(String value) {
+        return cloneDefaultProperties(new ThrowsToken());
+    }
+
+    @Override
+    public PatternType getPatternType() {
+        return PatternType.GRAMMAR;
+    }
+
+    @Override
+    public String getPattern() {
+        return "'throws' ( error ','? )+";
+    }
+
+    @Override
+    public Optional<String> getGuidance(String token, List<Integer> groupsCount) {
+        return Optional.empty();
+    }
+
+    @Override
+    protected List<Token<?>> process(LARFParser parser, LARFContext context, LARFConfig config) {
+        return null;
+    }
+
+    @Override
+    public List<ErrorHandler<?>> getErrorHandlers() {
+        return null;
+    }
+
+    @Override
+    public List<String> getErrorTypes() {
+        return getErrorTypes(0);
+    }
+}
+```
+This extends the class ``ErrorToken`` which provides functionality to handle error types. 
