@@ -132,39 +132,89 @@ public class ThrowsToken extends ErrorToken {
     }
 
     @Override
-    public Token<Void> createToken(String value) {
-        return cloneDefaultProperties(new ThrowsToken());
+    public Token<Void> createToken(String value) { return cloneDefaultProperties(new ThrowsToken()); }
+
+    @Override
+    public PatternType getPatternType() { return PatternType.GRAMMAR; }
+
+    @Override
+    public String getPattern() { return "'throws' ( error ','? )+"; }
+
+    @Override
+    public Optional<String> getGuidance(String token, List<Integer> groupsCount) { 
+        return Optional.empty(); 
     }
 
     @Override
-    public PatternType getPatternType() {
-        return PatternType.GRAMMAR;
+    protected List<Token<?>> process(LARFParser parser, LARFContext context, LARFConfig config) { 
+        return null; 
     }
+
+    @Override
+    public List<ErrorHandler<?>> getErrorHandlers() { return null; }
+
+    @Override
+    public List<String> getErrorTypes() { return getErrorTypes(0); }
+}
+```
+This extends the class ``ErrorToken`` which provides functionality to handle error types. It's sole purpose as can 
+be seen from the pattern is to trap errors. You'll notice that errors have their own grammar keyword. This is so
+that when an error in your language is declared, it is assigned to the parent type ``ErrorHandler<T>`` and can
+be handled accordingly. The ``getErrorTypes`` method returns these references to be used for things like error
+validation. This is so that if the code contained within the token to which this ``throws`` token is associated 
+(typically a Function variant) and a checked exception is being thrown by any children but not declared, an error
+will be thrown. Following normal operation, all checked exceptions must be declared if one is thrown downstream.
+You'll also see that we've declared the name of our token throws (``super("throws", ErrorAction.THROWS);``) in
+the constructor. We'll see that used in a single grammar reference in the grammar of our next token:
+```java
+public class FunctionToken extends Token<Void> implements TokenParameters {
+
+    //...
 
     @Override
     public String getPattern() {
-        return "'throws' ( error ','? )+";
+        return "'func' val '(' ( val ','? )+ ')' ( [ throws ] )? [ singleLine, multiLine ]";
+    }
+
+    //...
+
+    public List<Token<?>> process(LARFParser parser, LARFContext context, LARFConfig config, List<Token<?>> providedParams) {
+        String functionName = getTokenGroups().get(0).getFlatTokens().get(0).getValue().toString();
+        List<Token<?>> paramVars = getTokenGroups().get(1).getFlatTokens();
+        if (paramVars.size() != providedParams.size()) {
+            throw new ParserException(String.format("Function %s expected %d parameters, but only called with %d",
+                    functionName, paramVars.size(), providedParams.size()));
+        }
+        for (int i = 0;i < paramVars.size();i++) {
+            context.set(paramVars.get(i).getValue(String.class), providedParams.get(i), VariableType.PARAMETER);
+        }
+        Token<?> result = parser.processExpression(getTokenGroups().get(3).getFlatTokens(), context);
+        if (!result.getParserFlags().isEmpty() && !result.getParserFlags().contains(ParserFlag.ERROR)) {
+            //Unwrap result as we don't want to return token any further
+            return Collections.singletonList(result.getValue() instanceof Token ?
+                    (Token<?>)result.getValue() : new TokenValue(result.getValue()));
+        }
+        return Collections.singletonList(result);
     }
 
     @Override
-    public Optional<String> getGuidance(String token, List<Integer> groupsCount) {
-        return Optional.empty();
+    public List<ErrorToken> getThrowsToken() {
+        return getTokenGroups().get(2).getFlatTokens().stream()
+                .filter(t -> t instanceof ErrorToken)
+                .map(ErrorToken.class::cast)
+                .filter(t -> t.getErrorAction() == ErrorAction.THROWS)
+                .collect(Collectors.toList());
     }
 
-    @Override
-    protected List<Token<?>> process(LARFParser parser, LARFContext context, LARFConfig config) {
-        return null;
-    }
-
-    @Override
-    public List<ErrorHandler<?>> getErrorHandlers() {
-        return null;
-    }
-
-    @Override
-    public List<String> getErrorTypes() {
-        return getErrorTypes(0);
-    }
+    //...
 }
 ```
-This extends the class ``ErrorToken`` which provides functionality to handle error types. 
+I have covered the implementation of the FunctionToken elsewhere [here](./tokens/functions.md), so instead have just
+left the methods relevant to error handling. First, you'll notice our reference to our ThrowToken in the grammar e.g.
+``( [ throws ] )?``. This declares that a throws token may appear here, but is not guaranteed. This follows the typical
+pattern whereby you can declare the following:
+```
+func myFunc(a,b,c) throws SimpleError {
+    //...
+}
+```
