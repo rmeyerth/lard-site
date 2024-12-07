@@ -122,8 +122,8 @@ protected void initErrorHandlers() {
     addErrorHandler(new SLOPNativeErrorHandler(null));
 }
 ```
-SLOP follows the typical form of error handling where errors / exceptions can be thrown. As such, the next step
-is to create a token to handle this:
+SLOP follows the typical form of error handling where errors / exceptions can be thrown. As such, let's perform
+the next step logical step and define a token to handle these:
 ```java
 public class ThrowsToken extends ErrorToken {
 
@@ -132,7 +132,9 @@ public class ThrowsToken extends ErrorToken {
     }
 
     @Override
-    public Token<Void> createToken(String value) { return cloneDefaultProperties(new ThrowsToken()); }
+    public Token<Void> createToken(String value) { 
+        return cloneDefaultProperties(new ThrowsToken());
+    }
 
     @Override
     public PatternType getPatternType() { return PatternType.GRAMMAR; }
@@ -158,14 +160,15 @@ public class ThrowsToken extends ErrorToken {
 }
 ```
 This extends the class ``ErrorToken`` which provides functionality to handle error types. It's sole purpose as can 
-be seen from the pattern is to trap errors. You'll notice that errors have their own grammar keyword. This is so
+be seen from the pattern is to define error types. You'll notice that errors have their own grammar keyword. This is so
 that when an error in your language is declared, it is assigned to the parent type ``ErrorHandler<T>`` and can
-be handled accordingly. The ``getErrorTypes`` method returns these references to be used for things like error
-validation. This is so that if the code contained within the token to which this ``throws`` token is associated 
-(typically a Function variant) and a checked exception is being thrown by any children but not declared, an error
-will be thrown. Following normal operation, all checked exceptions must be declared if one is thrown downstream.
-You'll also see that we've declared the name of our token throws (``super("throws", ErrorAction.THROWS);``) in
-the constructor. We'll see that used in a single grammar reference in the grammar of our next token:
+be handled accordingly in grammar and elsewhere for special cases. The ``getErrorTypes`` method returns these references 
+to be used for things like error validation. This is so that if the code contained within the token to which this 
+``throws`` token is associated (typically a Function variant) and a checked exception is being thrown by any children 
+but not declared, an error will be thrown. Following normal operation, all checked exceptions must be declared if one 
+is thrown downstream. You'll also see that we've declared the name of our token throws 
+(``super("throws", ErrorAction.THROWS);``) in the constructor. We'll see that used in a single grammar reference in the 
+grammar of our next token:
 ```java
 public class FunctionToken extends Token<Void> implements TokenParameters {
 
@@ -178,18 +181,21 @@ public class FunctionToken extends Token<Void> implements TokenParameters {
 
     //...
 
-    public List<Token<?>> process(LARFParser parser, LARFContext context, LARFConfig config, List<Token<?>> providedParams) {
+    public List<Token<?>> process(LARFParser parser, LARFContext context, LARFConfig config, 
+                                  List<Token<?>> providedParams) {
         String functionName = getTokenGroups().get(0).getFlatTokens().get(0).getValue().toString();
         List<Token<?>> paramVars = getTokenGroups().get(1).getFlatTokens();
         if (paramVars.size() != providedParams.size()) {
-            throw new ParserException(String.format("Function %s expected %d parameters, but only called with %d",
-                    functionName, paramVars.size(), providedParams.size()));
+            throw new ParserException(String.format("Function %s expected %d parameters, but only " +
+                    "called with %d", functionName, paramVars.size(), providedParams.size()));
         }
         for (int i = 0;i < paramVars.size();i++) {
-            context.set(paramVars.get(i).getValue(String.class), providedParams.get(i), VariableType.PARAMETER);
+            context.set(paramVars.get(i).getValue(String.class), providedParams.get(i), 
+                    VariableType.PARAMETER);
         }
         Token<?> result = parser.processExpression(getTokenGroups().get(3).getFlatTokens(), context);
-        if (!result.getParserFlags().isEmpty() && !result.getParserFlags().contains(ParserFlag.ERROR)) {
+        if (!result.getParserFlags().isEmpty() && !result.getParserFlags()
+                    .contains(ParserFlag.ERROR)) {
             //Unwrap result as we don't want to return token any further
             return Collections.singletonList(result.getValue() instanceof Token ?
                     (Token<?>)result.getValue() : new TokenValue(result.getValue()));
@@ -210,11 +216,83 @@ public class FunctionToken extends Token<Void> implements TokenParameters {
 }
 ```
 I have covered the implementation of the FunctionToken elsewhere [here](./tokens/functions.md), so instead have just
-left the methods relevant to error handling. First, you'll notice our reference to our ThrowToken in the grammar e.g.
-``( [ throws ] )?``. This declares that a throws token may appear here, but is not guaranteed. This follows the typical
-pattern whereby you can declare the following:
+left the methods relevant to error handling. First, you'll notice the reference to our ThrowToken in the grammar e.g.
+``( [ throws ] )?``. This declares that the token may appear here, but is not guaranteed. This follows the typical
+pattern where you can declare the following:
 ```
 func myFunc(a,b,c) throws SimpleError {
     //...
 }
 ```
+:::tip Error Checking Limitation
+
+Currently the handling for validating checked errors happens within the main Token class. This is hardcoded using a
+private method in the class. Given this is not ideal and goes against open nature of the framework, I am looking to 
+move this into a more dedicated error handling class where you can override this behaviour if you so wish.
+
+:::
+
+ This will allow our checked exceptions to be validated, but let's define a way to handle these within our functions.
+ For that we'll create the next class which is TryCatchToken:
+ ```java
+public class TryCatchToken extends ErrorToken {
+
+    public TryCatchToken() {
+        super("Try-Catch", ErrorAction.CATCH);
+    }
+
+    public Token<Void> createToken(String value) {
+        return cloneDefaultProperties(new TryCatchToken());
+    }
+
+    @Override
+    public PatternType getPatternType() {
+        return PatternType.GRAMMAR;
+    }
+
+    @Override
+    public String getPattern() {
+        return "'try' [ singleLine, multiLine ] 'catch' '(' error ')' [ singleLine, multiLine ]";
+    }
+
+    @Override
+    public Optional<String> getGuidance(String token, List<Integer> groupsCount) {
+        return Optional.empty();
+    }
+
+    @Override
+    protected List<Token<?>> process(LARFParser parser, LARFContext context, LARFConfig config) {
+        Token<?> result = parser.processExpression(getTokenGroups().get(0).getFlatTokens(), context);
+        if (result.getParserFlags().contains(ParserFlag.ERROR)) {
+            Token<?> variableToken = getTokenGroups().get(1).getFlatTokens().get(0);
+            context.set(variableToken.getValue().toString(), result);
+            return Collections.singletonList(parser.processExpression(
+                    getTokenGroups().get(2).getFlatTokens(), context));
+        }
+        return Collections.singletonList(result);
+    }
+
+    @Override
+    public List<ErrorHandler<?>> getErrorHandlers() {
+        return null;
+    }
+
+    @Override
+    public List<String> getErrorTypes() {
+        return getErrorTypes(1);
+    }
+}
+ ```
+ Let's first look at the pattern:
+ ```
+ 'try' [ singleLine, multiLine ] 'catch' '(' error ')' [ singleLine, multiLine ]
+ ```
+ First we start out with the 'try' syntax and then have a branching path for either a single or multi-line
+ code block. We next have a 'catch' word and then a pair of brackets which contain a single ``error``. This
+ could be modified to handle multiple errors by changing the pattern to ``'(' ( error )+ ')' ``. We then
+ finish off with another single or multi-line definition. Let's now look at the ``process`` method
+ definition. First we process the content of the first code block and get the result. We then check the
+ result to see if it contains the ERROR parser flag. If it is then we know an error has been thrown.
+
+ We then store the active error to context and then process the error token by the parser. The current 
+ implementation uses this ``activeError`` stored into context
