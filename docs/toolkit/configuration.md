@@ -51,12 +51,12 @@ java.lang.UnsupportedClassVersionError: Unsupported major.minor version 51.0
 The constructor can also be used to set properties which affect how your language operates. The other 
 methods are used for the following:
 1. ``initFunctions``: Used to define any system functions to provide functionality from the underlying
-language (Java). For an example, please see the [System Functions](/docs/toolkit/system-functions.md)
+language (Java). For an example, please see the [System Functions](./system-functions.md)
 section for more details.
 2. ``initTokenHandlers``: Used to define all literals and statement tokens. Your tokens may require an
 argument for the value when creating a new instance e.g. ``addTokenHandler(new MyToken(null))``, but 
 passing null in this instance is fine as it is used for pattern matching and the creation of new
-instances once a match is made. See [Token Class](/docs/toolkit/tokens/token-class.md).
+instances once a match is made. See [Token Class](./tokens/token-overview.md).
 3. ``getDefaultModifier``: If a variable or object is defined without using a modifier, this method 
 determines which modifier will be used to enforce encapsulation rules. If none is specified (Optional.empty), 
 then the default will be to lock down access to only be accessible from within the object it resides i.e. 
@@ -64,15 +64,15 @@ private.
 4. ``initTypeOperations``: This is used to define type operations that handle interactions between
 tokens and operators. The method requires that a token handler be returned which is used as a default
 handler for basic operations. For example, you might define a simple equals / not equals handler for
-the any token values. Please see the [Type Operations](/docs/toolkit/type-operations.md) for more details.
+the any token values. Please see the [Type Operations](./type-operations.md) for more details.
 5. ``initOperators``: Defines operators using either one of the inbuilt templates or a custom set (see 
-[Operators](/docs/toolkit/operators.md))
+[Operators](./operators.md))
 6. ``initParserFormatters``: Data structures like collections and maps may store their contents using
 tokens depending on their implementation. Formatters are used to map their token structure used in the 
 Parser back to their Java equivalents if required. Please see [Formatters](/docs/toolkit/parser/formatters.md).
 7. ``initErrorHandlers``: Allows handlers to be defined for in-language errors. This could be as simple
 as checked / unchecked or handling thrown Java exceptions for null or Arithmetic events. 
-See [Error Handling](/error-handling.md) for more details.
+See [Error Handling](./error-handling.md) for more details.
 
 ### Common Properties
 Properties can change how your language operates and behaves. Properties can be set either on the 
