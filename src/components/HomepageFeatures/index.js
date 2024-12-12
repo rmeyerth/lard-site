@@ -4,32 +4,32 @@ import styles from './styles.module.css';
 
 const FeatureList = [
   {
-    title: 'Easy to Use',
-    Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
+    title: 'Create Languages Fast',
+    Svg: require('@site/static/img/rocket-312767.svg').default,
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        Create your project, import the dependency and define your language.
+        Still too slow? The sample starter project allows you to get a running start.
       </>
     ),
   },
   {
-    title: 'Focus on What Matters',
-    Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
+    title: 'Building Blocks',
+    Svg: require('@site/static/img/Jigsaw-Puzzle.svg').default,
     description: (
       <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
+        LARF uses an object orientated approach to language development. All literal,
+        operation or statement logic is contained within single classes.
       </>
     ),
   },
   {
-    title: 'Powered by React',
-    Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
+    title: 'Flexible Framework',
+    Svg: require('@site/static/img/Andy_Tools_Hammer_Spanner.svg').default,
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+        It is completely customisable with the ability to override any property and
+        component. Don't like the default parser? Write your own!
       </>
     ),
   },
@@ -43,7 +43,7 @@ function Feature({Svg, title, description}) {
       </div>
       <div className="text--center padding-horiz--md">
         <h3>{title}</h3>
-        <p>{description}</p>
+        <p className="featureText">{description}</p>
       </div>
     </div>
   );

@@ -30,7 +30,7 @@ public class DecimalToken extends Token<Double> {
     }
 
     @Override
-    public List<Token<?>> process(LARDParser parser, LARDContext context, LARDConfig config) {
+    public List<Token<?>> process(LARFParser parser, LARFContext context, LARFConfig config) {
         return Collections.singletonList(this);
     }
 
@@ -60,19 +60,20 @@ public class DecimalToken extends Token<Double> {
 ```
 :::tip Customisation
 
-LARD is completely customisable and most classes designed to be extensible or have their methods overridden. If you 
+LARF is completely customisable and most classes designed to be extensible or have their methods overridden. If you 
 don't like the default behaviour, change it and do something crazy!
 
 :::
 For Aardvark, I'll omit any localisation to keep things simple. Let's add our new token to the config:
 ```java
-public class AardvarkConfig extends LARDConfig {
+public class AardvarkConfig extends LARFConfig {
     //...
     @Override
     protected void initTokenHandlers() {
         addTokenHandler(new NullToken());
+        addTokenHandler(new DecimalToken());        
+        //As both decimal and integers use number regular expressions, avoid issues by placing Decimal before Integers
         addTokenHandler(new IntegerToken());
-        addTokenHandler(new DecimalToken());
     }
     //...
 }
@@ -80,14 +81,14 @@ public class AardvarkConfig extends LARDConfig {
 ### Changes to the Type Operation Class
 Now let's go back to our IntegerOperation class. The natural behaviour of Java as well as other languages is to stick
 to the types being used in the operation. As such, when we do ``Integer <divide> Integer``, we get back an Integer even
-if we wanted to keep precision. One solution to this to use a type that can handle both number formats and then case 
+if we wanted to keep precision. One solution to this to use a type that can handle both number formats and then cast 
 the result to the desired type. Let's look back at the ``IntegerOperation.process`` method:
 
 ```java
 public class IntegerOperation implements TypeOperation {
     //...
     @Override
-    public Token<?> process(LARDConfig config, LARDContext context, Token<?> firstToken, OperatorHandler<?> operator,
+    public Token<?> process(LARFConfig config, LARFContext context, Token<?> firstToken, OperatorHandler<?> operator,
                             Token<?> secondToken, Token<?> leftSide) {
       //Extract token values to BigDecimal
       BigDecimal first = new BigDecimal(firstToken.getValue(Integer.class));
@@ -125,13 +126,13 @@ Result: 30 (Type: Integer, Time taken: 1ms)
 6 / 4
 Result: 1.5 (Type: Double, Time taken: 1ms)
 5 + 3 / 2
-dev.lard.exception.ParserException: No handler for type operation with arguments of type IntegerToken and DecimalToken found.
-	at dev.lard.parser.LARDParser.processOp(LARDParser.java:317)
-	at dev.lard.parser.LARDParser.replaceCalcsInfix(LARDParser.java:382)
-	at dev.lard.parser.LARDParser.lambda$processExpression$0(LARDParser.java:74)
+dev.larf.exception.ParserException: No handler for type operation with arguments of type IntegerToken and DecimalToken found.
+	at dev.larf.parser.LARFParser.processOp(LARFParser.java:317)
+	at dev.larf.parser.LARFParser.replaceCalcsInfix(LARFParser.java:382)
+	at dev.larf.parser.LARFParser.lambda$processExpression$0(LARFParser.java:74)
 	at java.base/java.util.Spliterators$ArraySpliterator.forEachRemaining(Spliterators.java:948)
 	at java.base/java.util.stream.ReferencePipeline$Head.forEach(ReferencePipeline.java:658)
-	at dev.lard.parser.LARDParser.lambda$processExpression$1(LARDParser.java:74)
+	at dev.larf.parser.LARFParser.lambda$processExpression$1(LARFParser.java:74)
 	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:183)
 	at java.base/java.util.stream.SortedOps$SizedRefSortingSink.end(SortedOps.java:357)
 	...

@@ -65,25 +65,32 @@ const config = {
       // Replace with your project's social card
       image: 'img/docusaurus-social-card.jpg',
       navbar: {
-        title: 'LARD',
+        title: 'LARF',
         logo: {
-          alt: 'LARD',
-          src: 'img/lard.png',
+          alt: 'LARF',
+          src: 'img/larf.png',
         },
         items: [
+          {to: '/docs/tutorial/getting-started', label: 'Get Started', position: 'left'},
           {
             type: 'docSidebar',
             sidebarId: 'tutorialSidebar',
             position: 'left',
-            label: 'Tutorial',
+            label: 'Documentation',
           },
           {to: '/blog', label: 'Blog', position: 'left'},
+          {to: '/license', label: 'License', position: 'left'},
           {
-            href: 'https://github.com/facebook/docusaurus',
-            label: 'GitHub',
+            href: 'https://gitlab.com/tronied/larf',
+            label: 'GitLab',
             position: 'right',
           },
         ],
+      },
+      colorMode: {
+        defaultMode: 'dark',
+        disableSwitch: true,
+        respectPrefersColorScheme: false,
       },
       footer: {
         style: 'dark',
@@ -93,7 +100,15 @@ const config = {
             items: [
               {
                 label: 'Tutorial',
-                to: '/docs/intro',
+                to: '/docs/tutorial/getting-started',
+              },
+              {
+                label: 'Toolkit',
+                to: '/docs/toolkit/configuration',
+              },
+              {
+                label: 'Examples',
+                to: '/docs/examples/aardvark',
               },
             ],
           },
@@ -101,16 +116,16 @@ const config = {
             title: 'Community',
             items: [
               {
-                label: 'Stack Overflow',
-                href: 'https://stackoverflow.com/questions/tagged/docusaurus',
+                label: 'Forum',
+                href: 'https://larf.forumotion.com/',
               },
               {
                 label: 'Discord',
-                href: 'https://discordapp.com/invite/docusaurus',
+                href: 'https://discord.gg/2pAGbpgm',
               },
               {
-                label: 'Twitter',
-                href: 'https://twitter.com/docusaurus',
+                label: 'X',
+                href: 'https://x.com/lang_framework',
               },
             ],
           },
@@ -122,13 +137,13 @@ const config = {
                 to: '/blog',
               },
               {
-                label: 'GitHub',
-                href: 'https://github.com/facebook/docusaurus',
+                label: 'GitLab',
+                href: 'https://gitlab.com/tronied/larf',
               },
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} <a href='mailto:rmeyer@hotmail.co.uk'>Robert Meyer</a>. Built with Docusaurus.`,
       },
       prism: {
         theme: lightCodeTheme,

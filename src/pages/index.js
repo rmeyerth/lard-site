@@ -1,6 +1,5 @@
 import React from 'react';
 import clsx from 'clsx';
-import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 import HomepageFeatures from '@site/src/components/HomepageFeatures';
@@ -12,16 +11,19 @@ function HomepageHeader() {
   return (
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
       <div className="container">
-        <img src={'img/lard.svg'} />
-        <h1 className="hero__title">{siteConfig.title}</h1>
-        <p className="hero__subtitle">{siteConfig.tagline}</p>
-        <div className={styles.buttons}>
-          <Link
-            className="button button--secondary button--lg"
-            to="/docs/intro">
-            Get started now...
-          </Link>
-        </div>
+        <img className="myLogo" style={{width: 380, height: 330}} src={'img/icon.svg'} />
+          <div className="myContainer">
+              <div className="invisibleBox"></div>
+                <div>
+                  <div className="testHeader"><img style={{paddingLeft: 5, width: 70, height: 25, float: "left"}} src={'img/buttons.png'} />&nbsp;&nbsp;Language Architect and Runtime Framework</div>
+                  <div className="terminal">
+                    <div><span>Your Language Test Utility</span></div>
+                    <div><span>==========================</span></div>
+                    <div>&gt; <span style={{color: "cadetblue"}}>sys</span>:print(<span style={{color: "lightgreen"}}>'Discover the secret to turn your programming language ideas into a reality'</span>)</div>
+                  </div>
+                </div>
+              <div className="invisibleBox"></div>
+          </div>
       </div>
     </header>
   );
@@ -33,6 +35,9 @@ export default function Home() {
       title={`Language Architect and Runtime Development`}
       description="Create a programming language">
       <HomepageHeader />
+      <div className="container">
+        <HomepageFeatures />
+      </div>
     </Layout>
   );
 }

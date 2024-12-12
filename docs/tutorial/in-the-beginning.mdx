@@ -16,14 +16,14 @@ have that yet! We can test this by typing null in our runner app:
 Aardvark Language Test Utility
 ===============================
 null
-dev.lard.exception.ParserException: Unexpected token 'null' found in expression. Strict syntax checking is enabled
-	at dev.lard.lexer.LARDLexer.analysePatterns(LARDLexer.java:98)
-	at dev.lard.lexer.LARDLexer.tokenize(LARDLexer.java:57)
-	at dev.lard.lexer.Lexer.tokenize(Lexer.java:49)
-	at dev.lard.processor.LARDProcessor.process(LARDProcessor.java:82)
-	at dev.lard.runner.LARDRunner.run(LARDRunner.java:39)
-	at dev.lard.runner.LARDRunner.run(LARDRunner.java:10)
-	at dev.lard.runner.Application.main(Application.java:10)
+dev.larf.exception.ParserException: Unexpected token 'null' found in expression. Strict syntax checking is enabled
+	at dev.larf.lexer.LARFLexer.analysePatterns(LARFLexer.java:98)
+	at dev.larf.lexer.LARFLexer.tokenize(LARFLexer.java:57)
+	at dev.larf.lexer.Lexer.tokenize(Lexer.java:49)
+	at dev.larf.processor.LARFProcessor.process(LARFProcessor.java:82)
+	at dev.larf.runner.LARFRunner.run(LARFRunner.java:39)
+	at dev.larf.runner.LARFRunner.run(LARFRunner.java:10)
+	at dev.larf.runner.Application.main(Application.java:10)
 ```
 ### Token Class
 As such, this will be our first task. Create a new package called tokens. Within that add another package called
@@ -66,7 +66,7 @@ public class NullToken extends Token<Void> {
   }
 
   @Override
-  protected List<Token<?>> process(LARDParser parser, LARDContext context, LARDConfig config) {
+  protected List<Token<?>> process(LARFParser parser, LARFContext context, LARFConfig config) {
     return null;
   }
 }
@@ -115,7 +115,7 @@ public class NullToken extends Token<Void> {
   }
 
   @Override
-  public List<Token<?>> process(LARDParser parser, LARDContext context, LARDConfig config) {
+  public List<Token<?>> process(LARFParser parser, LARFContext context, LARFConfig config) {
     return Collections.singletonList(this);
   }
 
@@ -130,7 +130,7 @@ We have also defined a constructor which calls the parent. This call sets a uniq
 value for the token, in this case it is just null. Congratulations, we have our first token! Now all we need to do is
 add it to our configuration:
 ```java
-public class AardvarkConfig extends LARDConfig {
+public class AardvarkConfig extends LARFConfig {
   //...
   @Override
   protected void initTokenHandlers() {

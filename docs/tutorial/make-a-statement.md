@@ -6,7 +6,7 @@ sidebar_position: 7
 
 If literals are considered the building blocks of a language, statements are considered the machinery and workers
 which put the whole thing together. Statements are slightly more complicated to define and understand than literals 
-due to their nature. However, once you get to grip with LARD's powerful grammar system you'll be able to create a new 
+due to their nature. However, once you get to grip with LARF's powerful grammar system you'll be able to create a new 
 conditional, loop or iterative statement in mere minutes, not days.
 
 :::
@@ -65,7 +65,7 @@ public class ExpressionToken extends Token<Void> {
   }
 
     @Override
-    protected List<Token<?>> process(LARDParser parser, LARDContext context, LARDConfig config) {
+    protected List<Token<?>> process(LARFParser parser, LARFContext context, LARFConfig config) {
         return Collections.singletonList(
             parser.processExpression(getTokenGroups().get(0).getTokens(), context)
         );
@@ -102,7 +102,7 @@ Let's break this down:
 
 Let's configure our new token in the configuration class:
 ```java
-public class AardvarkConfig extends LARDConfig {
+public class AardvarkConfig extends LARFConfig {
     //...
     @Override
     protected void initTokenHandlers() {

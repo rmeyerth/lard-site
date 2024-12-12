@@ -49,7 +49,7 @@ public class StringToken extends Token<String> {
     }
 
     @Override
-    public List<Token<?>> process(LARDParser parser, LARDContext context, LARDConfig config) {
+    public List<Token<?>> process(LARFParser parser, LARFContext context, LARFConfig config) {
         return Collections.singletonList(this);
     }
 
@@ -114,7 +114,7 @@ the method to get a better idea of how it works.
 
 Ok, time to test it by adding it to our configuration and giving it a try in the expression runner:
 ```java
-public class AardvarkConfig extends LARDConfig {
+public class AardvarkConfig extends LARFConfig {
     //...
     @Override
     protected void initTokenHandlers() {
@@ -201,7 +201,7 @@ public class StringOperation implements TypeOperation {
     }
 
     @Override
-    public Token<?> process(LARDConfig config, LARDContext context, Token<?> first, OperatorHandler<?> operator,
+    public Token<?> process(LARFConfig config, LARFContext context, Token<?> first, OperatorHandler<?> operator,
                             Token<?> second, Token<?> leftSide) {
         if (operator instanceof ArithmeticOperator) {
             switch (((ArithmeticOperator)operator).getOpType()) {
@@ -223,7 +223,7 @@ public class StringOperation implements TypeOperation {
 ```
 Let's add our new operation class to the config:
 ```java
-public class AardvarkConfig extends LARDConfig {
+public class AardvarkConfig extends LARFConfig {
     //...
     @Override
     protected TypeOperation initTypeOperations() {

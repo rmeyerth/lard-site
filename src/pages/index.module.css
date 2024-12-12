@@ -3,9 +3,14 @@
  * and scoped locally.
  */
 
+[data-theme='dark'] .heroBanner {
+  background-color: #121212;
+}
+
 .heroBanner {
-  padding: 4rem 0;
+  padding: 3rem 0;
   text-align: center;
+  align-content: center;
   position: relative;
   overflow: hidden;
   background-color: #397585;
