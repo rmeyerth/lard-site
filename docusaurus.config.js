@@ -61,6 +61,10 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      metadata: [ 
+        { name: 'keywords', content: 'programming language, language architect, languages, programming, java, custom language, create language, create programming language, language framework, language creator' }, 
+        { name: 'description', content: 'Language Architect and Runtime Framework' }
+      ],
       primaryColor: '#0000FF',
       // Replace with your project's social card
       image: 'img/docusaurus-social-card.jpg',

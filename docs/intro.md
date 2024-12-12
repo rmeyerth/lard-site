@@ -3,7 +3,7 @@ sidebar_position: 1
 ---
 
 # Introduction
-![Introduction](/img/sun.jpg)
+![Introduction](/img/intro.jpg)
 LARF is a tool that makes it easy to create interpreted programming languages. It does this by providing a high-level
 API that allows you to focus on the building blocks of your language, called tokens. Tokens are matched from expressions
 and represent operators, literals and statements. You can also customize other aspects of your language, such as its

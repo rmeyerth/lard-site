@@ -295,4 +295,13 @@ public class TryCatchToken extends ErrorToken {
  result to see if it contains the ERROR parser flag. If it is then we know an error has been thrown.
 
  We then store the active error to context and then process the error token by the parser. The current 
- implementation uses this ``activeError`` stored into context
+ implementation uses this ``activeError`` stored into context...
+
+:::danger Under Construction
+
+Unfortunately this page hasn't been completed yet. Work is under way to complete the rest of the site and will be updated
+as soon as possible.
+
+:::
+
+![Work in Progress](/img/work-in-progress.jpg)
