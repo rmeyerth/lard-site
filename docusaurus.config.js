@@ -9,7 +9,7 @@ const config = {
   tagline: 'The language chef’s secret ingredient!',
   favicon: 'img/favicon.ico',
 
-  url: 'https://your-docusaurus-test-site.com',
+  url: 'https://www.larf.dev',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/',
@@ -36,6 +36,7 @@ const config = {
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
+          path: './docs',
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
