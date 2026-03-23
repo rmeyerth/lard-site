@@ -87,7 +87,6 @@ const config = {
             position: 'left',
             label: 'Documentation',
           },
-          {to: '/blog', label: 'Blog', position: 'left'},
           {to: '/license', label: 'License', position: 'left'},
           {
             href: 'https://gitlab.com/tronied/larf',
@@ -141,10 +140,6 @@ const config = {
           {
             title: 'More',
             items: [
-              {
-                label: 'Blog',
-                to: '/blog',
-              },
               {
                 label: 'GitLab',
                 href: 'https://gitlab.com/tronied/larf',
