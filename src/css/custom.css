@@ -87,10 +87,9 @@
 .testHeader {
   vertical-align: center;
   background-color: #252a33;
-  padding-top: 2px;
+  padding-top: 0px;
   padding-bottom: 2px;
   padding-right: 70px;
-  margin-top: 30px;
   fontFamily: 'Fira Mono', Consolas, Menlo, Monaco, 'Courier New', Courier, monospace;
   color: lightgray;
   text-align: center;
