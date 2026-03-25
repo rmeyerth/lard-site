@@ -124,12 +124,12 @@ const config = {
             title: 'Community',
             items: [
               {
-                label: 'Forum',
-                href: 'https://larf.forumotion.com/',
+                label: 'Reddit',
+                href: 'https://www.reddit.com/r/LARFR/',
               },
               {
                 label: 'Discord',
-                href: 'https://discord.gg/2pAGbpgm',
+                href: 'https://discord.com/channels/1297949841435000922/1297949841435000925',
               },
               {
                 label: 'X',
